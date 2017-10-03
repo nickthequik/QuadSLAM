@@ -1,0 +1,10 @@
+/*
+.cproject
+.project
+!.gitignore
+!/QuadSLAM.srcs
+!/QuadSLAM.xpr
+!/QuadSLAM.sdk
+/QuadSLAM.sdk/*
+!/QuadSLAM.sdk/QuadSLAM
+/QuadSLAM.sdk/QuadSLAM/Debug
