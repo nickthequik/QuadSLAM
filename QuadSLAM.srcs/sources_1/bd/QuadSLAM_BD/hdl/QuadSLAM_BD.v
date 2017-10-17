@@ -1,7 +1,7 @@
 //Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2016.2 (win64) Build 1577090 Thu Jun  2 16:32:40 MDT 2016
-//Date        : Sun Oct 15 22:33:46 2017
+//Date        : Tue Oct 17 10:04:26 2017
 //Host        : nickthequik running 64-bit major release  (build 9200)
 //Command     : generate_target QuadSLAM_BD.bd
 //Design      : QuadSLAM_BD
@@ -75,7 +75,7 @@ module QuadSLAM_BD
   wire [3:0]axi_gpio_0_GPIO2_TRI_I;
   wire [3:0]axi_gpio_0_GPIO_TRI_O;
   wire [0:0]axi_gpio_1_gpio2_io_o;
-  wire [31:0]axi_vdma_0_M_AXIS_MM2S_TDATA;
+  wire [15:0]axi_vdma_0_M_AXIS_MM2S_TDATA;
   wire axi_vdma_0_M_AXIS_MM2S_TLAST;
   wire axi_vdma_0_M_AXIS_MM2S_TREADY;
   wire [0:0]axi_vdma_0_M_AXIS_MM2S_TUSER;
@@ -540,7 +540,7 @@ module QuadSLAM_BD
         .aclken(xlconstant_1_dout),
         .aresetn(xlconstant_1_dout),
         .fid(xlconstant_0_dout),
-        .s_axis_video_tdata(axi_vdma_0_M_AXIS_MM2S_TDATA[15:0]),
+        .s_axis_video_tdata(axi_vdma_0_M_AXIS_MM2S_TDATA),
         .s_axis_video_tlast(axi_vdma_0_M_AXIS_MM2S_TLAST),
         .s_axis_video_tready(axi_vdma_0_M_AXIS_MM2S_TREADY),
         .s_axis_video_tuser(axi_vdma_0_M_AXIS_MM2S_TUSER),

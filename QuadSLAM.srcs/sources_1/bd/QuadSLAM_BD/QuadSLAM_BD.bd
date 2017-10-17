@@ -176,7 +176,7 @@
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>CLK_DOMAIN</spirit:name>
-            <spirit:value>QuadSLAM_BD_vid_io_in_clk</spirit:value>
+            <spirit:value>QuadSLAM_BD_cam_clk</spirit:value>
             <spirit:vendorExtensions>
               <bd:configElementInfos>
                 <bd:configElementInfo bd:valueSource="default"/>
@@ -302,9 +302,10 @@
         <spirit:componentRef spirit:library="ip" spirit:name="axi_vdma" spirit:vendor="xilinx.com" spirit:version="6.2"/>
         <spirit:configurableElementValues>
           <spirit:configurableElementValue spirit:referenceId="bd:xciName">QuadSLAM_BD_axi_vdma_0_0</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="c_m_axis_mm2s_tdata_width">16</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="c_num_fstores">3</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="c_use_s2mm_fsync">0</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="c_mm2s_linebuffer_depth">256</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="c_mm2s_linebuffer_depth">512</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="c_s2mm_linebuffer_depth">256</spirit:configurableElementValue>
         </spirit:configurableElementValues>
       </spirit:componentInstance>
@@ -420,11 +421,6 @@
         <spirit:activeInterface spirit:busRef="vtiming_in" spirit:componentRef="v_axi4s_vid_out_0"/>
       </spirit:interconnection>
       <spirit:interconnection>
-        <spirit:name>axi_vdma_0_M_AXIS_MM2S</spirit:name>
-        <spirit:activeInterface spirit:busRef="M_AXIS_MM2S" spirit:componentRef="axi_vdma_0"/>
-        <spirit:activeInterface spirit:busRef="video_in" spirit:componentRef="v_axi4s_vid_out_0"/>
-      </spirit:interconnection>
-      <spirit:interconnection>
         <spirit:name>processing_system7_0_M_AXI_GP0</spirit:name>
         <spirit:activeInterface spirit:busRef="M_AXI_GP0" spirit:componentRef="processing_system7_0"/>
         <spirit:activeInterface spirit:busRef="S00_AXI" spirit:componentRef="processing_system7_0_axi_periph"/>
@@ -448,6 +444,11 @@
         <spirit:name>processing_system7_0_axi_periph_M03_AXI</spirit:name>
         <spirit:activeInterface spirit:busRef="M03_AXI" spirit:componentRef="processing_system7_0_axi_periph"/>
         <spirit:activeInterface spirit:busRef="ctrl" spirit:componentRef="v_tc_0"/>
+      </spirit:interconnection>
+      <spirit:interconnection>
+        <spirit:name>axi_vdma_0_M_AXIS_MM2S</spirit:name>
+        <spirit:activeInterface spirit:busRef="M_AXIS_MM2S" spirit:componentRef="axi_vdma_0"/>
+        <spirit:activeInterface spirit:busRef="video_in" spirit:componentRef="v_axi4s_vid_out_0"/>
       </spirit:interconnection>
     </spirit:interconnections>
     <spirit:adHocConnections>

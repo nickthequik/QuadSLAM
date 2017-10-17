@@ -15,7 +15,8 @@
 #include "xscugic.h"
 #include "xil_exception.h"
 
-#define mainQUEUE_SEND_TASK_PRIORITY		( tskIDLE_PRIORITY)
+#include "xaxivdma.h"
+#include "xvtc.h"
 
 extern XScuGic xInterruptController;
 
@@ -35,59 +36,103 @@ void VDMA_init(void)
 	int status;
 	XAxiVdma_Config *VDMA_config;
 	XAxiVdma VDMA;
-	XAxiVdma_DmaSetup VDMA_setup;
+	XAxiVdma_DmaSetup Read_config;
+	//XAxiVdma_DmaSetup Write_config;
+
+	uint32_t i;
+	uint16_t color_1 = 0xDEAD;
+	uint16_t color_2 = 0xBEEF;
+	uint16_t *frame_buffer_1;
+	uint16_t *frame_buffer_2;
+	frame_buffer_1 = (uint16_t *) pvPortMalloc((1024 * 768 * 16)/8); // number of bytes per frame
+
+	for (i = 0; i < 1024 * 768; i++)
+	{
+		// move over 2 bytes each time
+		*(frame_buffer_1 + 2*i) = color_1;
+	}
 
 	VDMA_config = XAxiVdma_LookupConfig(XPAR_AXI_VDMA_0_DEVICE_ID);
 	status = XAxiVdma_CfgInitialize	(&VDMA, VDMA_config, VDMA_config->BaseAddress);
 
 	if (status != XST_SUCCESS)
-	{
 		while(1);
-	}
 
-	XAxiVdma_SetFrmStore(&VDMA, 0, XAXIVDMA_WRITE);
+	// Second argument is number of frames allocated to VDMA block
+	status = XAxiVdma_SetFrmStore(&VDMA, 1, XAXIVDMA_READ);
 
-	int XAxiVdma_StartWriteFrame(XAxiVdma * InstancePtr, XAxiVdma_DmaSetup * DmaConfigPtr)
+	if (status != XST_SUCCESS)
+			while(1);
 
+	Read_config.HoriSizeInput = 1024 * 2;
+	Read_config.VertSizeInput = 768 * 2;
+	Read_config.Stride = 1024 * 2;
+	Read_config.FrameDelay = 0;
+	Read_config.EnableCircularBuf = 0;
+	Read_config.EnableSync = 0;
+	Read_config.PointNum = 0;
+	Read_config.EnableFrameCounter = 0;
+	Read_config.GenLockRepeat = 0;
 
-	2. Write a valid video frame buffer start address to the channel START_ADDRESS register 1
-	to N where N equals Frame Buffers (Offset 0x5C up to 0x98 for MM2S and 0xAC up to
-	0xE8 for S2MM). Set the REG_INDEX register if required.
-	When AXI VDMA is configured for an address space greater than 32, each start address
-	is to be programmed as a combination of two registers wherein the first register is used
-	to specify LSB 32 bits of address while the next register is used to specify MSB 32 bits.
+	status = XAxiVdma_DmaConfig(&VDMA, XAXIVDMA_READ, &Read_config);
 
-	3. Write a valid Frame Delay (valid only for Genlock Slave) and Stride to the channel
-	FRMDLY_STRIDE register (Offset 0x58 for MM2S and 0xA8 for S2MM).
+	if (status != XST_SUCCESS)
+			while(1);
 
-	4. Write a valid Horizontal Size to the channel HSIZE register (Offset 0x54 for MM2S and
-	0xA4 for S2MM).
+	status = XAxiVdma_DmaSetBufferAddr(&VDMA, XAXIVDMA_READ, (UINTPTR *) frame_buffer_1);
 
-	5. Write a valid Vertical Size to the channel VSIZE register (Offset 0x50 for MM2S and
-	0xA0 for S2MM). This starts the channel transferring video data.
+	if (status != XST_SUCCESS)
+			while(1);
+
+	status = XAxiVdma_DmaStart(&VDMA, XAXIVDMA_READ);
+
+}
+
+void VTC_init(void)
+{
+	int status;
+	XVtc_Config *VTC_config;
+	XVtc VTC;
+	XVtc_Signal VGA_signal;
+	XVtc_Timing VGA_timing;
+	XVtc_HoriOffsets VGA_offsets;
+	XVtc_Polarity VGA_polarity;
+
+	 VTC_config= XVtc_LookupConfig(XPAR_V_TC_0_DEVICE_ID);
+	 status = XVtc_CfgInitialize(&VTC, VTC_config, VTC_config->BaseAddress);
+
+	 if (status != XST_SUCCESS)
+	 			while(1);
+
+	 XVtc_ConvVideoMode2Timing(&VTC, XVTC_VMODE_XGA, &VGA_timing);
+	 XVtc_ConvTiming2Signal(&VTC, &VGA_timing, &VGA_signal, &VGA_offsets, &VGA_polarity);
+
+	 XVtc_SetGenerator(&VTC, &VGA_signal);
+	 XVtc_SetPolarity(&VTC, &VGA_polarity);
+	 XVtc_SetGeneratorHoriOffset(&VTC, &VGA_offsets);
+	 XVtc_Enable(&VTC);
 }
 
 int main( void )
 {
 	prvSetupHardware();
 
-	if( xQueue != NULL )
-	{
-		xTaskCreate( miscTask, "misc", configMINIMAL_STACK_SIZE, NULL, mainQUEUE_RECEIVE_TASK_PRIORITY, NULL );
-		vTaskStartScheduler();
-	}
+	xTaskCreate( miscTask, "misc", configMINIMAL_STACK_SIZE, NULL, 1, NULL );
+	vTaskStartScheduler();
+
 	for( ;; );
 	return 0;
 }
 
-static void miscTask( void *pvParameters )
+static void miscTask(void *pvParameters)
 {
 
-
+	VDMA_init();
+	VTC_init();
 
 	while(1)
 	{
-		locked = XGpio_DiscreteRead(&xGpio1, 1);
+		/*locked = XGpio_DiscreteRead(&xGpio1, 1);
 		if (locked == 0)
 			XGpio_DiscreteWrite(&xGpio0, partstLED_OUTPUT, 0);
 		else if (locked == 1)
@@ -104,7 +149,7 @@ static void miscTask( void *pvParameters )
 
 
 		//vParTestToggleLED(0xFFFF);
-		//vTaskDelayUntil(&xLastWakeTime, pdMS_TO_TICKS(ulReceivedValue));
+		//vTaskDelayUntil(&xLastWakeTime, pdMS_TO_TICKS(ulReceivedValue));*/
 	}
 }
 

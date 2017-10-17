@@ -1,6 +1,7 @@
 
 #include "led.h"
 #include "xgpio.h"
+#include "FreeRTOS.h"
 
 XGpio xGpio0, xGpio1;
 UBaseType_t led_state = 0;

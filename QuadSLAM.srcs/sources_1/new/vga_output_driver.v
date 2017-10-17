@@ -31,7 +31,7 @@ module vga_output_driver(
     output        vga_vsync_out
     );
 
-    assign vga_data_out[15:0] = vga_data_in[15:0] & {16{(vga_hblank_in | vga_vblank_in)}};
+    assign vga_data_out[15:0] = vga_data_in[15:0] & {16{(vga_hblank_in & vga_vblank_in)}};
     assign vga_hsync_out = vga_hsync_in;
     assign vga_vsync_out = vga_vsync_in;
     
