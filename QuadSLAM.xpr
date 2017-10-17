@@ -19,8 +19,10 @@
     <Option Name="BoardPart" Val=""/>
     <Option Name="ActiveSimSet" Val="sim_1"/>
     <Option Name="DefaultLib" Val="xil_defaultlib"/>
+    <Option Name="IPRepoPath" Val="$PSRCDIR/sources_1/new"/>
     <Option Name="EnableCoreContainer" Val="FALSE"/>
     <Option Name="XPMLibraries" Val="XPM_CDC"/>
+    <Option Name="XPMLibraries" Val="XPM_MEMORY"/>
     <Option Name="CreateRefXciForCoreContainers" Val="FALSE"/>
     <Option Name="IPUserFilesDir" Val="$PPRDIR/QuadSLAM.ip_user_files"/>
     <Option Name="IPStaticSourceDir" Val="$PPRDIR/QuadSLAM.ip_user_files/ipstatic"/>
@@ -49,11 +51,47 @@
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
+        <CompFileExtendedInfo CompFileName="QuadSLAM_BD.bd" FileRelPathName="ip/QuadSLAM_BD_axi_gpio_1_0/QuadSLAM_BD_axi_gpio_1_0.xci"/>
+        <CompFileExtendedInfo CompFileName="QuadSLAM_BD.bd" FileRelPathName="hdl/QuadSLAM_BD.v"/>
+        <CompFileExtendedInfo CompFileName="QuadSLAM_BD.bd" FileRelPathName="ip/QuadSLAM_BD_rst_processing_system7_0_100M_0/QuadSLAM_BD_rst_processing_system7_0_100M_0.xci"/>
+        <CompFileExtendedInfo CompFileName="QuadSLAM_BD.bd" FileRelPathName="ip/QuadSLAM_BD_axi_gpio_0_0/QuadSLAM_BD_axi_gpio_0_0.xci"/>
+        <CompFileExtendedInfo CompFileName="QuadSLAM_BD.bd" FileRelPathName="ip/QuadSLAM_BD_processing_system7_0_0/QuadSLAM_BD_processing_system7_0_0.xci"/>
+        <CompFileExtendedInfo CompFileName="QuadSLAM_BD.bd" FileRelPathName="ip/QuadSLAM_BD_processing_system7_0_axi_periph_1/QuadSLAM_BD_processing_system7_0_axi_periph_1.xci"/>
+        <CompFileExtendedInfo CompFileName="QuadSLAM_BD.bd" FileRelPathName="ip/QuadSLAM_BD_xlconstant_0_0/QuadSLAM_BD_xlconstant_0_0.xci"/>
+        <CompFileExtendedInfo CompFileName="QuadSLAM_BD.bd" FileRelPathName="ip/QuadSLAM_BD_v_axi4s_vid_out_0_0/QuadSLAM_BD_v_axi4s_vid_out_0_0.xci"/>
+        <CompFileExtendedInfo CompFileName="QuadSLAM_BD.bd" FileRelPathName="ip/QuadSLAM_BD_v_vid_in_axi4s_0_0/QuadSLAM_BD_v_vid_in_axi4s_0_0.xci"/>
+        <CompFileExtendedInfo CompFileName="QuadSLAM_BD.bd" FileRelPathName="ip/QuadSLAM_BD_xlconstant_1_0/QuadSLAM_BD_xlconstant_1_0.xci"/>
+        <CompFileExtendedInfo CompFileName="QuadSLAM_BD.bd" FileRelPathName="ip/QuadSLAM_BD_v_tc_0_0/QuadSLAM_BD_v_tc_0_0.xci"/>
+        <CompFileExtendedInfo CompFileName="QuadSLAM_BD.bd" FileRelPathName="ip/QuadSLAM_BD_axi_vdma_0_0/QuadSLAM_BD_axi_vdma_0_0.xci"/>
+        <CompFileExtendedInfo CompFileName="QuadSLAM_BD.bd" FileRelPathName="hdl/QuadSLAM_BD.hwdef"/>
+        <CompFileExtendedInfo CompFileName="QuadSLAM_BD.bd" FileRelPathName="hw_handoff/QuadSLAM_BD_bd.tcl"/>
+        <CompFileExtendedInfo CompFileName="QuadSLAM_BD.bd" FileRelPathName="hw_handoff/QuadSLAM_BD.hwh"/>
+        <CompFileExtendedInfo CompFileName="QuadSLAM_BD.bd" FileRelPathName="QuadSLAM_BD_ooc.xdc"/>
+        <CompFileExtendedInfo CompFileName="QuadSLAM_BD.bd" FileRelPathName="ip/QuadSLAM_BD_auto_pc_0/QuadSLAM_BD_auto_pc_0.xci"/>
+        <CompFileExtendedInfo CompFileName="QuadSLAM_BD.bd" FileRelPathName="ip/QuadSLAM_BD_vga_output_driver_0_0/QuadSLAM_BD_vga_output_driver_0_0.xci"/>
+        <CompFileExtendedInfo CompFileName="QuadSLAM_BD.bd" FileRelPathName="ip/QuadSLAM_BD_clk_wiz_0_1/QuadSLAM_BD_clk_wiz_0_1.xci"/>
+        <CompFileExtendedInfo CompFileName="QuadSLAM_BD.bd" FileRelPathName="ip/QuadSLAM_BD_xbar_1/QuadSLAM_BD_xbar_1.xci"/>
       </File>
       <File Path="$PSRCDIR/sources_1/imports/hdl/QuadSLAM_BD_wrapper.v">
         <FileInfo>
           <Attr Name="ImportPath" Val="$PSRCDIR/sources_1/bd/QuadSLAM_BD/hdl/QuadSLAM_BD_wrapper.v"/>
-          <Attr Name="ImportTime" Val="1506905833"/>
+          <Attr Name="ImportTime" Val="1508122398"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/new/vga_output_driver.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/ip/v_axi4s_vid_out_0/v_axi4s_vid_out_0.xci">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -76,6 +114,7 @@
         </FileInfo>
       </File>
       <Config>
+        <Option Name="TargetConstrsFile" Val="$PSRCDIR/constrs_1/imports/CPE439/ZYBO_Master.xdc"/>
         <Option Name="ConstrsType" Val="XDC"/>
       </Config>
     </FileSet>

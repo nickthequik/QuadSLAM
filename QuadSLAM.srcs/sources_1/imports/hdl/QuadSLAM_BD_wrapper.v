@@ -1,7 +1,7 @@
 //Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2016.2 (win64) Build 1577090 Thu Jun  2 16:32:40 MDT 2016
-//Date        : Sun Oct 01 17:57:13 2017
+//Date        : Sun Oct 15 19:53:18 2017
 //Host        : nickthequik running 64-bit major release  (build 9200)
 //Command     : generate_target QuadSLAM_BD_wrapper.bd
 //Design      : QuadSLAM_BD_wrapper
@@ -31,7 +31,15 @@ module QuadSLAM_BD_wrapper
     FIXED_IO_ps_clk,
     FIXED_IO_ps_porb,
     FIXED_IO_ps_srstb,
-    leds_tri_o);
+    cam_clk,
+    cam_data,
+    cam_hsync,
+    cam_vsync,
+    leds_tri_o,
+    switches_tri_i,
+    vga_data_out,
+    vga_hsync_out,
+    vga_vsync_out);
     
   inout [14:0]DDR_addr;
   inout [2:0]DDR_ba;
@@ -54,7 +62,15 @@ module QuadSLAM_BD_wrapper
   inout FIXED_IO_ps_clk;
   inout FIXED_IO_ps_porb;
   inout FIXED_IO_ps_srstb;
+  input cam_clk;
+  input [7:0]cam_data;
+  input cam_hsync;
+  input cam_vsync;
   output [3:0]leds_tri_o;
+  input [3:0]switches_tri_i;
+  output [15:0]vga_data_out;
+  output vga_hsync_out;
+  output vga_vsync_out;
 
   wire [14:0]DDR_addr;
   wire [2:0]DDR_ba;
@@ -77,7 +93,15 @@ module QuadSLAM_BD_wrapper
   wire FIXED_IO_ps_clk;
   wire FIXED_IO_ps_porb;
   wire FIXED_IO_ps_srstb;
+  wire cam_clk;
+  wire [7:0]cam_data;
+  wire cam_hsync;
+  wire cam_vsync;
   wire [3:0]leds_tri_o;
+  wire [3:0]switches_tri_i;
+  wire [15:0]vga_data_out;
+  wire vga_hsync_out;
+  wire vga_vsync_out;
 
   QuadSLAM_BD QuadSLAM_BD_i
        (.DDR_addr(DDR_addr),
@@ -101,5 +125,13 @@ module QuadSLAM_BD_wrapper
         .FIXED_IO_ps_clk(FIXED_IO_ps_clk),
         .FIXED_IO_ps_porb(FIXED_IO_ps_porb),
         .FIXED_IO_ps_srstb(FIXED_IO_ps_srstb),
-        .leds_tri_o(leds_tri_o));
+        .cam_clk(cam_clk),
+        .cam_data(cam_data),
+        .cam_hsync(cam_hsync),
+        .cam_vsync(cam_vsync),
+        .leds_tri_o(leds_tri_o),
+        .switches_tri_i(switches_tri_i),
+        .vga_data_out(vga_data_out),
+        .vga_hsync_out(vga_hsync_out),
+        .vga_vsync_out(vga_vsync_out));
 endmodule

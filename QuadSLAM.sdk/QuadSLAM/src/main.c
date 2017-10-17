@@ -15,154 +15,96 @@
 #include "xscugic.h"
 #include "xil_exception.h"
 
-#define mainQUEUE_SEND_TASK_PRIORITY		( tskIDLE_PRIORITY + 2 )
-#define	mainQUEUE_RECEIVE_TASK_PRIORITY		( tskIDLE_PRIORITY + 1 )
-#define mainQUEUE_SEND_FREQUENCY_MS			( 2000 / portTICK_PERIOD_MS )
-#define mainQUEUE_LENGTH					( 1 )
-#define mainTASK_LED						( 0 )
+#define mainQUEUE_SEND_TASK_PRIORITY		( tskIDLE_PRIORITY)
 
 extern XScuGic xInterruptController;
 
-static void prvSetupHardware( void );
-/*
- * The Xilinx projects use a BSP that do not allow the start up code to be
- * altered easily.  Therefore the vector table used by FreeRTOS is defined in
- * FreeRTOS_asm_vectors.S, which is part of this project.  Switch to use the
- * FreeRTOS vector table.
- */
 extern void vPortInstallFreeRTOSVectorTable( void );
 
+static void prvSetupHardware( void );
 void vApplicationMallocFailedHook( void );
 void vApplicationIdleHook( void );
 void vApplicationStackOverflowHook( TaskHandle_t pxTask, char *pcTaskName );
 void vApplicationTickHook( void );
 
 // FreeRTOS Tasks
-static void prvQueueReceiveTask( void *pvParameters );
-static void prvQueueSendTask( void *pvParameters );
+static void miscTask( void *pvParameters );
 
-static QueueHandle_t xQueue;
-uint32_t xBlinkRate;
-
-#include "xgpio.h"
-
-#define partstNUM_LEDS			( 1 )
-#define partstDIRECTION_OUTPUT	( 1 )
-#define partstOUTPUT_ENABLED	( 1 )
-#define partstLED_OUTPUT		( 1 )
-#define partstLED_INPUT			( 2 )
-#define partstGPIO_OUTPUTS      ( 0 )
-#define partstGPIO_INPUTS       ( 0xF )
-
-XGpio xGpio;
-UBaseType_t led_state = 0;
-
-void vParTestInitialise( void )
+void VDMA_init(void)
 {
-	XGpio_Config *pxConfigPtr;
-	BaseType_t xStatus;
+	int status;
+	XAxiVdma_Config *VDMA_config;
+	XAxiVdma VDMA;
+	XAxiVdma_DmaSetup VDMA_setup;
 
-	/* Initialise the GPIO driver. */
-	pxConfigPtr = XGpio_LookupConfig(XPAR_AXI_GPIO_0_DEVICE_ID);
-	xStatus = XGpio_CfgInitialize( &xGpio, pxConfigPtr, pxConfigPtr->BaseAddress );
-	configASSERT( xStatus == XST_SUCCESS );
-	( void ) xStatus; /* Remove compiler warning if configASSERT() is not defined. */
+	VDMA_config = XAxiVdma_LookupConfig(XPAR_AXI_VDMA_0_DEVICE_ID);
+	status = XAxiVdma_CfgInitialize	(&VDMA, VDMA_config, VDMA_config->BaseAddress);
 
-	//XGpio_SetDataDirection(&xGpio, partstLED_INPUT, partstGPIO_INPUTS);
-	XGpio_SetDataDirection(&xGpio, partstLED_OUTPUT, partstGPIO_OUTPUTS);
-	XGpio_DiscreteWrite (&xGpio, partstLED_OUTPUT, 0);
-}
-
-void vParTestSetLED(UBaseType_t uxLED, BaseType_t xValue)
-{
-	uint32_t i;
-	UBaseType_t uxMask = 1, uxOnMask = 0, uxOffMask = 0;
-
-	for (i = 0; i < 4; i++)
+	if (status != XST_SUCCESS)
 	{
-		if (uxLED & uxMask)
-		{
-			if (xValue & uxMask)
-				uxOnMask |= uxMask;
-			else
-				uxOffMask |= uxMask;
-		}
-		uxMask = uxMask << 1;
+		while(1);
 	}
-	XGpio_DiscreteSet(&xGpio, partstLED_OUTPUT, uxOnMask);
-	XGpio_DiscreteClear(&xGpio, partstLED_OUTPUT, uxOffMask);
-}
 
-void vParTestToggleLED(UBaseType_t uxLED)
-{
-	uint32_t sw_state = 0xFFFF;
+	XAxiVdma_SetFrmStore(&VDMA, 0, XAXIVDMA_WRITE);
 
-	//sw_state = XGpio_DiscreteRead(&xGpio, partstLED_INPUT);
+	int XAxiVdma_StartWriteFrame(XAxiVdma * InstancePtr, XAxiVdma_DmaSetup * DmaConfigPtr)
 
-	led_state ^= uxLED;
-	led_state &= sw_state;
 
-	XGpio_DiscreteWrite(&xGpio, partstLED_OUTPUT, led_state);
+	2. Write a valid video frame buffer start address to the channel START_ADDRESS register 1
+	to N where N equals Frame Buffers (Offset 0x5C up to 0x98 for MM2S and 0xAC up to
+	0xE8 for S2MM). Set the REG_INDEX register if required.
+	When AXI VDMA is configured for an address space greater than 32, each start address
+	is to be programmed as a combination of two registers wherein the first register is used
+	to specify LSB 32 bits of address while the next register is used to specify MSB 32 bits.
+
+	3. Write a valid Frame Delay (valid only for Genlock Slave) and Stride to the channel
+	FRMDLY_STRIDE register (Offset 0x58 for MM2S and 0xA8 for S2MM).
+
+	4. Write a valid Horizontal Size to the channel HSIZE register (Offset 0x54 for MM2S and
+	0xA4 for S2MM).
+
+	5. Write a valid Vertical Size to the channel VSIZE register (Offset 0x50 for MM2S and
+	0xA0 for S2MM). This starts the channel transferring video data.
 }
 
 int main( void )
 {
 	prvSetupHardware();
 
-	/* Create the queue. */
-	xQueue = xQueueCreate( mainQUEUE_LENGTH, sizeof(uint32_t) );
-
 	if( xQueue != NULL )
 	{
-		// Start the two tasks as described in the comments at the top of this file.
-		xTaskCreate( prvQueueReceiveTask, "Rx", configMINIMAL_STACK_SIZE, NULL, mainQUEUE_RECEIVE_TASK_PRIORITY, NULL );
-		xTaskCreate( prvQueueSendTask, "Tx", configMINIMAL_STACK_SIZE, NULL, mainQUEUE_SEND_TASK_PRIORITY, NULL );
-
-		// Start the tasks and timer running.
+		xTaskCreate( miscTask, "misc", configMINIMAL_STACK_SIZE, NULL, mainQUEUE_RECEIVE_TASK_PRIORITY, NULL );
 		vTaskStartScheduler();
 	}
 	for( ;; );
 	return 0;
 }
 
-static void prvQueueSendTask( void *pvParameters )
+static void miscTask( void *pvParameters )
 {
-	TickType_t xNextWakeTime;
-	uint32_t ulValueToSend;
-	uint32_t blink_rates[5] = {250, 125, 83, 63, 50};
-	uint8_t i = 0;
 
-	( void ) pvParameters;
-	xNextWakeTime = xTaskGetTickCount();
 
-	for( ;; )
-	{
-		ulValueToSend = blink_rates[i++];
-		xQueueSend( xQueue, &ulValueToSend, 0U );
-
-		if (i == 5)
-			i = 0;
-
-		vTaskDelayUntil( &xNextWakeTime, mainQUEUE_SEND_FREQUENCY_MS );
-	}
-}
-
-static void prvQueueReceiveTask( void *pvParameters )
-{
-	TickType_t xLastWakeTime;
-	uint32_t ulReceivedValue;
-
-	( void ) pvParameters;
-
-	vParTestInitialise();
-	xLastWakeTime = xTaskGetTickCount();
 
 	while(1)
 	{
-		xQueueReceive(xQueue, &ulReceivedValue, 0);
+		locked = XGpio_DiscreteRead(&xGpio1, 1);
+		if (locked == 0)
+			XGpio_DiscreteWrite(&xGpio0, partstLED_OUTPUT, 0);
+		else if (locked == 1)
+			XGpio_DiscreteWrite(&xGpio0, partstLED_OUTPUT, 1);
 
-		vParTestToggleLED(0xFFFF);
-		vTaskDelayUntil(&xLastWakeTime, pdMS_TO_TICKS(ulReceivedValue));
+		switches = XGpio_DiscreteRead(&xGpio0, 2);
+		if (switches != 0)
+		{
+			XGpio_DiscreteWrite (&xGpio0, partstLED_OUTPUT, 0x2);
+			XGpio_DiscreteWrite (&xGpio1, 2, 1);
+		}
+		else
+			XGpio_DiscreteWrite (&xGpio1, 2, 0);
+
+
+		//vParTestToggleLED(0xFFFF);
+		//vTaskDelayUntil(&xLastWakeTime, pdMS_TO_TICKS(ulReceivedValue));
 	}
 }
 
