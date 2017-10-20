@@ -110,17 +110,17 @@
  */
 #define configMAX_API_CALL_INTERRUPT_PRIORITY	18
 
-#define configCPU_CLOCK_HZ						100000000UL
+#define configCPU_CLOCK_HZ						650000000UL
 #define configUSE_PORT_OPTIMISED_TASK_SELECTION	1
 #define configUSE_TICKLESS_IDLE					0
 #define configTICK_RATE_HZ						( ( TickType_t ) 1000 )
-#define configPERIPHERAL_CLOCK_HZ  				( 33333000UL )
+//#define configPERIPHERAL_CLOCK_HZ  				( 33333000UL )
 #define configUSE_PREEMPTION					1
 #define configUSE_IDLE_HOOK						1
 #define configUSE_TICK_HOOK						1
 #define configMAX_PRIORITIES					( 7 )
 #define configMINIMAL_STACK_SIZE				( ( unsigned short ) 250 ) /* Large in case configUSE_TASK_FPU_SUPPORT is 2 in which case all tasks have an FPU context. */
-#define configTOTAL_HEAP_SIZE					( 15625 * 1024 )
+#define configTOTAL_HEAP_SIZE					( 1024 * 5000 )
 #define configMAX_TASK_NAME_LEN					( 10 )
 #define configUSE_TRACE_FACILITY				1
 #define configUSE_16_BIT_TICKS					0

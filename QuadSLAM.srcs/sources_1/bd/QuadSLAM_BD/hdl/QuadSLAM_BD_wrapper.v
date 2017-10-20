@@ -1,7 +1,7 @@
 //Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2016.2 (win64) Build 1577090 Thu Jun  2 16:32:40 MDT 2016
-//Date        : Tue Oct 17 10:04:26 2017
+//Date        : Thu Oct 19 17:52:54 2017
 //Host        : nickthequik running 64-bit major release  (build 9200)
 //Command     : generate_target QuadSLAM_BD_wrapper.bd
 //Design      : QuadSLAM_BD_wrapper
@@ -39,7 +39,9 @@ module QuadSLAM_BD_wrapper
     switches_tri_i,
     vga_data_out,
     vga_hsync_out,
-    vga_vsync_out);
+    vga_hsync_out_1,
+    vga_vsync_out,
+    vga_vsync_out_1);
   inout [14:0]DDR_addr;
   inout [2:0]DDR_ba;
   inout DDR_cas_n;
@@ -69,7 +71,9 @@ module QuadSLAM_BD_wrapper
   input [3:0]switches_tri_i;
   output [15:0]vga_data_out;
   output vga_hsync_out;
+  output vga_hsync_out_1;
   output vga_vsync_out;
+  output vga_vsync_out_1;
 
   wire [14:0]DDR_addr;
   wire [2:0]DDR_ba;
@@ -100,7 +104,9 @@ module QuadSLAM_BD_wrapper
   wire [3:0]switches_tri_i;
   wire [15:0]vga_data_out;
   wire vga_hsync_out;
+  wire vga_hsync_out_1;
   wire vga_vsync_out;
+  wire vga_vsync_out_1;
 
   QuadSLAM_BD QuadSLAM_BD_i
        (.DDR_addr(DDR_addr),
@@ -132,5 +138,7 @@ module QuadSLAM_BD_wrapper
         .switches_tri_i(switches_tri_i),
         .vga_data_out(vga_data_out),
         .vga_hsync_out(vga_hsync_out),
-        .vga_vsync_out(vga_vsync_out));
+        .vga_hsync_out_1(vga_hsync_out_1),
+        .vga_vsync_out(vga_vsync_out),
+        .vga_vsync_out_1(vga_vsync_out_1));
 endmodule

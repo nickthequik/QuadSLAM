@@ -1,7 +1,7 @@
 //Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2016.2 (win64) Build 1577090 Thu Jun  2 16:32:40 MDT 2016
-//Date        : Tue Oct 17 10:04:26 2017
+//Date        : Thu Oct 19 17:52:54 2017
 //Host        : nickthequik running 64-bit major release  (build 9200)
 //Command     : generate_target QuadSLAM_BD.bd
 //Design      : QuadSLAM_BD
@@ -40,7 +40,9 @@ module QuadSLAM_BD
     switches_tri_i,
     vga_data_out,
     vga_hsync_out,
-    vga_vsync_out);
+    vga_hsync_out_1,
+    vga_vsync_out,
+    vga_vsync_out_1);
   inout [14:0]DDR_addr;
   inout [2:0]DDR_ba;
   inout DDR_cas_n;
@@ -70,7 +72,9 @@ module QuadSLAM_BD
   input [3:0]switches_tri_i;
   output [15:0]vga_data_out;
   output vga_hsync_out;
+  output vga_hsync_out_1;
   output vga_vsync_out;
+  output vga_vsync_out_1;
 
   wire [3:0]axi_gpio_0_GPIO2_TRI_I;
   wire [3:0]axi_gpio_0_GPIO_TRI_O;
@@ -217,11 +221,11 @@ module QuadSLAM_BD
   wire v_axi4s_vid_out_0_vid_hsync;
   wire v_axi4s_vid_out_0_vid_vblank;
   wire v_axi4s_vid_out_0_vid_vsync;
+  wire v_tc_0_hsync_out;
+  wire v_tc_0_vsync_out;
   wire v_tc_0_vtiming_out_ACTIVE_VIDEO;
   wire v_tc_0_vtiming_out_HBLANK;
-  wire v_tc_0_vtiming_out_HSYNC;
   wire v_tc_0_vtiming_out_VBLANK;
-  wire v_tc_0_vtiming_out_VSYNC;
   wire [7:0]v_vid_in_axi4s_0_video_out_TDATA;
   wire v_vid_in_axi4s_0_video_out_TLAST;
   wire v_vid_in_axi4s_0_video_out_TREADY;
@@ -240,8 +244,10 @@ module QuadSLAM_BD
   assign axi_gpio_0_GPIO2_TRI_I = switches_tri_i[3:0];
   assign leds_tri_o[3:0] = axi_gpio_0_GPIO_TRI_O;
   assign vga_data_out[15:0] = vga_output_driver_0_vga_data_out;
-  assign vga_hsync_out = vga_output_driver_0_vga_hsync_out;
-  assign vga_vsync_out = vga_output_driver_0_vga_vsync_out;
+  assign vga_hsync_out = v_tc_0_hsync_out;
+  assign vga_hsync_out_1 = vga_output_driver_0_vga_hsync_out;
+  assign vga_vsync_out = v_tc_0_vsync_out;
+  assign vga_vsync_out_1 = vga_output_driver_0_vga_vsync_out;
   assign vid_data_2 = cam_data[7:0];
   assign vid_hsync_1 = cam_hsync;
   assign vid_io_in_clk_1 = cam_clk;
@@ -556,9 +562,9 @@ module QuadSLAM_BD
         .vtg_active_video(v_tc_0_vtiming_out_ACTIVE_VIDEO),
         .vtg_field_id(1'b0),
         .vtg_hblank(v_tc_0_vtiming_out_HBLANK),
-        .vtg_hsync(v_tc_0_vtiming_out_HSYNC),
+        .vtg_hsync(xlconstant_1_dout),
         .vtg_vblank(v_tc_0_vtiming_out_VBLANK),
-        .vtg_vsync(v_tc_0_vtiming_out_VSYNC));
+        .vtg_vsync(xlconstant_1_dout));
   QuadSLAM_BD_v_tc_0_0 v_tc_0
        (.active_video_out(v_tc_0_vtiming_out_ACTIVE_VIDEO),
         .clk(clk_wiz_0_clk_out1),
@@ -566,7 +572,7 @@ module QuadSLAM_BD
         .fsync_in(xlconstant_0_dout),
         .gen_clken(xlconstant_1_dout),
         .hblank_out(v_tc_0_vtiming_out_HBLANK),
-        .hsync_out(v_tc_0_vtiming_out_HSYNC),
+        .hsync_out(v_tc_0_hsync_out),
         .resetn(xlconstant_1_dout),
         .s_axi_aclk(processing_system7_0_FCLK_CLK0),
         .s_axi_aclken(xlconstant_1_dout),
@@ -589,7 +595,7 @@ module QuadSLAM_BD
         .s_axi_wstrb(processing_system7_0_axi_periph_M03_AXI_WSTRB),
         .s_axi_wvalid(processing_system7_0_axi_periph_M03_AXI_WVALID),
         .vblank_out(v_tc_0_vtiming_out_VBLANK),
-        .vsync_out(v_tc_0_vtiming_out_VSYNC));
+        .vsync_out(v_tc_0_vsync_out));
   QuadSLAM_BD_v_vid_in_axi4s_0_0 v_vid_in_axi4s_0
        (.aclk(processing_system7_0_FCLK_CLK0),
         .aclken(xlconstant_0_dout),

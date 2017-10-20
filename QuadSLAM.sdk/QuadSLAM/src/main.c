@@ -18,6 +18,10 @@
 #include "xaxivdma.h"
 #include "xvtc.h"
 
+#include "xdebug.h"
+
+#include "uart.h"
+
 extern XScuGic xInterruptController;
 
 extern void vPortInstallFreeRTOSVectorTable( void );
@@ -58,34 +62,32 @@ void VDMA_init(void)
 	if (status != XST_SUCCESS)
 		while(1);
 
-	// Second argument is number of frames allocated to VDMA block
-	status = XAxiVdma_SetFrmStore(&VDMA, 1, XAXIVDMA_READ);
-
-	if (status != XST_SUCCESS)
-			while(1);
-
+    Read_config.VertSizeInput = 768 * 2;
 	Read_config.HoriSizeInput = 1024 * 2;
-	Read_config.VertSizeInput = 768 * 2;
 	Read_config.Stride = 1024 * 2;
 	Read_config.FrameDelay = 0;
 	Read_config.EnableCircularBuf = 0;
 	Read_config.EnableSync = 0;
 	Read_config.PointNum = 0;
 	Read_config.EnableFrameCounter = 0;
+	//Read_config.FrameStoreStartAddr[0] = ;
+	Read_config.FixedFrameStoreAddr = 0;
 	Read_config.GenLockRepeat = 0;
 
 	status = XAxiVdma_DmaConfig(&VDMA, XAXIVDMA_READ, &Read_config);
 
 	if (status != XST_SUCCESS)
-			while(1);
+		while(1);
 
 	status = XAxiVdma_DmaSetBufferAddr(&VDMA, XAXIVDMA_READ, (UINTPTR *) frame_buffer_1);
 
 	if (status != XST_SUCCESS)
-			while(1);
+		while(1);
 
 	status = XAxiVdma_DmaStart(&VDMA, XAXIVDMA_READ);
 
+	if (status != XST_SUCCESS)
+		while(1);
 }
 
 void VTC_init(void)
@@ -110,12 +112,15 @@ void VTC_init(void)
 	 XVtc_SetGenerator(&VTC, &VGA_signal);
 	 XVtc_SetPolarity(&VTC, &VGA_polarity);
 	 XVtc_SetGeneratorHoriOffset(&VTC, &VGA_offsets);
-	 XVtc_Enable(&VTC);
+	 XVtc_EnableGenerator(&VTC);
 }
 
 int main( void )
 {
 	prvSetupHardware();
+
+	UART_usb_init();
+	UART_usb_write("Testing UART over USB link\n");
 
 	xTaskCreate( miscTask, "misc", configMINIMAL_STACK_SIZE, NULL, 1, NULL );
 	vTaskStartScheduler();
@@ -130,27 +135,7 @@ static void miscTask(void *pvParameters)
 	VDMA_init();
 	VTC_init();
 
-	while(1)
-	{
-		/*locked = XGpio_DiscreteRead(&xGpio1, 1);
-		if (locked == 0)
-			XGpio_DiscreteWrite(&xGpio0, partstLED_OUTPUT, 0);
-		else if (locked == 1)
-			XGpio_DiscreteWrite(&xGpio0, partstLED_OUTPUT, 1);
-
-		switches = XGpio_DiscreteRead(&xGpio0, 2);
-		if (switches != 0)
-		{
-			XGpio_DiscreteWrite (&xGpio0, partstLED_OUTPUT, 0x2);
-			XGpio_DiscreteWrite (&xGpio1, 2, 1);
-		}
-		else
-			XGpio_DiscreteWrite (&xGpio1, 2, 0);
-
-
-		//vParTestToggleLED(0xFFFF);
-		//vTaskDelayUntil(&xLastWakeTime, pdMS_TO_TICKS(ulReceivedValue));*/
-	}
+	while(1);
 }
 
 static void prvSetupHardware( void )

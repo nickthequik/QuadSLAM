@@ -25,13 +25,14 @@
 
 */
 
-#define putchar(c) c
+//#define putchar(c) c
 
 #include <stdarg.h>
 
 static void printchar(char **str, int c)
 {
-	//extern int putchar(int c);
+	// custom putchar function
+	extern int putchar(int c);
 	
 	if (str) {
 		**str = (char)c;

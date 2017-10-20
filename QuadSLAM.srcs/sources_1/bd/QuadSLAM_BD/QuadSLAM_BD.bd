@@ -245,6 +245,18 @@
             <spirit:direction>out</spirit:direction>
           </spirit:wire>
         </spirit:port>
+        <spirit:port>
+          <spirit:name>vga_hsync_out_1</spirit:name>
+          <spirit:wire>
+            <spirit:direction>out</spirit:direction>
+          </spirit:wire>
+        </spirit:port>
+        <spirit:port>
+          <spirit:name>vga_vsync_out_1</spirit:name>
+          <spirit:wire>
+            <spirit:direction>out</spirit:direction>
+          </spirit:wire>
+        </spirit:port>
       </spirit:ports>
     </spirit:model>
   </spirit:component>
@@ -303,10 +315,12 @@
         <spirit:configurableElementValues>
           <spirit:configurableElementValue spirit:referenceId="bd:xciName">QuadSLAM_BD_axi_vdma_0_0</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="c_m_axis_mm2s_tdata_width">16</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="c_include_s2mm_dre">1</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="c_num_fstores">3</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="c_use_s2mm_fsync">0</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="c_mm2s_linebuffer_depth">512</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="c_s2mm_linebuffer_depth">256</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="c_include_mm2s_dre">1</spirit:configurableElementValue>
         </spirit:configurableElementValues>
       </spirit:componentInstance>
       <spirit:componentInstance>
@@ -540,6 +554,8 @@
         <spirit:internalPortReference spirit:componentRef="v_axi4s_vid_out_0" spirit:portRef="vid_io_out_ce"/>
         <spirit:internalPortReference spirit:componentRef="v_axi4s_vid_out_0" spirit:portRef="aresetn"/>
         <spirit:internalPortReference spirit:componentRef="v_axi4s_vid_out_0" spirit:portRef="aclken"/>
+        <spirit:internalPortReference spirit:componentRef="v_axi4s_vid_out_0" spirit:portRef="vtg_vsync"/>
+        <spirit:internalPortReference spirit:componentRef="v_axi4s_vid_out_0" spirit:portRef="vtg_hsync"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
         <spirit:name>rst_processing_system7_0_100M_interconnect_aresetn</spirit:name>
@@ -592,14 +608,24 @@
         <spirit:externalPortReference spirit:portRef="vga_data_out"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
+        <spirit:name>v_tc_0_vsync_out</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="v_tc_0" spirit:portRef="vsync_out"/>
+        <spirit:externalPortReference spirit:portRef="vga_vsync_out"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>v_tc_0_hsync_out</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="v_tc_0" spirit:portRef="hsync_out"/>
+        <spirit:externalPortReference spirit:portRef="vga_hsync_out"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
         <spirit:name>vga_output_driver_0_vga_hsync_out</spirit:name>
         <spirit:internalPortReference spirit:componentRef="vga_output_driver_0" spirit:portRef="vga_hsync_out"/>
-        <spirit:externalPortReference spirit:portRef="vga_hsync_out"/>
+        <spirit:externalPortReference spirit:portRef="vga_hsync_out_1"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
         <spirit:name>vga_output_driver_0_vga_vsync_out</spirit:name>
         <spirit:internalPortReference spirit:componentRef="vga_output_driver_0" spirit:portRef="vga_vsync_out"/>
-        <spirit:externalPortReference spirit:portRef="vga_vsync_out"/>
+        <spirit:externalPortReference spirit:portRef="vga_vsync_out_1"/>
       </spirit:adHocConnection>
     </spirit:adHocConnections>
     <spirit:hierConnections>

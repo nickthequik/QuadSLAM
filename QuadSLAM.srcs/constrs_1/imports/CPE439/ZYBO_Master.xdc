@@ -228,12 +228,12 @@ set_property IOSTANDARD LVCMOS33 [get_ports {leds_tri_o[3]}]
 
 ##Pmod Header JC
 ##IO_L10N_T1_34
-#set_property PACKAGE_PIN W15 [get_ports {jc_n[0]}]
-#set_property IOSTANDARD LVCMOS33 [get_ports {jc_n[0]}]
+set_property PACKAGE_PIN W15 [get_ports {vga_hsync_out_1}]
+set_property IOSTANDARD LVCMOS33 [get_ports {vga_hsync_out_1}]
 
 ##IO_L10P_T1_34
-#set_property PACKAGE_PIN V15 [get_ports {jc_p[0]}]
-#set_property IOSTANDARD LVCMOS33 [get_ports {jc_p[0]}]
+set_property PACKAGE_PIN V15 [get_ports {vga_vsync_out_1}]
+set_property IOSTANDARD LVCMOS33 [get_ports {vga_vsync_out_1}]
 
 ##IO_L1N_T0_34
 #set_property PACKAGE_PIN T10 [get_ports {jc_n[1]}]

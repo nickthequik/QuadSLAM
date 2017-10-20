@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Tue Oct 17 10:04:27 2017" VIVADOVERSION="2016.2">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Thu Oct 19 17:52:55 2017" VIVADOVERSION="2016.2">
 
   <SYSTEMINFO ARCH="zynq" DEVICE="7z010" NAME="QuadSLAM_BD" PACKAGE="clg400" SPEEDGRADE="-1"/>
 
@@ -52,12 +52,22 @@
         <CONNECTION INSTANCE="vga_output_driver_0" PORT="vga_data_out"/>
       </CONNECTIONS>
     </PORT>
-    <PORT DIR="O" NAME="vga_hsync_out" SIGIS="undef" SIGNAME="vga_output_driver_0_vga_hsync_out">
+    <PORT DIR="O" NAME="vga_hsync_out" SIGIS="undef" SIGNAME="v_tc_0_hsync_out">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="v_tc_0" PORT="hsync_out"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="vga_vsync_out" SIGIS="undef" SIGNAME="v_tc_0_vsync_out">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="v_tc_0" PORT="vsync_out"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="vga_hsync_out_1" SIGIS="undef" SIGNAME="vga_output_driver_0_vga_hsync_out">
       <CONNECTIONS>
         <CONNECTION INSTANCE="vga_output_driver_0" PORT="vga_hsync_out"/>
       </CONNECTIONS>
     </PORT>
-    <PORT DIR="O" NAME="vga_vsync_out" SIGIS="undef" SIGNAME="vga_output_driver_0_vga_vsync_out">
+    <PORT DIR="O" NAME="vga_vsync_out_1" SIGIS="undef" SIGNAME="vga_output_driver_0_vga_vsync_out">
       <CONNECTIONS>
         <CONNECTION INSTANCE="vga_output_driver_0" PORT="vga_vsync_out"/>
       </CONNECTIONS>
@@ -166,6 +176,8 @@
             <CONNECTION INSTANCE="v_axi4s_vid_out_0" PORT="vid_io_out_ce"/>
             <CONNECTION INSTANCE="v_axi4s_vid_out_0" PORT="aresetn"/>
             <CONNECTION INSTANCE="v_axi4s_vid_out_0" PORT="aclken"/>
+            <CONNECTION INSTANCE="v_axi4s_vid_out_0" PORT="vtg_vsync"/>
+            <CONNECTION INSTANCE="v_axi4s_vid_out_0" PORT="vtg_hsync"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
@@ -2406,7 +2418,7 @@
         <PARAMETER NAME="C_MM2S_GENLOCK_NUM_MASTERS" VALUE="1"/>
         <PARAMETER NAME="C_MM2S_GENLOCK_REPEAT_EN" VALUE="0"/>
         <PARAMETER NAME="C_MM2S_SOF_ENABLE" VALUE="1"/>
-        <PARAMETER NAME="C_INCLUDE_MM2S_DRE" VALUE="0"/>
+        <PARAMETER NAME="C_INCLUDE_MM2S_DRE" VALUE="1"/>
         <PARAMETER NAME="C_INCLUDE_MM2S_SF" VALUE="0"/>
         <PARAMETER NAME="C_MM2S_LINEBUFFER_DEPTH" VALUE="512"/>
         <PARAMETER NAME="C_MM2S_LINEBUFFER_THRESH" VALUE="4"/>
@@ -2420,7 +2432,7 @@
         <PARAMETER NAME="C_S2MM_GENLOCK_NUM_MASTERS" VALUE="1"/>
         <PARAMETER NAME="C_S2MM_GENLOCK_REPEAT_EN" VALUE="1"/>
         <PARAMETER NAME="C_S2MM_SOF_ENABLE" VALUE="1"/>
-        <PARAMETER NAME="C_INCLUDE_S2MM_DRE" VALUE="0"/>
+        <PARAMETER NAME="C_INCLUDE_S2MM_DRE" VALUE="1"/>
         <PARAMETER NAME="C_INCLUDE_S2MM_SF" VALUE="1"/>
         <PARAMETER NAME="C_S2MM_LINEBUFFER_DEPTH" VALUE="256"/>
         <PARAMETER NAME="C_S2MM_LINEBUFFER_THRESH" VALUE="4"/>
@@ -2454,7 +2466,7 @@
         <PARAMETER NAME="c_m_axis_mm2s_tdata_width" VALUE="16"/>
         <PARAMETER NAME="c_m_axi_s2mm_data_width" VALUE="32"/>
         <PARAMETER NAME="c_s_axis_s2mm_tdata_width" VALUE="8"/>
-        <PARAMETER NAME="c_include_s2mm_dre" VALUE="0"/>
+        <PARAMETER NAME="c_include_s2mm_dre" VALUE="1"/>
         <PARAMETER NAME="c_include_s2mm_sf" VALUE="1"/>
         <PARAMETER NAME="c_include_mm2s_sf" VALUE="0"/>
         <PARAMETER NAME="c_enable_vidprmtr_reads" VALUE="1"/>
@@ -2498,7 +2510,7 @@
         <PARAMETER NAME="c_enable_debug_info_13" VALUE="0"/>
         <PARAMETER NAME="c_enable_debug_info_14" VALUE="1"/>
         <PARAMETER NAME="c_enable_debug_info_15" VALUE="1"/>
-        <PARAMETER NAME="c_include_mm2s_dre" VALUE="0"/>
+        <PARAMETER NAME="c_include_mm2s_dre" VALUE="1"/>
         <PARAMETER NAME="c_flush_on_fsync" VALUE="1"/>
         <PARAMETER NAME="c_s2mm_genlock_repeat_en" VALUE="1"/>
         <PARAMETER NAME="c_mm2s_genlock_repeat_en" VALUE="0"/>
@@ -5981,10 +5993,16 @@
         </PORT>
         <PORT DIR="I" NAME="vtg_vsync" SIGIS="undef" SIGNAME="v_axi4s_vid_out_0_vtg_vsync">
           <CONNECTIONS>
+            <CONNECTION INSTANCE="Logic_1" PORT="dout"/>
+          </CONNECTIONS>
+          <CONNECTIONS>
             <CONNECTION INSTANCE="v_tc_0" PORT="vsync_out"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" NAME="vtg_hsync" SIGIS="undef" SIGNAME="v_axi4s_vid_out_0_vtg_hsync">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="Logic_1" PORT="dout"/>
+          </CONNECTIONS>
           <CONNECTIONS>
             <CONNECTION INSTANCE="v_tc_0" PORT="hsync_out"/>
           </CONNECTIONS>
@@ -6264,9 +6282,10 @@
             <CONNECTION INSTANCE="Logic_1" PORT="dout"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" NAME="hsync_out" SIGIS="undef" SIGNAME="v_axi4s_vid_out_0_vtg_hsync">
+        <PORT DIR="O" NAME="hsync_out" SIGIS="undef" SIGNAME="v_tc_0_hsync_out">
           <CONNECTIONS>
             <CONNECTION INSTANCE="v_axi4s_vid_out_0" PORT="vtg_hsync"/>
+            <CONNECTION INSTANCE="External_Ports" PORT="vga_hsync_out"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" NAME="hblank_out" SIGIS="undef" SIGNAME="v_axi4s_vid_out_0_vtg_hblank">
@@ -6274,9 +6293,10 @@
             <CONNECTION INSTANCE="v_axi4s_vid_out_0" PORT="vtg_hblank"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" NAME="vsync_out" SIGIS="undef" SIGNAME="v_axi4s_vid_out_0_vtg_vsync">
+        <PORT DIR="O" NAME="vsync_out" SIGIS="undef" SIGNAME="v_tc_0_vsync_out">
           <CONNECTIONS>
             <CONNECTION INSTANCE="v_axi4s_vid_out_0" PORT="vtg_vsync"/>
+            <CONNECTION INSTANCE="External_Ports" PORT="vga_vsync_out"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" NAME="vblank_out" SIGIS="undef" SIGNAME="v_axi4s_vid_out_0_vtg_vblank">
@@ -6660,12 +6680,12 @@
         </PORT>
         <PORT DIR="O" NAME="vga_hsync_out" SIGIS="undef" SIGNAME="vga_output_driver_0_vga_hsync_out">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="External_Ports" PORT="vga_hsync_out"/>
+            <CONNECTION INSTANCE="External_Ports" PORT="vga_hsync_out_1"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" NAME="vga_vsync_out" SIGIS="undef" SIGNAME="vga_output_driver_0_vga_vsync_out">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="External_Ports" PORT="vga_vsync_out"/>
+            <CONNECTION INSTANCE="External_Ports" PORT="vga_vsync_out_1"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
