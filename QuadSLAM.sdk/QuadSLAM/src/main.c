@@ -21,10 +21,14 @@
 #include "xdebug.h"
 
 #include "uart.h"
+#include "led.h"
+#include "xgpio.h"
 
 extern XScuGic xInterruptController;
 
 extern void vPortInstallFreeRTOSVectorTable( void );
+
+extern XGpio xGpio0, xGpio1;
 
 static void prvSetupHardware( void );
 void vApplicationMallocFailedHook( void );
@@ -57,7 +61,7 @@ void VDMA_init(void)
 	}
 
 	VDMA_config = XAxiVdma_LookupConfig(XPAR_AXI_VDMA_0_DEVICE_ID);
-	status = XAxiVdma_CfgInitialize	(&VDMA, VDMA_config, VDMA_config->BaseAddress);
+	status = XAxiVdma_CfgInitialize(&VDMA, VDMA_config, VDMA_config->BaseAddress);
 
 	if (status != XST_SUCCESS)
 		while(1);
@@ -115,6 +119,7 @@ void VTC_init(void)
 	 XVtc_EnableGenerator(&VTC);
 }
 
+
 int main( void )
 {
 	prvSetupHardware();
@@ -131,11 +136,26 @@ int main( void )
 
 static void miscTask(void *pvParameters)
 {
+	uint32_t vid_locked, clk_locked;
 
 	VDMA_init();
 	VTC_init();
+	LED_init();
 
-	while(1);
+	while(1)
+	{
+		clk_locked = XGpio_DiscreteRead(&xGpio1, 1);
+		vid_locked = XGpio_DiscreteRead(&xGpio1, 2);
+		if (clk_locked)
+			XGpio_DiscreteSet(&xGpio0, 1, 1);
+		else
+			XGpio_DiscreteSet(&xGpio0, 1, 0);
+
+		if (vid_locked)
+			XGpio_DiscreteSet(&xGpio0, 1, 2);
+		else
+			XGpio_DiscreteSet(&xGpio0, 1, 0);
+	}
 }
 
 static void prvSetupHardware( void )

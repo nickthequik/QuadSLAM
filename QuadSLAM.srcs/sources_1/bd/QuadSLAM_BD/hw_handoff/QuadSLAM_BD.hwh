@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Thu Oct 19 17:52:55 2017" VIVADOVERSION="2016.2">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Sun Oct 22 13:59:33 2017" VIVADOVERSION="2016.2">
 
   <SYSTEMINFO ARCH="zynq" DEVICE="7z010" NAME="QuadSLAM_BD" PACKAGE="clg400" SPEEDGRADE="-1"/>
 
@@ -26,7 +26,6 @@
     <PORT DIR="IO" NAME="FIXED_IO_ps_clk" SIGIS="undef"/>
     <PORT DIR="IO" NAME="FIXED_IO_ps_porb" SIGIS="undef"/>
     <PORT DIR="O" LEFT="3" NAME="leds_tri_o" RIGHT="0" SIGIS="undef"/>
-    <PORT DIR="I" LEFT="3" NAME="switches_tri_i" RIGHT="0" SIGIS="undef"/>
     <PORT DIR="I" NAME="cam_vsync" SIGIS="undef" SIGNAME="External_Ports_cam_vsync">
       <CONNECTIONS>
         <CONNECTION INSTANCE="v_vid_in_axi4s_0" PORT="vid_vsync"/>
@@ -52,24 +51,45 @@
         <CONNECTION INSTANCE="vga_output_driver_0" PORT="vga_data_out"/>
       </CONNECTIONS>
     </PORT>
-    <PORT DIR="O" NAME="vga_hsync_out" SIGIS="undef" SIGNAME="v_tc_0_hsync_out">
-      <CONNECTIONS>
-        <CONNECTION INSTANCE="v_tc_0" PORT="hsync_out"/>
-      </CONNECTIONS>
-    </PORT>
-    <PORT DIR="O" NAME="vga_vsync_out" SIGIS="undef" SIGNAME="v_tc_0_vsync_out">
-      <CONNECTIONS>
-        <CONNECTION INSTANCE="v_tc_0" PORT="vsync_out"/>
-      </CONNECTIONS>
-    </PORT>
-    <PORT DIR="O" NAME="vga_hsync_out_1" SIGIS="undef" SIGNAME="vga_output_driver_0_vga_hsync_out">
+    <PORT DIR="O" NAME="vga_hsync_out" SIGIS="undef" SIGNAME="vga_output_driver_0_vga_hsync_out">
       <CONNECTIONS>
         <CONNECTION INSTANCE="vga_output_driver_0" PORT="vga_hsync_out"/>
       </CONNECTIONS>
     </PORT>
-    <PORT DIR="O" NAME="vga_vsync_out_1" SIGIS="undef" SIGNAME="vga_output_driver_0_vga_vsync_out">
+    <PORT DIR="O" NAME="vga_vsync_out" SIGIS="undef" SIGNAME="vga_output_driver_0_vga_vsync_out">
       <CONNECTIONS>
         <CONNECTION INSTANCE="vga_output_driver_0" PORT="vga_vsync_out"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="hsync_out" SIGIS="undef" SIGNAME="v_tc_0_hsync_out">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="v_tc_0" PORT="hsync_out"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="vsync_out" SIGIS="undef" SIGNAME="v_tc_0_vsync_out">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="v_tc_0" PORT="vsync_out"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="m_axis_mm2s_tlast" SIGIS="undef" SIGNAME="axi_vdma_0_m_axis_mm2s_tlast">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="axi_vdma_0" PORT="m_axis_mm2s_tlast"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" NAME="m_axis_mm2s_tready" SIGIS="undef"/>
+    <PORT DIR="O" LEFT="0" NAME="m_axis_mm2s_tuser" RIGHT="0" SIGIS="undef" SIGNAME="axi_vdma_0_m_axis_mm2s_tuser">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="axi_vdma_0" PORT="m_axis_mm2s_tuser"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="m_axis_mm2s_tvalid" SIGIS="undef" SIGNAME="axi_vdma_0_m_axis_mm2s_tvalid">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="axi_vdma_0" PORT="m_axis_mm2s_tvalid"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="s_axis_video_tready" SIGIS="undef" SIGNAME="v_axi4s_vid_out_0_s_axis_video_tready">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="v_axi4s_vid_out_0" PORT="s_axis_video_tready"/>
       </CONNECTIONS>
     </PORT>
   </EXTERNALPORTS>
@@ -122,11 +142,6 @@
         <PORTMAP LOGICAL="TRI_O" PHYSICAL="leds_tri_o"/>
       </PORTMAPS>
     </BUSINTERFACE>
-    <BUSINTERFACE BUSNAME="axi_gpio_0_GPIO2" NAME="switches" TYPE="INITIATOR">
-      <PORTMAPS>
-        <PORTMAP LOGICAL="TRI_I" PHYSICAL="switches_tri_i"/>
-      </PORTMAPS>
-    </BUSINTERFACE>
   </EXTERNALINTERFACES>
 
   <MODULES>
@@ -171,13 +186,9 @@
             <CONNECTION INSTANCE="v_vid_in_axi4s_0" PORT="axis_enable"/>
             <CONNECTION INSTANCE="v_tc_0" PORT="clken"/>
             <CONNECTION INSTANCE="v_tc_0" PORT="s_axi_aclken"/>
-            <CONNECTION INSTANCE="v_tc_0" PORT="gen_clken"/>
             <CONNECTION INSTANCE="v_tc_0" PORT="resetn"/>
             <CONNECTION INSTANCE="v_axi4s_vid_out_0" PORT="vid_io_out_ce"/>
-            <CONNECTION INSTANCE="v_axi4s_vid_out_0" PORT="aresetn"/>
             <CONNECTION INSTANCE="v_axi4s_vid_out_0" PORT="aclken"/>
-            <CONNECTION INSTANCE="v_axi4s_vid_out_0" PORT="vtg_vsync"/>
-            <CONNECTION INSTANCE="v_axi4s_vid_out_0" PORT="vtg_hsync"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
@@ -233,7 +244,7 @@
             <REGISTER NAME="GPIO2_DATA">
               <PROPERTY NAME="DESCRIPTION" VALUE="Channel-2 AXI GPIO Data register"/>
               <PROPERTY NAME="ADDRESS_OFFSET" VALUE="0x8"/>
-              <PROPERTY NAME="SIZE" VALUE="4"/>
+              <PROPERTY NAME="SIZE" VALUE="1"/>
               <PROPERTY NAME="ACCESS" VALUE="read-write"/>
               <PROPERTY NAME="IS_ENABLED" VALUE="true"/>
               <PROPERTY NAME="RESET_VALUE" VALUE="0x0"/>
@@ -246,14 +257,14 @@
                   <PROPERTY NAME="WRITE_CONSTRAINT" VALUE="0"/>
                   <PROPERTY NAME="READ_ACTION" VALUE=""/>
                   <PROPERTY NAME="BIT_OFFSET" VALUE="0"/>
-                  <PROPERTY NAME="BIT_WIDTH" VALUE="4"/>
+                  <PROPERTY NAME="BIT_WIDTH" VALUE="1"/>
                 </FIELD>
               </FIELDS>
             </REGISTER>
             <REGISTER NAME="GPIO2_TRI">
               <PROPERTY NAME="DESCRIPTION" VALUE="Channel-2 AXI GPIO 3-State Control register"/>
               <PROPERTY NAME="ADDRESS_OFFSET" VALUE="0xC"/>
-              <PROPERTY NAME="SIZE" VALUE="4"/>
+              <PROPERTY NAME="SIZE" VALUE="1"/>
               <PROPERTY NAME="ACCESS" VALUE="read-write"/>
               <PROPERTY NAME="IS_ENABLED" VALUE="true"/>
               <PROPERTY NAME="RESET_VALUE" VALUE="0x0"/>
@@ -266,7 +277,7 @@
                   <PROPERTY NAME="WRITE_CONSTRAINT" VALUE="0"/>
                   <PROPERTY NAME="READ_ACTION" VALUE=""/>
                   <PROPERTY NAME="BIT_OFFSET" VALUE="0"/>
-                  <PROPERTY NAME="BIT_WIDTH" VALUE="4"/>
+                  <PROPERTY NAME="BIT_WIDTH" VALUE="1"/>
                 </FIELD>
               </FIELDS>
             </REGISTER>
@@ -358,11 +369,11 @@
         <PARAMETER NAME="C_S_AXI_ADDR_WIDTH" VALUE="9"/>
         <PARAMETER NAME="C_S_AXI_DATA_WIDTH" VALUE="32"/>
         <PARAMETER NAME="C_GPIO_WIDTH" VALUE="4"/>
-        <PARAMETER NAME="C_GPIO2_WIDTH" VALUE="4"/>
+        <PARAMETER NAME="C_GPIO2_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_ALL_INPUTS" VALUE="0"/>
-        <PARAMETER NAME="C_ALL_INPUTS_2" VALUE="1"/>
+        <PARAMETER NAME="C_ALL_INPUTS_2" VALUE="0"/>
         <PARAMETER NAME="C_ALL_OUTPUTS" VALUE="1"/>
-        <PARAMETER NAME="C_ALL_OUTPUTS_2" VALUE="0"/>
+        <PARAMETER NAME="C_ALL_OUTPUTS_2" VALUE="1"/>
         <PARAMETER NAME="C_INTERRUPT_PRESENT" VALUE="0"/>
         <PARAMETER NAME="C_DOUT_DEFAULT" VALUE="0x00000000"/>
         <PARAMETER NAME="C_TRI_DEFAULT" VALUE="0xFFFFFFFF"/>
@@ -474,7 +485,11 @@
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" LEFT="3" NAME="gpio_io_o" RIGHT="0" SIGIS="undef"/>
-        <PORT DIR="I" LEFT="3" NAME="gpio2_io_i" RIGHT="0" SIGIS="undef"/>
+        <PORT DIR="O" LEFT="0" NAME="gpio2_io_o" RIGHT="0" SIGIS="undef" SIGNAME="axi_gpio_0_gpio2_io_o">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="clk_wiz_0" PORT="reset"/>
+          </CONNECTIONS>
+        </PORT>
       </PORTS>
       <BUSINTERFACES>
         <BUSINTERFACE BUSNAME="processing_system7_0_axi_periph_M00_AXI" DATAWIDTH="32" NAME="S_AXI" TYPE="SLAVE" VLNV="xilinx.com:interface:aximm:1.0">
@@ -529,9 +544,9 @@
             <PORTMAP LOGICAL="TRI_O" PHYSICAL="gpio_io_o"/>
           </PORTMAPS>
         </BUSINTERFACE>
-        <BUSINTERFACE BUSNAME="axi_gpio_0_GPIO2" NAME="GPIO2" TYPE="INITIATOR" VLNV="xilinx.com:interface:gpio:1.0">
+        <BUSINTERFACE BUSNAME="__NOC__" NAME="GPIO2" TYPE="INITIATOR" VLNV="xilinx.com:interface:gpio:1.0">
           <PORTMAPS>
-            <PORTMAP LOGICAL="TRI_I" PHYSICAL="gpio2_io_i"/>
+            <PORTMAP LOGICAL="TRI_O" PHYSICAL="gpio2_io_o"/>
           </PORTMAPS>
         </BUSINTERFACE>
       </BUSINTERFACES>
@@ -713,9 +728,9 @@
         <PARAMETER NAME="C_GPIO_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_GPIO2_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_ALL_INPUTS" VALUE="1"/>
-        <PARAMETER NAME="C_ALL_INPUTS_2" VALUE="0"/>
+        <PARAMETER NAME="C_ALL_INPUTS_2" VALUE="1"/>
         <PARAMETER NAME="C_ALL_OUTPUTS" VALUE="0"/>
-        <PARAMETER NAME="C_ALL_OUTPUTS_2" VALUE="1"/>
+        <PARAMETER NAME="C_ALL_OUTPUTS_2" VALUE="0"/>
         <PARAMETER NAME="C_INTERRUPT_PRESENT" VALUE="0"/>
         <PARAMETER NAME="C_DOUT_DEFAULT" VALUE="0x00000000"/>
         <PARAMETER NAME="C_TRI_DEFAULT" VALUE="0xFFFFFFFF"/>
@@ -831,9 +846,9 @@
             <CONNECTION INSTANCE="clk_wiz_0" PORT="locked"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="0" NAME="gpio2_io_o" RIGHT="0" SIGIS="undef" SIGNAME="axi_gpio_1_gpio2_io_o">
+        <PORT DIR="I" LEFT="0" NAME="gpio2_io_i" RIGHT="0" SIGIS="undef" SIGNAME="v_axi4s_vid_out_0_locked">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="clk_wiz_0" PORT="reset"/>
+            <CONNECTION INSTANCE="v_axi4s_vid_out_0" PORT="locked"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
@@ -892,7 +907,7 @@
         </BUSINTERFACE>
         <BUSINTERFACE BUSNAME="__NOC__" NAME="GPIO2" TYPE="INITIATOR" VLNV="xilinx.com:interface:gpio:1.0">
           <PORTMAPS>
-            <PORTMAP LOGICAL="TRI_O" PHYSICAL="gpio2_io_o"/>
+            <PORTMAP LOGICAL="TRI_I" PHYSICAL="gpio2_io_i"/>
           </PORTMAPS>
         </BUSINTERFACE>
       </BUSINTERFACES>
@@ -2653,21 +2668,24 @@
         <PORT DIR="O" LEFT="1" NAME="m_axis_mm2s_tkeep" RIGHT="0" SIGIS="undef"/>
         <PORT DIR="O" LEFT="0" NAME="m_axis_mm2s_tuser" RIGHT="0" SIGIS="undef" SIGNAME="axi_vdma_0_m_axis_mm2s_tuser">
           <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="m_axis_mm2s_tuser"/>
             <CONNECTION INSTANCE="v_axi4s_vid_out_0" PORT="s_axis_video_tuser"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" NAME="m_axis_mm2s_tvalid" SIGIS="undef" SIGNAME="axi_vdma_0_m_axis_mm2s_tvalid">
           <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="m_axis_mm2s_tvalid"/>
             <CONNECTION INSTANCE="v_axi4s_vid_out_0" PORT="s_axis_video_tvalid"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="m_axis_mm2s_tready" SIGIS="undef" SIGNAME="axi_vdma_0_m_axis_mm2s_tready">
+        <PORT DIR="I" NAME="m_axis_mm2s_tready" SIGIS="undef" SIGNAME="v_axi4s_vid_out_0_s_axis_video_tready">
           <CONNECTIONS>
             <CONNECTION INSTANCE="v_axi4s_vid_out_0" PORT="s_axis_video_tready"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" NAME="m_axis_mm2s_tlast" SIGIS="undef" SIGNAME="axi_vdma_0_m_axis_mm2s_tlast">
           <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="m_axis_mm2s_tlast"/>
             <CONNECTION INSTANCE="v_axi4s_vid_out_0" PORT="s_axis_video_tlast"/>
           </CONNECTIONS>
         </PORT>
@@ -2852,7 +2870,7 @@
             <PORTMAP LOGICAL="WVALID" PHYSICAL="m_axi_s2mm_wvalid"/>
           </PORTMAPS>
         </BUSINTERFACE>
-        <BUSINTERFACE BUSNAME="axi_vdma_0_M_AXIS_MM2S" NAME="M_AXIS_MM2S" TYPE="INITIATOR" VLNV="xilinx.com:interface:axis:1.0">
+        <BUSINTERFACE BUSNAME="__NOC__" NAME="M_AXIS_MM2S" TYPE="INITIATOR" VLNV="xilinx.com:interface:axis:1.0">
           <PARAMETER NAME="TDATA_NUM_BYTES" VALUE="2"/>
           <PARAMETER NAME="TDEST_WIDTH" VALUE="0"/>
           <PARAMETER NAME="TID_WIDTH" VALUE="0"/>
@@ -2898,9 +2916,7 @@
         </BUSINTERFACE>
       </BUSINTERFACES>
       <MEMORYMAP/>
-      <PERIPHERALS>
-        <PERIPHERAL INSTANCE="v_axi4s_vid_out_0"/>
-      </PERIPHERALS>
+      <PERIPHERALS/>
     </MODULE>
     <MODULE FULLNAME="/clk_wiz_0" HWVERSION="5.3" INSTANCE="clk_wiz_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="clk_wiz" VLNV="xilinx.com:ip:clk_wiz:5.3">
       <DOCUMENTS>
@@ -3427,9 +3443,9 @@
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
       </PARAMETERS>
       <PORTS>
-        <PORT DIR="I" NAME="reset" SIGIS="rst" SIGNAME="axi_gpio_1_gpio2_io_o">
+        <PORT DIR="I" NAME="reset" SIGIS="rst" SIGNAME="axi_gpio_0_gpio2_io_o">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="axi_gpio_1" PORT="gpio2_io_o"/>
+            <CONNECTION INSTANCE="axi_gpio_0" PORT="gpio2_io_o"/>
           </CONNECTIONS>
         </PORT>
         <PORT CLKFREQUENCY="100000000" DIR="I" NAME="clk_in1" SIGIS="clk" SIGNAME="processing_system7_0_FCLK_CLK0">
@@ -5871,6 +5887,7 @@
             <CONNECTION INSTANCE="v_tc_0" PORT="s_axi_aresetn"/>
             <CONNECTION INSTANCE="axi_gpio_0" PORT="s_axi_aresetn"/>
             <CONNECTION INSTANCE="axi_gpio_1" PORT="s_axi_aresetn"/>
+            <CONNECTION INSTANCE="v_axi4s_vid_out_0" PORT="aresetn"/>
             <CONNECTION INSTANCE="processing_system7_0_axi_periph" PORT="S00_ARESETN"/>
             <CONNECTION INSTANCE="processing_system7_0_axi_periph" PORT="M00_ARESETN"/>
             <CONNECTION INSTANCE="processing_system7_0_axi_periph" PORT="M01_ARESETN"/>
@@ -5914,9 +5931,9 @@
             <CONNECTION INSTANCE="Logic_1" PORT="dout"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="aresetn" SIGIS="rst" SIGNAME="Logic_1_dout">
+        <PORT DIR="I" NAME="aresetn" SIGIS="rst" SIGNAME="rst_processing_system7_0_100M_peripheral_aresetn">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="Logic_1" PORT="dout"/>
+            <CONNECTION INSTANCE="rst_processing_system7_0_100M" PORT="peripheral_aresetn"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" LEFT="15" NAME="s_axis_video_tdata" RIGHT="0" SIGIS="undef" SIGNAME="axi_vdma_0_m_axis_mm2s_tdata">
@@ -5929,8 +5946,9 @@
             <CONNECTION INSTANCE="axi_vdma_0" PORT="m_axis_mm2s_tvalid"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" NAME="s_axis_video_tready" SIGIS="undef" SIGNAME="axi_vdma_0_m_axis_mm2s_tready">
+        <PORT DIR="O" NAME="s_axis_video_tready" SIGIS="undef" SIGNAME="v_axi4s_vid_out_0_s_axis_video_tready">
           <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="s_axis_video_tready"/>
             <CONNECTION INSTANCE="axi_vdma_0" PORT="m_axis_mm2s_tready"/>
           </CONNECTIONS>
         </PORT>
@@ -5991,46 +6009,48 @@
             <CONNECTION INSTANCE="vga_output_driver_0" PORT="vga_data_in"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="vtg_vsync" SIGIS="undef" SIGNAME="v_axi4s_vid_out_0_vtg_vsync">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="Logic_1" PORT="dout"/>
-          </CONNECTIONS>
+        <PORT DIR="I" NAME="vtg_vsync" SIGIS="undef" SIGNAME="v_tc_0_vsync_out">
           <CONNECTIONS>
             <CONNECTION INSTANCE="v_tc_0" PORT="vsync_out"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="vtg_hsync" SIGIS="undef" SIGNAME="v_axi4s_vid_out_0_vtg_hsync">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="Logic_1" PORT="dout"/>
-          </CONNECTIONS>
+        <PORT DIR="I" NAME="vtg_hsync" SIGIS="undef" SIGNAME="v_tc_0_hsync_out">
           <CONNECTIONS>
             <CONNECTION INSTANCE="v_tc_0" PORT="hsync_out"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="vtg_vblank" SIGIS="undef" SIGNAME="v_axi4s_vid_out_0_vtg_vblank">
+        <PORT DIR="I" NAME="vtg_vblank" SIGIS="undef" SIGNAME="v_tc_0_vblank_out">
           <CONNECTIONS>
             <CONNECTION INSTANCE="v_tc_0" PORT="vblank_out"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="vtg_hblank" SIGIS="undef" SIGNAME="v_axi4s_vid_out_0_vtg_hblank">
+        <PORT DIR="I" NAME="vtg_hblank" SIGIS="undef" SIGNAME="v_tc_0_hblank_out">
           <CONNECTIONS>
             <CONNECTION INSTANCE="v_tc_0" PORT="hblank_out"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="vtg_active_video" SIGIS="undef" SIGNAME="v_axi4s_vid_out_0_vtg_active_video">
+        <PORT DIR="I" NAME="vtg_active_video" SIGIS="undef" SIGNAME="v_tc_0_active_video_out">
           <CONNECTIONS>
             <CONNECTION INSTANCE="v_tc_0" PORT="active_video_out"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" NAME="vtg_field_id" SIGIS="undef"/>
-        <PORT DIR="O" NAME="vtg_ce" SIGIS="undef"/>
-        <PORT DIR="O" NAME="locked" SIGIS="undef"/>
+        <PORT DIR="O" NAME="vtg_ce" SIGIS="undef" SIGNAME="v_axi4s_vid_out_0_vtg_ce">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="v_tc_0" PORT="gen_clken"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="locked" SIGIS="undef" SIGNAME="v_axi4s_vid_out_0_locked">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_gpio_1" PORT="gpio2_io_i"/>
+          </CONNECTIONS>
+        </PORT>
         <PORT DIR="O" NAME="overflow" SIGIS="undef"/>
         <PORT DIR="O" NAME="underflow" SIGIS="undef"/>
         <PORT DIR="O" LEFT="31" NAME="status" RIGHT="0" SIGIS="undef"/>
       </PORTS>
       <BUSINTERFACES>
-        <BUSINTERFACE BUSNAME="axi_vdma_0_M_AXIS_MM2S" NAME="video_in" TYPE="TARGET" VLNV="xilinx.com:interface:axis:1.0">
+        <BUSINTERFACE BUSNAME="__NOC__" NAME="video_in" TYPE="TARGET" VLNV="xilinx.com:interface:axis:1.0">
           <PARAMETER NAME="TDATA_NUM_BYTES" VALUE="2"/>
           <PARAMETER NAME="TDEST_WIDTH" VALUE="0"/>
           <PARAMETER NAME="TID_WIDTH" VALUE="0"/>
@@ -6051,7 +6071,7 @@
             <PORTMAP LOGICAL="TVALID" PHYSICAL="s_axis_video_tvalid"/>
           </PORTMAPS>
         </BUSINTERFACE>
-        <BUSINTERFACE BUSNAME="v_tc_0_vtiming_out" NAME="vtiming_in" TYPE="TARGET" VLNV="xilinx.com:interface:video_timing:2.0">
+        <BUSINTERFACE BUSNAME="__NOC__" NAME="vtiming_in" TYPE="TARGET" VLNV="xilinx.com:interface:video_timing:2.0">
           <PORTMAPS>
             <PORTMAP LOGICAL="ACTIVE_VIDEO" PHYSICAL="vtg_active_video"/>
             <PORTMAP LOGICAL="FIELD" PHYSICAL="vtg_field_id"/>
@@ -6277,34 +6297,34 @@
             <CONNECTION INSTANCE="Logic_1" PORT="dout"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="gen_clken" SIGIS="undef" SIGNAME="Logic_1_dout">
+        <PORT DIR="I" NAME="gen_clken" SIGIS="undef" SIGNAME="v_axi4s_vid_out_0_vtg_ce">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="Logic_1" PORT="dout"/>
+            <CONNECTION INSTANCE="v_axi4s_vid_out_0" PORT="vtg_ce"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" NAME="hsync_out" SIGIS="undef" SIGNAME="v_tc_0_hsync_out">
           <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="hsync_out"/>
             <CONNECTION INSTANCE="v_axi4s_vid_out_0" PORT="vtg_hsync"/>
-            <CONNECTION INSTANCE="External_Ports" PORT="vga_hsync_out"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" NAME="hblank_out" SIGIS="undef" SIGNAME="v_axi4s_vid_out_0_vtg_hblank">
+        <PORT DIR="O" NAME="hblank_out" SIGIS="undef" SIGNAME="v_tc_0_hblank_out">
           <CONNECTIONS>
             <CONNECTION INSTANCE="v_axi4s_vid_out_0" PORT="vtg_hblank"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" NAME="vsync_out" SIGIS="undef" SIGNAME="v_tc_0_vsync_out">
           <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="vsync_out"/>
             <CONNECTION INSTANCE="v_axi4s_vid_out_0" PORT="vtg_vsync"/>
-            <CONNECTION INSTANCE="External_Ports" PORT="vga_vsync_out"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" NAME="vblank_out" SIGIS="undef" SIGNAME="v_axi4s_vid_out_0_vtg_vblank">
+        <PORT DIR="O" NAME="vblank_out" SIGIS="undef" SIGNAME="v_tc_0_vblank_out">
           <CONNECTIONS>
             <CONNECTION INSTANCE="v_axi4s_vid_out_0" PORT="vtg_vblank"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" NAME="active_video_out" SIGIS="undef" SIGNAME="v_axi4s_vid_out_0_vtg_active_video">
+        <PORT DIR="O" NAME="active_video_out" SIGIS="undef" SIGNAME="v_tc_0_active_video_out">
           <CONNECTIONS>
             <CONNECTION INSTANCE="v_axi4s_vid_out_0" PORT="vtg_active_video"/>
           </CONNECTIONS>
@@ -6460,7 +6480,7 @@
             <PORTMAP LOGICAL="WVALID" PHYSICAL="s_axi_wvalid"/>
           </PORTMAPS>
         </BUSINTERFACE>
-        <BUSINTERFACE BUSNAME="v_tc_0_vtiming_out" NAME="vtiming_out" TYPE="INITIATOR" VLNV="xilinx.com:interface:video_timing:2.0">
+        <BUSINTERFACE BUSNAME="__NOC__" NAME="vtiming_out" TYPE="INITIATOR" VLNV="xilinx.com:interface:video_timing:2.0">
           <PORTMAPS>
             <PORTMAP LOGICAL="ACTIVE_VIDEO" PHYSICAL="active_video_out"/>
             <PORTMAP LOGICAL="HBLANK" PHYSICAL="hblank_out"/>
@@ -6680,12 +6700,12 @@
         </PORT>
         <PORT DIR="O" NAME="vga_hsync_out" SIGIS="undef" SIGNAME="vga_output_driver_0_vga_hsync_out">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="External_Ports" PORT="vga_hsync_out_1"/>
+            <CONNECTION INSTANCE="External_Ports" PORT="vga_hsync_out"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" NAME="vga_vsync_out" SIGIS="undef" SIGNAME="vga_output_driver_0_vga_vsync_out">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="External_Ports" PORT="vga_vsync_out_1"/>
+            <CONNECTION INSTANCE="External_Ports" PORT="vga_vsync_out"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>

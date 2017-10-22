@@ -1,7 +1,7 @@
 //Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2016.2 (win64) Build 1577090 Thu Jun  2 16:32:40 MDT 2016
-//Date        : Thu Oct 19 17:52:54 2017
+//Date        : Sun Oct 22 13:59:31 2017
 //Host        : nickthequik running 64-bit major release  (build 9200)
 //Command     : generate_target QuadSLAM_BD.bd
 //Design      : QuadSLAM_BD
@@ -36,13 +36,17 @@ module QuadSLAM_BD
     cam_data,
     cam_hsync,
     cam_vsync,
+    hsync_out,
     leds_tri_o,
-    switches_tri_i,
+    m_axis_mm2s_tlast,
+    m_axis_mm2s_tready,
+    m_axis_mm2s_tuser,
+    m_axis_mm2s_tvalid,
+    s_axis_video_tready,
     vga_data_out,
     vga_hsync_out,
-    vga_hsync_out_1,
     vga_vsync_out,
-    vga_vsync_out_1);
+    vsync_out);
   inout [14:0]DDR_addr;
   inout [2:0]DDR_ba;
   inout DDR_cas_n;
@@ -68,22 +72,24 @@ module QuadSLAM_BD
   input [7:0]cam_data;
   input cam_hsync;
   input cam_vsync;
+  output hsync_out;
   output [3:0]leds_tri_o;
-  input [3:0]switches_tri_i;
+  output m_axis_mm2s_tlast;
+  input m_axis_mm2s_tready;
+  output [0:0]m_axis_mm2s_tuser;
+  output m_axis_mm2s_tvalid;
+  output s_axis_video_tready;
   output [15:0]vga_data_out;
   output vga_hsync_out;
-  output vga_hsync_out_1;
   output vga_vsync_out;
-  output vga_vsync_out_1;
+  output vsync_out;
 
-  wire [3:0]axi_gpio_0_GPIO2_TRI_I;
   wire [3:0]axi_gpio_0_GPIO_TRI_O;
-  wire [0:0]axi_gpio_1_gpio2_io_o;
-  wire [15:0]axi_vdma_0_M_AXIS_MM2S_TDATA;
-  wire axi_vdma_0_M_AXIS_MM2S_TLAST;
-  wire axi_vdma_0_M_AXIS_MM2S_TREADY;
-  wire [0:0]axi_vdma_0_M_AXIS_MM2S_TUSER;
-  wire axi_vdma_0_M_AXIS_MM2S_TVALID;
+  wire [0:0]axi_gpio_0_gpio2_io_o;
+  wire [15:0]axi_vdma_0_m_axis_mm2s_tdata;
+  wire axi_vdma_0_m_axis_mm2s_tlast;
+  wire [0:0]axi_vdma_0_m_axis_mm2s_tuser;
+  wire axi_vdma_0_m_axis_mm2s_tvalid;
   wire clk_wiz_0_clk_out1;
   wire clk_wiz_0_locked;
   wire [14:0]processing_system7_0_DDR_ADDR;
@@ -216,16 +222,19 @@ module QuadSLAM_BD
   wire [0:0]processing_system7_0_axi_periph_M03_AXI_WVALID;
   wire [0:0]rst_processing_system7_0_100M_interconnect_aresetn;
   wire [0:0]rst_processing_system7_0_100M_peripheral_aresetn;
+  wire v_axi4s_vid_out_0_locked;
+  wire v_axi4s_vid_out_0_s_axis_video_tready;
   wire [15:0]v_axi4s_vid_out_0_vid_data;
   wire v_axi4s_vid_out_0_vid_hblank;
   wire v_axi4s_vid_out_0_vid_hsync;
   wire v_axi4s_vid_out_0_vid_vblank;
   wire v_axi4s_vid_out_0_vid_vsync;
+  wire v_axi4s_vid_out_0_vtg_ce;
+  wire v_tc_0_active_video_out;
+  wire v_tc_0_hblank_out;
   wire v_tc_0_hsync_out;
+  wire v_tc_0_vblank_out;
   wire v_tc_0_vsync_out;
-  wire v_tc_0_vtiming_out_ACTIVE_VIDEO;
-  wire v_tc_0_vtiming_out_HBLANK;
-  wire v_tc_0_vtiming_out_VBLANK;
   wire [7:0]v_vid_in_axi4s_0_video_out_TDATA;
   wire v_vid_in_axi4s_0_video_out_TLAST;
   wire v_vid_in_axi4s_0_video_out_TREADY;
@@ -241,23 +250,26 @@ module QuadSLAM_BD
   wire [0:0]xlconstant_0_dout;
   wire [0:0]xlconstant_1_dout;
 
-  assign axi_gpio_0_GPIO2_TRI_I = switches_tri_i[3:0];
+  assign hsync_out = v_tc_0_hsync_out;
   assign leds_tri_o[3:0] = axi_gpio_0_GPIO_TRI_O;
+  assign m_axis_mm2s_tlast = axi_vdma_0_m_axis_mm2s_tlast;
+  assign m_axis_mm2s_tuser[0] = axi_vdma_0_m_axis_mm2s_tuser;
+  assign m_axis_mm2s_tvalid = axi_vdma_0_m_axis_mm2s_tvalid;
+  assign s_axis_video_tready = v_axi4s_vid_out_0_s_axis_video_tready;
   assign vga_data_out[15:0] = vga_output_driver_0_vga_data_out;
-  assign vga_hsync_out = v_tc_0_hsync_out;
-  assign vga_hsync_out_1 = vga_output_driver_0_vga_hsync_out;
-  assign vga_vsync_out = v_tc_0_vsync_out;
-  assign vga_vsync_out_1 = vga_output_driver_0_vga_vsync_out;
+  assign vga_hsync_out = vga_output_driver_0_vga_hsync_out;
+  assign vga_vsync_out = vga_output_driver_0_vga_vsync_out;
   assign vid_data_2 = cam_data[7:0];
   assign vid_hsync_1 = cam_hsync;
   assign vid_io_in_clk_1 = cam_clk;
   assign vid_vsync_1 = cam_vsync;
+  assign vsync_out = v_tc_0_vsync_out;
   QuadSLAM_BD_xlconstant_0_0 Logic_0
        (.dout(xlconstant_0_dout));
   QuadSLAM_BD_xlconstant_1_0 Logic_1
        (.dout(xlconstant_1_dout));
   QuadSLAM_BD_axi_gpio_0_0 axi_gpio_0
-       (.gpio2_io_i(axi_gpio_0_GPIO2_TRI_I),
+       (.gpio2_io_o(axi_gpio_0_gpio2_io_o),
         .gpio_io_o(axi_gpio_0_GPIO_TRI_O),
         .s_axi_aclk(processing_system7_0_FCLK_CLK0),
         .s_axi_araddr(processing_system7_0_axi_periph_M00_AXI_ARADDR[8:0]),
@@ -279,7 +291,7 @@ module QuadSLAM_BD
         .s_axi_wstrb(processing_system7_0_axi_periph_M00_AXI_WSTRB),
         .s_axi_wvalid(processing_system7_0_axi_periph_M00_AXI_WVALID));
   QuadSLAM_BD_axi_gpio_1_0 axi_gpio_1
-       (.gpio2_io_o(axi_gpio_1_gpio2_io_o),
+       (.gpio2_io_i(v_axi4s_vid_out_0_locked),
         .gpio_io_i(clk_wiz_0_locked),
         .s_axi_aclk(processing_system7_0_FCLK_CLK0),
         .s_axi_araddr(processing_system7_0_axi_periph_M01_AXI_ARADDR[8:0]),
@@ -314,11 +326,11 @@ module QuadSLAM_BD
         .m_axi_s2mm_bvalid(1'b0),
         .m_axi_s2mm_wready(1'b0),
         .m_axis_mm2s_aclk(processing_system7_0_FCLK_CLK0),
-        .m_axis_mm2s_tdata(axi_vdma_0_M_AXIS_MM2S_TDATA),
-        .m_axis_mm2s_tlast(axi_vdma_0_M_AXIS_MM2S_TLAST),
-        .m_axis_mm2s_tready(axi_vdma_0_M_AXIS_MM2S_TREADY),
-        .m_axis_mm2s_tuser(axi_vdma_0_M_AXIS_MM2S_TUSER),
-        .m_axis_mm2s_tvalid(axi_vdma_0_M_AXIS_MM2S_TVALID),
+        .m_axis_mm2s_tdata(axi_vdma_0_m_axis_mm2s_tdata),
+        .m_axis_mm2s_tlast(axi_vdma_0_m_axis_mm2s_tlast),
+        .m_axis_mm2s_tready(v_axi4s_vid_out_0_s_axis_video_tready),
+        .m_axis_mm2s_tuser(axi_vdma_0_m_axis_mm2s_tuser),
+        .m_axis_mm2s_tvalid(axi_vdma_0_m_axis_mm2s_tvalid),
         .s_axi_lite_aclk(processing_system7_0_FCLK_CLK0),
         .s_axi_lite_araddr(processing_system7_0_axi_periph_M02_AXI_ARADDR[8:0]),
         .s_axi_lite_arready(processing_system7_0_axi_periph_M02_AXI_ARREADY),
@@ -347,7 +359,7 @@ module QuadSLAM_BD
        (.clk_in1(processing_system7_0_FCLK_CLK0),
         .clk_out1(clk_wiz_0_clk_out1),
         .locked(clk_wiz_0_locked),
-        .reset(axi_gpio_1_gpio2_io_o));
+        .reset(axi_gpio_0_gpio2_io_o));
   QuadSLAM_BD_processing_system7_0_0 processing_system7_0
        (.DDR_Addr(DDR_addr[14:0]),
         .DDR_BankAddr(DDR_ba[2:0]),
@@ -544,13 +556,14 @@ module QuadSLAM_BD
   QuadSLAM_BD_v_axi4s_vid_out_0_0 v_axi4s_vid_out_0
        (.aclk(processing_system7_0_FCLK_CLK0),
         .aclken(xlconstant_1_dout),
-        .aresetn(xlconstant_1_dout),
+        .aresetn(rst_processing_system7_0_100M_peripheral_aresetn),
         .fid(xlconstant_0_dout),
-        .s_axis_video_tdata(axi_vdma_0_M_AXIS_MM2S_TDATA),
-        .s_axis_video_tlast(axi_vdma_0_M_AXIS_MM2S_TLAST),
-        .s_axis_video_tready(axi_vdma_0_M_AXIS_MM2S_TREADY),
-        .s_axis_video_tuser(axi_vdma_0_M_AXIS_MM2S_TUSER),
-        .s_axis_video_tvalid(axi_vdma_0_M_AXIS_MM2S_TVALID),
+        .locked(v_axi4s_vid_out_0_locked),
+        .s_axis_video_tdata(axi_vdma_0_m_axis_mm2s_tdata),
+        .s_axis_video_tlast(axi_vdma_0_m_axis_mm2s_tlast),
+        .s_axis_video_tready(v_axi4s_vid_out_0_s_axis_video_tready),
+        .s_axis_video_tuser(axi_vdma_0_m_axis_mm2s_tuser),
+        .s_axis_video_tvalid(axi_vdma_0_m_axis_mm2s_tvalid),
         .vid_data(v_axi4s_vid_out_0_vid_data),
         .vid_hblank(v_axi4s_vid_out_0_vid_hblank),
         .vid_hsync(v_axi4s_vid_out_0_vid_hsync),
@@ -559,19 +572,20 @@ module QuadSLAM_BD
         .vid_io_out_reset(xlconstant_0_dout),
         .vid_vblank(v_axi4s_vid_out_0_vid_vblank),
         .vid_vsync(v_axi4s_vid_out_0_vid_vsync),
-        .vtg_active_video(v_tc_0_vtiming_out_ACTIVE_VIDEO),
+        .vtg_active_video(v_tc_0_active_video_out),
+        .vtg_ce(v_axi4s_vid_out_0_vtg_ce),
         .vtg_field_id(1'b0),
-        .vtg_hblank(v_tc_0_vtiming_out_HBLANK),
-        .vtg_hsync(xlconstant_1_dout),
-        .vtg_vblank(v_tc_0_vtiming_out_VBLANK),
-        .vtg_vsync(xlconstant_1_dout));
+        .vtg_hblank(v_tc_0_hblank_out),
+        .vtg_hsync(v_tc_0_hsync_out),
+        .vtg_vblank(v_tc_0_vblank_out),
+        .vtg_vsync(v_tc_0_vsync_out));
   QuadSLAM_BD_v_tc_0_0 v_tc_0
-       (.active_video_out(v_tc_0_vtiming_out_ACTIVE_VIDEO),
+       (.active_video_out(v_tc_0_active_video_out),
         .clk(clk_wiz_0_clk_out1),
         .clken(xlconstant_1_dout),
         .fsync_in(xlconstant_0_dout),
-        .gen_clken(xlconstant_1_dout),
-        .hblank_out(v_tc_0_vtiming_out_HBLANK),
+        .gen_clken(v_axi4s_vid_out_0_vtg_ce),
+        .hblank_out(v_tc_0_hblank_out),
         .hsync_out(v_tc_0_hsync_out),
         .resetn(xlconstant_1_dout),
         .s_axi_aclk(processing_system7_0_FCLK_CLK0),
@@ -594,7 +608,7 @@ module QuadSLAM_BD
         .s_axi_wready(processing_system7_0_axi_periph_M03_AXI_WREADY),
         .s_axi_wstrb(processing_system7_0_axi_periph_M03_AXI_WSTRB),
         .s_axi_wvalid(processing_system7_0_axi_periph_M03_AXI_WVALID),
-        .vblank_out(v_tc_0_vtiming_out_VBLANK),
+        .vblank_out(v_tc_0_vblank_out),
         .vsync_out(v_tc_0_vsync_out));
   QuadSLAM_BD_v_vid_in_axi4s_0_0 v_vid_in_axi4s_0
        (.aclk(processing_system7_0_FCLK_CLK0),

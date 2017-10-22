@@ -6,7 +6,7 @@
 XGpio xGpio0, xGpio1;
 UBaseType_t led_state = 0;
 
-void vParTestInitialise( void )
+void LED_init( void )
 {
 	XGpio_Config *pxConfigPtr;
 	BaseType_t xStatus;
@@ -20,16 +20,16 @@ void vParTestInitialise( void )
 	xStatus = XGpio_CfgInitialize( &xGpio1, pxConfigPtr, pxConfigPtr->BaseAddress );
 	configASSERT( xStatus == XST_SUCCESS );
 
-	XGpio_SetDataDirection(&xGpio0, partstLED_INPUT, partstGPIO_INPUTS);
-	XGpio_SetDataDirection(&xGpio0, partstLED_OUTPUT, partstGPIO_OUTPUTS);
-	XGpio_DiscreteWrite (&xGpio0, partstLED_OUTPUT, 0);
+	XGpio_SetDataDirection(&xGpio0, 1, GPIO_OUTPUTS);
+	XGpio_SetDataDirection(&xGpio0, 2, GPIO_OUTPUTS);
+	XGpio_DiscreteWrite (&xGpio0, 1, 0);
+	XGpio_DiscreteWrite (&xGpio0, 2, 0);
 
-	XGpio_SetDataDirection(&xGpio1, 1, partstGPIO_INPUTS);
-	XGpio_SetDataDirection(&xGpio1, 2, partstGPIO_OUTPUTS);
-	XGpio_DiscreteWrite (&xGpio1, 2, 0);
+	XGpio_SetDataDirection(&xGpio1, 1, GPIO_INPUTS);
+	XGpio_SetDataDirection(&xGpio1, 2, GPIO_INPUTS);
 }
 
-void vParTestSetLED(UBaseType_t uxLED, BaseType_t xValue)
+void set_LED(UBaseType_t uxLED, BaseType_t xValue)
 {
 	uint32_t i;
 	UBaseType_t uxMask = 1, uxOnMask = 0, uxOffMask = 0;

@@ -11,20 +11,20 @@
 
 ##Switches
 ##IO_L19N_T3_VREF_35
-set_property PACKAGE_PIN G15 [get_ports {switches_tri_i[0]}]
-set_property IOSTANDARD LVCMOS33 [get_ports {switches_tri_i[0]}]
+#set_property PACKAGE_PIN G15 [get_ports {switches_tri_i[0]}]
+#set_property IOSTANDARD LVCMOS33 [get_ports {switches_tri_i[0]}]
 
 ##IO_L24P_T3_34
-set_property PACKAGE_PIN P15 [get_ports {switches_tri_i[1]}]
-set_property IOSTANDARD LVCMOS33 [get_ports {switches_tri_i[1]}]
+#set_property PACKAGE_PIN P15 [get_ports {switches_tri_i[1]}]
+#set_property IOSTANDARD LVCMOS33 [get_ports {switches_tri_i[1]}]
 
 ##IO_L4N_T0_34
-set_property PACKAGE_PIN W13 [get_ports {switches_tri_i[2]}]
-set_property IOSTANDARD LVCMOS33 [get_ports {switches_tri_i[2]}]
+#set_property PACKAGE_PIN W13 [get_ports {switches_tri_i[2]}]
+#set_property IOSTANDARD LVCMOS33 [get_ports {switches_tri_i[2]}]
 
 ##IO_L9P_T1_DQS_34
-set_property PACKAGE_PIN T16 [get_ports {switches_tri_i[3]}]
-set_property IOSTANDARD LVCMOS33 [get_ports {switches_tri_i[3]}]
+#set_property PACKAGE_PIN T16 [get_ports {switches_tri_i[3]}]
+#set_property IOSTANDARD LVCMOS33 [get_ports {switches_tri_i[3]}]
 
 ##Buttons
 ##IO_L20N_T3_34
@@ -227,37 +227,48 @@ set_property IOSTANDARD LVCMOS33 [get_ports {leds_tri_o[3]}]
 #set_property IOSTANDARD LVCMOS33 [get_ports {jb_p[3]}]
 
 ##Pmod Header JC
-##IO_L10N_T1_34
-set_property PACKAGE_PIN W15 [get_ports {vga_hsync_out_1}]
-set_property IOSTANDARD LVCMOS33 [get_ports {vga_hsync_out_1}]
 
+##Pin1
 ##IO_L10P_T1_34
-set_property PACKAGE_PIN V15 [get_ports {vga_vsync_out_1}]
-set_property IOSTANDARD LVCMOS33 [get_ports {vga_vsync_out_1}]
+set_property PACKAGE_PIN V15 [get_ports {m_axis_mm2s_tlast}]
+set_property IOSTANDARD LVCMOS33 [get_ports {m_axis_mm2s_tlast}]
 
-##IO_L1N_T0_34
-#set_property PACKAGE_PIN T10 [get_ports {jc_n[1]}]
-#set_property IOSTANDARD LVCMOS33 [get_ports {jc_n[1]}]
+##Pin2
+##IO_L10N_T1_34
+set_property PACKAGE_PIN W15 [get_ports {m_axis_mm2s_tready}]
+set_property IOSTANDARD LVCMOS33 [get_ports {m_axis_mm2s_tready}]
 
+##Pin3
 ##IO_L1P_T0_34
-#set_property PACKAGE_PIN T11 [get_ports {jc_p[1]}]
-#set_property IOSTANDARD LVCMOS33 [get_ports {jc_p[1]}]
+set_property PACKAGE_PIN T11 [get_ports {m_axis_mm2s_tuser}]
+set_property IOSTANDARD LVCMOS33 [get_ports {m_axis_mm2s_tuser}]
 
-##IO_L8N_T1_34
-#set_property PACKAGE_PIN Y14 [get_ports {jc_n[2]}]
-#set_property IOSTANDARD LVCMOS33 [get_ports {jc_n[2]}]
+##Pin4
+##IO_L1N_T0_34
+set_property PACKAGE_PIN T10 [get_ports {m_axis_mm2s_tvalid}]
+set_property IOSTANDARD LVCMOS33 [get_ports {m_axis_mm2s_tvalid}]
 
+##Pin7
 ##IO_L8P_T1_34
-#set_property PACKAGE_PIN W14 [get_ports {jc_p[2]}]
-#set_property IOSTANDARD LVCMOS33 [get_ports {jc_p[2]}]
+set_property PACKAGE_PIN W14 [get_ports {s_axis_video_tready}]
+set_property IOSTANDARD LVCMOS33 [get_ports {s_axis_video_tready}]
 
+##Pin8
+##IO_L8N_T1_34
+set_property PACKAGE_PIN Y14 [get_ports {vsync_out}]
+set_property IOSTANDARD LVCMOS33 [get_ports {vsync_out}]
+
+#pin9
+##IO_L2P_T0_34
+set_property PACKAGE_PIN T12 [get_ports {hsync_out}]
+set_property IOSTANDARD LVCMOS33 [get_ports {hsync_out}]
+
+##pin10
 ##IO_L2N_T0_34
 #set_property PACKAGE_PIN U12 [get_ports {jc_n[3]}]
 #set_property IOSTANDARD LVCMOS33 [get_ports {jc_n[3]}]
 
-##IO_L2P_T0_34
-#set_property PACKAGE_PIN T12 [get_ports {jc_p[3]}]
-#set_property IOSTANDARD LVCMOS33 [get_ports {jc_p[3]}]
+
 
 ###############Camera 1###############
        ##Pmod Header JD & JE##
