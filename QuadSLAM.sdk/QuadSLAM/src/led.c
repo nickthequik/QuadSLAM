@@ -3,7 +3,7 @@
 #include "xgpio.h"
 #include "FreeRTOS.h"
 
-XGpio xGpio0, xGpio1;
+XGpio xGpio0, xGpio1, xGpio2;
 UBaseType_t led_state = 0;
 
 void LED_init( void )
@@ -20,6 +20,10 @@ void LED_init( void )
 	xStatus = XGpio_CfgInitialize( &xGpio1, pxConfigPtr, pxConfigPtr->BaseAddress );
 	configASSERT( xStatus == XST_SUCCESS );
 
+	pxConfigPtr = XGpio_LookupConfig(XPAR_AXI_GPIO_2_DEVICE_ID);
+	xStatus = XGpio_CfgInitialize( &xGpio2, pxConfigPtr, pxConfigPtr->BaseAddress );
+	configASSERT( xStatus == XST_SUCCESS );
+
 	XGpio_SetDataDirection(&xGpio0, 1, GPIO_OUTPUTS);
 	XGpio_SetDataDirection(&xGpio0, 2, GPIO_OUTPUTS);
 	XGpio_DiscreteWrite (&xGpio0, 1, 0);
@@ -27,6 +31,8 @@ void LED_init( void )
 
 	XGpio_SetDataDirection(&xGpio1, 1, GPIO_INPUTS);
 	XGpio_SetDataDirection(&xGpio1, 2, GPIO_INPUTS);
+
+	XGpio_SetDataDirection(&xGpio2, 1, GPIO_INPUTS);
 }
 
 void set_LED(UBaseType_t uxLED, BaseType_t xValue)

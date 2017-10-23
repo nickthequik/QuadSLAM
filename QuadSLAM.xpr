@@ -34,13 +34,13 @@
     <Option Name="WTVcsLaunchSim" Val="0"/>
     <Option Name="WTRivieraLaunchSim" Val="0"/>
     <Option Name="WTActivehdlLaunchSim" Val="0"/>
-    <Option Name="WTXSimExportSim" Val="1"/>
-    <Option Name="WTModelSimExportSim" Val="1"/>
-    <Option Name="WTQuestaExportSim" Val="1"/>
-    <Option Name="WTIesExportSim" Val="1"/>
-    <Option Name="WTVcsExportSim" Val="1"/>
-    <Option Name="WTRivieraExportSim" Val="1"/>
-    <Option Name="WTActivehdlExportSim" Val="1"/>
+    <Option Name="WTXSimExportSim" Val="3"/>
+    <Option Name="WTModelSimExportSim" Val="3"/>
+    <Option Name="WTQuestaExportSim" Val="3"/>
+    <Option Name="WTIesExportSim" Val="3"/>
+    <Option Name="WTVcsExportSim" Val="3"/>
+    <Option Name="WTRivieraExportSim" Val="3"/>
+    <Option Name="WTActivehdlExportSim" Val="3"/>
   </Configuration>
   <FileSets Version="1" Minor="31">
     <FileSet Name="sources_1" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
@@ -51,31 +51,33 @@
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
-        <CompFileExtendedInfo CompFileName="QuadSLAM_BD.bd" FileRelPathName="hw_handoff/QuadSLAM_BD.hwh"/>
-        <CompFileExtendedInfo CompFileName="QuadSLAM_BD.bd" FileRelPathName="hdl/QuadSLAM_BD.hwdef"/>
-        <CompFileExtendedInfo CompFileName="QuadSLAM_BD.bd" FileRelPathName="hw_handoff/QuadSLAM_BD_bd.tcl"/>
-        <CompFileExtendedInfo CompFileName="QuadSLAM_BD.bd" FileRelPathName="QuadSLAM_BD_ooc.xdc"/>
-        <CompFileExtendedInfo CompFileName="QuadSLAM_BD.bd" FileRelPathName="ip/QuadSLAM_BD_auto_pc_0/QuadSLAM_BD_auto_pc_0.xci"/>
+        <CompFileExtendedInfo CompFileName="QuadSLAM_BD.bd" FileRelPathName="ip/QuadSLAM_BD_rst_processing_system7_0_100M_0/QuadSLAM_BD_rst_processing_system7_0_100M_0.xci"/>
+        <CompFileExtendedInfo CompFileName="QuadSLAM_BD.bd" FileRelPathName="ip/QuadSLAM_BD_axi_gpio_0_0/QuadSLAM_BD_axi_gpio_0_0.xci"/>
+        <CompFileExtendedInfo CompFileName="QuadSLAM_BD.bd" FileRelPathName="ip/QuadSLAM_BD_processing_system7_0_0/QuadSLAM_BD_processing_system7_0_0.xci"/>
+        <CompFileExtendedInfo CompFileName="QuadSLAM_BD.bd" FileRelPathName="ip/QuadSLAM_BD_xlconstant_0_0/QuadSLAM_BD_xlconstant_0_0.xci"/>
+        <CompFileExtendedInfo CompFileName="QuadSLAM_BD.bd" FileRelPathName="ip/QuadSLAM_BD_v_axi4s_vid_out_0_0/QuadSLAM_BD_v_axi4s_vid_out_0_0.xci"/>
         <CompFileExtendedInfo CompFileName="QuadSLAM_BD.bd" FileRelPathName="ip/QuadSLAM_BD_v_tc_0_0/QuadSLAM_BD_v_tc_0_0.xci"/>
         <CompFileExtendedInfo CompFileName="QuadSLAM_BD.bd" FileRelPathName="ip/QuadSLAM_BD_axi_vdma_0_0/QuadSLAM_BD_axi_vdma_0_0.xci"/>
         <CompFileExtendedInfo CompFileName="QuadSLAM_BD.bd" FileRelPathName="ip/QuadSLAM_BD_axi_gpio_1_0/QuadSLAM_BD_axi_gpio_1_0.xci"/>
-        <CompFileExtendedInfo CompFileName="QuadSLAM_BD.bd" FileRelPathName="ip/QuadSLAM_BD_axi_gpio_0_0/QuadSLAM_BD_axi_gpio_0_0.xci"/>
-        <CompFileExtendedInfo CompFileName="QuadSLAM_BD.bd" FileRelPathName="ip/QuadSLAM_BD_processing_system7_0_0/QuadSLAM_BD_processing_system7_0_0.xci"/>
         <CompFileExtendedInfo CompFileName="QuadSLAM_BD.bd" FileRelPathName="hdl/QuadSLAM_BD.v"/>
-        <CompFileExtendedInfo CompFileName="QuadSLAM_BD.bd" FileRelPathName="ip/QuadSLAM_BD_rst_processing_system7_0_100M_0/QuadSLAM_BD_rst_processing_system7_0_100M_0.xci"/>
+        <CompFileExtendedInfo CompFileName="QuadSLAM_BD.bd" FileRelPathName="ip/QuadSLAM_BD_axi_mem_intercon_0/QuadSLAM_BD_axi_mem_intercon_0.xci"/>
+        <CompFileExtendedInfo CompFileName="QuadSLAM_BD.bd" FileRelPathName="ip/QuadSLAM_BD_vga_output_driver_0_0/QuadSLAM_BD_vga_output_driver_0_0.xci"/>
         <CompFileExtendedInfo CompFileName="QuadSLAM_BD.bd" FileRelPathName="ip/QuadSLAM_BD_clk_wiz_0_1/QuadSLAM_BD_clk_wiz_0_1.xci"/>
         <CompFileExtendedInfo CompFileName="QuadSLAM_BD.bd" FileRelPathName="ip/QuadSLAM_BD_xbar_1/QuadSLAM_BD_xbar_1.xci"/>
         <CompFileExtendedInfo CompFileName="QuadSLAM_BD.bd" FileRelPathName="ip/QuadSLAM_BD_processing_system7_0_axi_periph_1/QuadSLAM_BD_processing_system7_0_axi_periph_1.xci"/>
-        <CompFileExtendedInfo CompFileName="QuadSLAM_BD.bd" FileRelPathName="ip/QuadSLAM_BD_xlconstant_0_0/QuadSLAM_BD_xlconstant_0_0.xci"/>
-        <CompFileExtendedInfo CompFileName="QuadSLAM_BD.bd" FileRelPathName="ip/QuadSLAM_BD_v_axi4s_vid_out_0_0/QuadSLAM_BD_v_axi4s_vid_out_0_0.xci"/>
-        <CompFileExtendedInfo CompFileName="QuadSLAM_BD.bd" FileRelPathName="ip/QuadSLAM_BD_v_vid_in_axi4s_0_0/QuadSLAM_BD_v_vid_in_axi4s_0_0.xci"/>
         <CompFileExtendedInfo CompFileName="QuadSLAM_BD.bd" FileRelPathName="ip/QuadSLAM_BD_xlconstant_1_0/QuadSLAM_BD_xlconstant_1_0.xci"/>
-        <CompFileExtendedInfo CompFileName="QuadSLAM_BD.bd" FileRelPathName="ip/QuadSLAM_BD_vga_output_driver_0_0/QuadSLAM_BD_vga_output_driver_0_0.xci"/>
+        <CompFileExtendedInfo CompFileName="QuadSLAM_BD.bd" FileRelPathName="ip/QuadSLAM_BD_axi_gpio_2_0/QuadSLAM_BD_axi_gpio_2_0.xci"/>
+        <CompFileExtendedInfo CompFileName="QuadSLAM_BD.bd" FileRelPathName="hw_handoff/QuadSLAM_BD_bd.tcl"/>
+        <CompFileExtendedInfo CompFileName="QuadSLAM_BD.bd" FileRelPathName="hdl/QuadSLAM_BD.hwdef"/>
+        <CompFileExtendedInfo CompFileName="QuadSLAM_BD.bd" FileRelPathName="hw_handoff/QuadSLAM_BD.hwh"/>
+        <CompFileExtendedInfo CompFileName="QuadSLAM_BD.bd" FileRelPathName="QuadSLAM_BD_ooc.xdc"/>
+        <CompFileExtendedInfo CompFileName="QuadSLAM_BD.bd" FileRelPathName="ip/QuadSLAM_BD_auto_pc_1/QuadSLAM_BD_auto_pc_1.xci"/>
+        <CompFileExtendedInfo CompFileName="QuadSLAM_BD.bd" FileRelPathName="ip/QuadSLAM_BD_auto_pc_0/QuadSLAM_BD_auto_pc_0.xci"/>
       </File>
       <File Path="$PSRCDIR/sources_1/imports/hdl/QuadSLAM_BD_wrapper.v">
         <FileInfo>
           <Attr Name="ImportPath" Val="$PSRCDIR/sources_1/bd/QuadSLAM_BD/hdl/QuadSLAM_BD_wrapper.v"/>
-          <Attr Name="ImportTime" Val="1508705971"/>
+          <Attr Name="ImportTime" Val="1508729623"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>

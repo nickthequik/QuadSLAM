@@ -1,4 +1,6 @@
-# (c) Copyright 2012-2017 Xilinx, Inc. All rights reserved.
+
+################################################################################
+# (c) Copyright 2012 - 2013 Xilinx, Inc. All rights reserved.
 # 
 # This file contains confidential and proprietary information
 # of Xilinx, Inc. and is protected under U.S. and
@@ -43,17 +45,18 @@
 # 
 # THIS COPYRIGHT NOTICE AND DISCLAIMER MUST BE RETAINED AS
 # PART OF THIS FILE AT ALL TIMES.
-# 
-# DO NOT MODIFY THIS FILE.
-# #########################################################
-#
-# This XDC is used only in OOC mode for synthesis, implementation
-#
-# #########################################################
+
+################################################################################
+
+# This XDC is used only for OOC mode of synthesis, implementation
+# User should update the correct clock period before proceeding further
+# This constraints file contains default clock frequencies to be used during 
+# out-of-context flows such as OOC Synthesis and Hierarchical Designs. 
+# For best results the frequencies should be modified# to match the target 
+# frequencies. 
 
 
-create_clock -period 13.468 -name vid_io_in_clk [get_ports vid_io_in_clk]
+ create_clock -name s_axi_clk -period 10 [get_ports s_axi_aclk]
+## set_property HD.CLK_SRC BUFGCTRL_X0Y0 [get_ports s_axi_aclk]
 
-create_clock -period 10 -name aclk [get_ports aclk]
-
-
+################################################################################

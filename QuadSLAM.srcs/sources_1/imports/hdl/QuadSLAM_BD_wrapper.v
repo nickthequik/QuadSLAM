@@ -1,7 +1,7 @@
 //Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2016.2 (win64) Build 1577090 Thu Jun  2 16:32:40 MDT 2016
-//Date        : Sun Oct 22 13:59:31 2017
+//Date        : Sun Oct 22 20:33:43 2017
 //Host        : nickthequik running 64-bit major release  (build 9200)
 //Command     : generate_target QuadSLAM_BD_wrapper.bd
 //Design      : QuadSLAM_BD_wrapper
@@ -31,17 +31,12 @@ module QuadSLAM_BD_wrapper
     FIXED_IO_ps_clk,
     FIXED_IO_ps_porb,
     FIXED_IO_ps_srstb,
-    cam_clk,
-    cam_data,
-    cam_hsync,
-    cam_vsync,
+    active_video_out,
+    hblank_out,
     hsync_out,
     leds_tri_o,
-    m_axis_mm2s_tlast,
-    m_axis_mm2s_tready,
-    m_axis_mm2s_tuser,
-    m_axis_mm2s_tvalid,
-    s_axis_video_tready,
+    overflow,
+    vblank_out,
     vga_data_out,
     vga_hsync_out,
     vga_vsync_out,
@@ -67,17 +62,12 @@ module QuadSLAM_BD_wrapper
   inout FIXED_IO_ps_clk;
   inout FIXED_IO_ps_porb;
   inout FIXED_IO_ps_srstb;
-  input cam_clk;
-  input [7:0]cam_data;
-  input cam_hsync;
-  input cam_vsync;
+  output active_video_out;
+  output hblank_out;
   output hsync_out;
   output [3:0]leds_tri_o;
-  output m_axis_mm2s_tlast;
-  input m_axis_mm2s_tready;
-  output [0:0]m_axis_mm2s_tuser;
-  output m_axis_mm2s_tvalid;
-  output s_axis_video_tready;
+  output overflow;
+  output vblank_out;
   output [15:0]vga_data_out;
   output vga_hsync_out;
   output vga_vsync_out;
@@ -104,17 +94,12 @@ module QuadSLAM_BD_wrapper
   wire FIXED_IO_ps_clk;
   wire FIXED_IO_ps_porb;
   wire FIXED_IO_ps_srstb;
-  wire cam_clk;
-  wire [7:0]cam_data;
-  wire cam_hsync;
-  wire cam_vsync;
+  wire active_video_out;
+  wire hblank_out;
   wire hsync_out;
   wire [3:0]leds_tri_o;
-  wire m_axis_mm2s_tlast;
-  wire m_axis_mm2s_tready;
-  wire [0:0]m_axis_mm2s_tuser;
-  wire m_axis_mm2s_tvalid;
-  wire s_axis_video_tready;
+  wire overflow;
+  wire vblank_out;
   wire [15:0]vga_data_out;
   wire vga_hsync_out;
   wire vga_vsync_out;
@@ -142,17 +127,12 @@ module QuadSLAM_BD_wrapper
         .FIXED_IO_ps_clk(FIXED_IO_ps_clk),
         .FIXED_IO_ps_porb(FIXED_IO_ps_porb),
         .FIXED_IO_ps_srstb(FIXED_IO_ps_srstb),
-        .cam_clk(cam_clk),
-        .cam_data(cam_data),
-        .cam_hsync(cam_hsync),
-        .cam_vsync(cam_vsync),
+        .active_video_out(active_video_out),
+        .hblank_out(hblank_out),
         .hsync_out(hsync_out),
         .leds_tri_o(leds_tri_o),
-        .m_axis_mm2s_tlast(m_axis_mm2s_tlast),
-        .m_axis_mm2s_tready(m_axis_mm2s_tready),
-        .m_axis_mm2s_tuser(m_axis_mm2s_tuser),
-        .m_axis_mm2s_tvalid(m_axis_mm2s_tvalid),
-        .s_axis_video_tready(s_axis_video_tready),
+        .overflow(overflow),
+        .vblank_out(vblank_out),
         .vga_data_out(vga_data_out),
         .vga_hsync_out(vga_hsync_out),
         .vga_vsync_out(vga_vsync_out),

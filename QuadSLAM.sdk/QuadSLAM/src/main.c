@@ -28,7 +28,10 @@ extern XScuGic xInterruptController;
 
 extern void vPortInstallFreeRTOSVectorTable( void );
 
-extern XGpio xGpio0, xGpio1;
+extern XGpio xGpio0, xGpio1, xGpio2;
+
+uint16_t *frame_buffer_1;
+uint16_t *frame_buffer_2;
 
 static void prvSetupHardware( void );
 void vApplicationMallocFailedHook( void );
@@ -39,25 +42,26 @@ void vApplicationTickHook( void );
 // FreeRTOS Tasks
 static void miscTask( void *pvParameters );
 
+XAxiVdma VDMA;
+
 void VDMA_init(void)
 {
 	int status;
 	XAxiVdma_Config *VDMA_config;
-	XAxiVdma VDMA;
 	XAxiVdma_DmaSetup Read_config;
-	//XAxiVdma_DmaSetup Write_config;
 
 	uint32_t i;
-	uint16_t color_1 = 0xDEAD;
-	uint16_t color_2 = 0xBEEF;
-	uint16_t *frame_buffer_1;
-	uint16_t *frame_buffer_2;
-	frame_buffer_1 = (uint16_t *) pvPortMalloc((1024 * 768 * 16)/8); // number of bytes per frame
+	uint16_t color_1 = 0xF800;
+	uint16_t color_2 = 0x001F;
 
-	for (i = 0; i < 1024 * 768; i++)
+	frame_buffer_1 = (uint16_t *) pvPortMalloc(1024 * 768 * 2); // number of bytes per frame
+	frame_buffer_2 = (uint16_t *) pvPortMalloc(1024 * 768 * 2);
+
+	for (i = 0; i <= (1024 * 768); i ++)
 	{
 		// move over 2 bytes each time
 		*(frame_buffer_1 + 2*i) = color_1;
+		//*(frame_buffer_2 + 2*i) = color_2;
 	}
 
 	VDMA_config = XAxiVdma_LookupConfig(XPAR_AXI_VDMA_0_DEVICE_ID);
@@ -66,7 +70,7 @@ void VDMA_init(void)
 	if (status != XST_SUCCESS)
 		while(1);
 
-    Read_config.VertSizeInput = 768 * 2;
+    Read_config.VertSizeInput = 768;
 	Read_config.HoriSizeInput = 1024 * 2;
 	Read_config.Stride = 1024 * 2;
 	Read_config.FrameDelay = 0;
@@ -74,24 +78,16 @@ void VDMA_init(void)
 	Read_config.EnableSync = 0;
 	Read_config.PointNum = 0;
 	Read_config.EnableFrameCounter = 0;
-	//Read_config.FrameStoreStartAddr[0] = ;
+	Read_config.FrameStoreStartAddr[0] = (UINTPTR) frame_buffer_1;
+	//Read_config.FrameStoreStartAddr[1] = (UINTPTR) frame_buffer_2;
 	Read_config.FixedFrameStoreAddr = 0;
 	Read_config.GenLockRepeat = 0;
 
-	status = XAxiVdma_DmaConfig(&VDMA, XAXIVDMA_READ, &Read_config);
+	status = XAxiVdma_StartReadFrame(&VDMA, &Read_config);
 
 	if (status != XST_SUCCESS)
-		while(1);
+			while(1);
 
-	status = XAxiVdma_DmaSetBufferAddr(&VDMA, XAXIVDMA_READ, (UINTPTR *) frame_buffer_1);
-
-	if (status != XST_SUCCESS)
-		while(1);
-
-	status = XAxiVdma_DmaStart(&VDMA, XAXIVDMA_READ);
-
-	if (status != XST_SUCCESS)
-		while(1);
 }
 
 void VTC_init(void)
@@ -136,7 +132,7 @@ int main( void )
 
 static void miscTask(void *pvParameters)
 {
-	uint32_t vid_locked, clk_locked;
+	uint32_t status, vid_locked, clk_locked;
 
 	VDMA_init();
 	VTC_init();
@@ -155,6 +151,9 @@ static void miscTask(void *pvParameters)
 			XGpio_DiscreteSet(&xGpio0, 1, 2);
 		else
 			XGpio_DiscreteSet(&xGpio0, 1, 0);
+
+		status = XGpio_DiscreteRead(&xGpio2, 1);
+
 	}
 }
 
