@@ -264,7 +264,7 @@
           <spirit:configurableElementValue spirit:referenceId="c_m_axis_mm2s_tdata_width">16</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="c_num_fstores">3</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="c_mm2s_linebuffer_depth">256</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="c_mm2s_max_burst_length">16</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="c_mm2s_max_burst_length">64</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="c_include_s2mm">0</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="c_include_mm2s_dre">1</spirit:configurableElementValue>
         </spirit:configurableElementValues>
@@ -297,7 +297,7 @@
           <spirit:configurableElementValue spirit:referenceId="C_S_AXIS_VIDEO_DATA_WIDTH">16</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="C_NATIVE_COMPONENT_WIDTH">16</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="C_HAS_ASYNC_CLK">1</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="C_ADDR_WIDTH">12</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="C_ADDR_WIDTH">5</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="C_VTG_MASTER_SLAVE">1</spirit:configurableElementValue>
         </spirit:configurableElementValues>
       </spirit:componentInstance>
@@ -448,6 +448,7 @@
         <spirit:internalPortReference spirit:componentRef="processing_system7_0" spirit:portRef="M_AXI_GP0_ACLK"/>
         <spirit:internalPortReference spirit:componentRef="clk_wiz_0" spirit:portRef="clk_in1"/>
         <spirit:internalPortReference spirit:componentRef="processing_system7_0" spirit:portRef="S_AXI_HP0_ACLK"/>
+        <spirit:internalPortReference spirit:componentRef="axi_gpio_2" spirit:portRef="s_axi_aclk"/>
         <spirit:internalPortReference spirit:componentRef="processing_system7_0_axi_periph" spirit:portRef="S00_ACLK"/>
         <spirit:internalPortReference spirit:componentRef="processing_system7_0_axi_periph" spirit:portRef="ACLK"/>
         <spirit:internalPortReference spirit:componentRef="processing_system7_0_axi_periph" spirit:portRef="M00_ACLK"/>
@@ -457,7 +458,6 @@
         <spirit:internalPortReference spirit:componentRef="axi_mem_intercon" spirit:portRef="S00_ACLK"/>
         <spirit:internalPortReference spirit:componentRef="axi_mem_intercon" spirit:portRef="ACLK"/>
         <spirit:internalPortReference spirit:componentRef="axi_mem_intercon" spirit:portRef="M00_ACLK"/>
-        <spirit:internalPortReference spirit:componentRef="axi_gpio_2" spirit:portRef="s_axi_aclk"/>
         <spirit:internalPortReference spirit:componentRef="processing_system7_0_axi_periph" spirit:portRef="M04_ACLK"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
@@ -468,6 +468,7 @@
         <spirit:internalPortReference spirit:componentRef="axi_gpio_0" spirit:portRef="s_axi_aresetn"/>
         <spirit:internalPortReference spirit:componentRef="axi_gpio_1" spirit:portRef="s_axi_aresetn"/>
         <spirit:internalPortReference spirit:componentRef="v_axi4s_vid_out_0" spirit:portRef="aresetn"/>
+        <spirit:internalPortReference spirit:componentRef="axi_gpio_2" spirit:portRef="s_axi_aresetn"/>
         <spirit:internalPortReference spirit:componentRef="processing_system7_0_axi_periph" spirit:portRef="S00_ARESETN"/>
         <spirit:internalPortReference spirit:componentRef="processing_system7_0_axi_periph" spirit:portRef="M00_ARESETN"/>
         <spirit:internalPortReference spirit:componentRef="processing_system7_0_axi_periph" spirit:portRef="M01_ARESETN"/>
@@ -475,7 +476,6 @@
         <spirit:internalPortReference spirit:componentRef="processing_system7_0_axi_periph" spirit:portRef="M03_ARESETN"/>
         <spirit:internalPortReference spirit:componentRef="axi_mem_intercon" spirit:portRef="S00_ARESETN"/>
         <spirit:internalPortReference spirit:componentRef="axi_mem_intercon" spirit:portRef="M00_ARESETN"/>
-        <spirit:internalPortReference spirit:componentRef="axi_gpio_2" spirit:portRef="s_axi_aresetn"/>
         <spirit:internalPortReference spirit:componentRef="processing_system7_0_axi_periph" spirit:portRef="M04_ARESETN"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>

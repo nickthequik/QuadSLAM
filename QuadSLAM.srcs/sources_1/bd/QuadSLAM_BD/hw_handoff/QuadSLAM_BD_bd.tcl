@@ -221,7 +221,7 @@ CONFIG.c_include_s2mm {0} \
 CONFIG.c_include_s2mm_dre {0} \
 CONFIG.c_m_axis_mm2s_tdata_width {16} \
 CONFIG.c_mm2s_linebuffer_depth {256} \
-CONFIG.c_mm2s_max_burst_length {16} \
+CONFIG.c_mm2s_max_burst_length {64} \
 CONFIG.c_num_fstores {3} \
 CONFIG.c_s2mm_genlock_mode {0} \
 CONFIG.c_s2mm_linebuffer_depth {256} \
@@ -1586,7 +1586,7 @@ CONFIG.NUM_MI {5} \
   # Create instance: v_axi4s_vid_out_0, and set properties
   set v_axi4s_vid_out_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:v_axi4s_vid_out:4.0 v_axi4s_vid_out_0 ]
   set_property -dict [ list \
-CONFIG.C_ADDR_WIDTH {12} \
+CONFIG.C_ADDR_WIDTH {5} \
 CONFIG.C_HAS_ASYNC_CLK {1} \
 CONFIG.C_NATIVE_COMPONENT_WIDTH {16} \
 CONFIG.C_PIXELS_PER_CLOCK {1} \

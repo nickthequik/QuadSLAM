@@ -32,6 +32,7 @@ extern XGpio xGpio0, xGpio1, xGpio2;
 
 uint16_t *frame_buffer_1;
 uint16_t *frame_buffer_2;
+uint16_t *frame_buffer_3;
 
 static void prvSetupHardware( void );
 void vApplicationMallocFailedHook( void );
@@ -53,15 +54,18 @@ void VDMA_init(void)
 	uint32_t i;
 	uint16_t color_1 = 0xF800;
 	uint16_t color_2 = 0x001F;
+	uint16_t color_3 = 0x07E0;
 
 	frame_buffer_1 = (uint16_t *) pvPortMalloc(1024 * 768 * 2); // number of bytes per frame
 	frame_buffer_2 = (uint16_t *) pvPortMalloc(1024 * 768 * 2);
+	frame_buffer_3 = (uint16_t *) pvPortMalloc(1024 * 768 * 2);
 
 	for (i = 0; i <= (1024 * 768); i ++)
 	{
 		// move over 2 bytes each time
 		*(frame_buffer_1 + 2*i) = color_1;
-		//*(frame_buffer_2 + 2*i) = color_2;
+		*(frame_buffer_2 + 2*i) = color_2;
+		*(frame_buffer_3 + 2*i) = color_3;
 	}
 
 	VDMA_config = XAxiVdma_LookupConfig(XPAR_AXI_VDMA_0_DEVICE_ID);
@@ -69,6 +73,8 @@ void VDMA_init(void)
 
 	if (status != XST_SUCCESS)
 		while(1);
+
+	status = XAxiVdma_SetFrmStore(&VDMA, 1, XAXIVDMA_READ);
 
     Read_config.VertSizeInput = 768;
 	Read_config.HoriSizeInput = 1024 * 2;
@@ -79,8 +85,9 @@ void VDMA_init(void)
 	Read_config.PointNum = 0;
 	Read_config.EnableFrameCounter = 0;
 	Read_config.FrameStoreStartAddr[0] = (UINTPTR) frame_buffer_1;
-	//Read_config.FrameStoreStartAddr[1] = (UINTPTR) frame_buffer_2;
-	Read_config.FixedFrameStoreAddr = 0;
+	Read_config.FrameStoreStartAddr[1] = (UINTPTR) frame_buffer_2;
+	Read_config.FrameStoreStartAddr[2] = (UINTPTR) frame_buffer_3;
+	Read_config.FixedFrameStoreAddr = 2;
 	Read_config.GenLockRepeat = 0;
 
 	status = XAxiVdma_StartReadFrame(&VDMA, &Read_config);
@@ -153,6 +160,12 @@ static void miscTask(void *pvParameters)
 			XGpio_DiscreteSet(&xGpio0, 1, 0);
 
 		status = XGpio_DiscreteRead(&xGpio2, 1);
+
+		status = XAxiVdma_GetStatus(&VDMA, XAXIVDMA_READ);
+
+		//status = XAxiVdma_StartParking(&VDMA, 1, XAXIVDMA_READ);
+		//XAxiVdma_StopParking(&VDMA, XAXIVDMA_READ);
+
 
 	}
 }
