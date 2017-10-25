@@ -11,7 +11,7 @@
 #include <inttypes.h>
 #include "xiicps.h"
 
-#define OV9655_I2C_ADDRESS     60
+#define OV9655_I2C_ADDRESS     0b00110000
 
 #define OV9655_GAIN       0x00
 #define OV9655_BLUE       0x01

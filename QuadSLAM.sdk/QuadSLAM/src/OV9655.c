@@ -8,7 +8,7 @@
 #include "OV9655.h"
 #include "xiicps.h"
 #include "FreeRTOS.h"
-
+#include "task.h"
 /*
  * Call this function once to initialize a i2c_instance
  * */
@@ -20,16 +20,13 @@ void OV9655_i2cPs_init(OV9655_camera* camera) {
 	i2c_config = XIicPs_LookupConfig( camera->i2c_device_id );
 
 	status = XIicPs_CfgInitialize(&camera->i2c_instance, i2c_config, camera->i2c_device_base_address );
-	if(status != XST_SUCCESS)
-		while(1);
+	while(status != XST_SUCCESS);
 
 	status = XIicPs_SelfTest(&camera->i2c_instance);
-	if (status != XST_SUCCESS)
-		while(1);
+	while(status != XST_SUCCESS);
 
 	status = XIicPs_SetSClk(&camera->i2c_instance, IIC_SCLK_RATE);
-	if (status != XST_SUCCESS)
-		while(1);
+	while(status != XST_SUCCESS);
 }
 
 /**
@@ -61,7 +58,7 @@ uint32_t OV9655_write_register(OV9655_camera* camera, uint8_t register_address, 
 	uint8_t value[2] = {register_address, register_value};
 	uint32_t status;
 
-	status = XIicPs_MasterSendPolled(&camera->i2c_instance, value, 1, camera->i2c_slave_address);
+	status = XIicPs_MasterSendPolled(&camera->i2c_instance, value, 2, camera->i2c_slave_address);
 
 	if (status != XST_SUCCESS)
 		return XST_FAILURE;
