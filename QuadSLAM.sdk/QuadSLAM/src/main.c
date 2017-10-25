@@ -19,6 +19,8 @@
 #include "xvtc.h"
 
 #include "xdebug.h"
+#include "xil_cache_l.h"
+#include "xpseudo_asm_gcc.h"
 
 #include "uart.h"
 #include "led.h"
@@ -52,21 +54,28 @@ void VDMA_init(void)
 	XAxiVdma_DmaSetup Read_config;
 
 	uint32_t i;
-	uint16_t color_1 = 0xF800;
-	uint16_t color_2 = 0x001F;
-	uint16_t color_3 = 0x07E0;
+	//uint16_t color_1 = 0xF800;
+	//uint16_t color_2 = 0x001F;
+	//uint16_t color_3 = 0x07E0;
+	uint16_t color_1 = 0xDEAD;
+	uint16_t color_2 = 0xBEEF;
+	uint16_t color_3 = 0xFFFF;
 
-	frame_buffer_1 = (uint16_t *) pvPortMalloc(1024 * 768 * 2); // number of bytes per frame
-	frame_buffer_2 = (uint16_t *) pvPortMalloc(1024 * 768 * 2);
-	frame_buffer_3 = (uint16_t *) pvPortMalloc(1024 * 768 * 2);
+	frame_buffer_1 = pvPortMalloc(1024 * 768 * 2); // number of bytes per frame
+	frame_buffer_2 = pvPortMalloc(1024 * 768 * 2);
+	frame_buffer_3 = pvPortMalloc(1024 * 768 * 2);
 
-	for (i = 0; i <= (1024 * 768); i ++)
+	for (i = 0; i < (1024 * 768)/2; i++)
 	{
 		// move over 2 bytes each time
 		*(frame_buffer_1 + 2*i) = color_1;
 		*(frame_buffer_2 + 2*i) = color_2;
 		*(frame_buffer_3 + 2*i) = color_3;
 	}
+
+	// flush cache
+	Xil_L1DCacheFlush();
+	Xil_L2CacheFlush();
 
 	VDMA_config = XAxiVdma_LookupConfig(XPAR_AXI_VDMA_0_DEVICE_ID);
 	status = XAxiVdma_CfgInitialize(&VDMA, VDMA_config, VDMA_config->BaseAddress);

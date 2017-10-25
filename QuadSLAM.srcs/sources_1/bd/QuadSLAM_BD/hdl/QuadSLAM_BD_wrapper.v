@@ -1,7 +1,7 @@
 //Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2016.2 (win64) Build 1577090 Thu Jun  2 16:32:40 MDT 2016
-//Date        : Tue Oct 24 08:30:23 2017
+//Date        : Tue Oct 24 20:18:06 2017
 //Host        : nickthequik running 64-bit major release  (build 9200)
 //Command     : generate_target QuadSLAM_BD_wrapper.bd
 //Design      : QuadSLAM_BD_wrapper
@@ -31,16 +31,17 @@ module QuadSLAM_BD_wrapper
     FIXED_IO_ps_clk,
     FIXED_IO_ps_porb,
     FIXED_IO_ps_srstb,
-    active_video_out,
-    hblank_out,
-    hsync_out,
+    I2C0_SCL_I,
+    I2C0_SDA_I,
+    camera_clk_in,
+    camera_clk_out,
+    camera_vid_data_in,
+    camera_vid_hsync_in,
+    camera_vid_vsync_in,
     leds_tri_o,
-    overflow,
-    vblank_out,
     vga_data_out,
     vga_hsync_out,
-    vga_vsync_out,
-    vsync_out);
+    vga_vsync_out);
   inout [14:0]DDR_addr;
   inout [2:0]DDR_ba;
   inout DDR_cas_n;
@@ -62,16 +63,17 @@ module QuadSLAM_BD_wrapper
   inout FIXED_IO_ps_clk;
   inout FIXED_IO_ps_porb;
   inout FIXED_IO_ps_srstb;
-  output active_video_out;
-  output hblank_out;
-  output hsync_out;
+  input I2C0_SCL_I;
+  input I2C0_SDA_I;
+  input camera_clk_in;
+  output camera_clk_out;
+  input [7:0]camera_vid_data_in;
+  input camera_vid_hsync_in;
+  input camera_vid_vsync_in;
   output [3:0]leds_tri_o;
-  output overflow;
-  output vblank_out;
   output [15:0]vga_data_out;
   output vga_hsync_out;
   output vga_vsync_out;
-  output vsync_out;
 
   wire [14:0]DDR_addr;
   wire [2:0]DDR_ba;
@@ -94,16 +96,17 @@ module QuadSLAM_BD_wrapper
   wire FIXED_IO_ps_clk;
   wire FIXED_IO_ps_porb;
   wire FIXED_IO_ps_srstb;
-  wire active_video_out;
-  wire hblank_out;
-  wire hsync_out;
+  wire I2C0_SCL_I;
+  wire I2C0_SDA_I;
+  wire camera_clk_in;
+  wire camera_clk_out;
+  wire [7:0]camera_vid_data_in;
+  wire camera_vid_hsync_in;
+  wire camera_vid_vsync_in;
   wire [3:0]leds_tri_o;
-  wire overflow;
-  wire vblank_out;
   wire [15:0]vga_data_out;
   wire vga_hsync_out;
   wire vga_vsync_out;
-  wire vsync_out;
 
   QuadSLAM_BD QuadSLAM_BD_i
        (.DDR_addr(DDR_addr),
@@ -127,14 +130,15 @@ module QuadSLAM_BD_wrapper
         .FIXED_IO_ps_clk(FIXED_IO_ps_clk),
         .FIXED_IO_ps_porb(FIXED_IO_ps_porb),
         .FIXED_IO_ps_srstb(FIXED_IO_ps_srstb),
-        .active_video_out(active_video_out),
-        .hblank_out(hblank_out),
-        .hsync_out(hsync_out),
+        .I2C0_SCL_I(I2C0_SCL_I),
+        .I2C0_SDA_I(I2C0_SDA_I),
+        .camera_clk_in(camera_clk_in),
+        .camera_clk_out(camera_clk_out),
+        .camera_vid_data_in(camera_vid_data_in),
+        .camera_vid_hsync_in(camera_vid_hsync_in),
+        .camera_vid_vsync_in(camera_vid_vsync_in),
         .leds_tri_o(leds_tri_o),
-        .overflow(overflow),
-        .vblank_out(vblank_out),
         .vga_data_out(vga_data_out),
         .vga_hsync_out(vga_hsync_out),
-        .vga_vsync_out(vga_vsync_out),
-        .vsync_out(vsync_out));
+        .vga_vsync_out(vga_vsync_out));
 endmodule

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<document>
+<!--The data in this file is primarily intended for consumption by Xilinx tools.
+The structure and the elements are likely to change over the next few releases.
+This means code written to parse this file will need to be revisited each subsequent release.-->
+<application name="pa" timeStamp="Tue Oct 24 19:33:49 2017">
+<section name="Project Information" visible="false">
+<property name="ProjectID" value="3c6c9c15a4cd4ef29052b1c8fa1e81c8" type="ProjectID"/>
+<property name="ProjectIteration" value="1" type="ProjectIteration"/>
+</section>
+<section name="PlanAhead Usage" visible="true">
+<item name="Project Data">
+<property name="SrcSetCount" value="1" type="SrcSetCount"/>
+<property name="ConstraintSetCount" value="1" type="ConstraintSetCount"/>
+<property name="DesignMode" value="RTL" type="DesignMode"/>
+<property name="SynthesisStrategy" value="Vivado Synthesis Defaults" type="SynthesisStrategy"/>
+<property name="ImplStrategy" value="Vivado Implementation Defaults" type="ImplStrategy"/>
+</item>
+<item name="Java Command Handlers">
+<property name="AutoInferInterfaceHandler" value="1" type="JavaHandler"/>
+<property name="IPPackagerHandler" value="4" type="JavaHandler"/>
+<property name="IPPackagerWizardHandler" value="2" type="JavaHandler"/>
+</item>
+<item name="Gui Resources Info">
+<property name="FINISH, Finish" value="1" type="GuiResourceData"/>
+<property name="NEXT, Next " value="3" type="GuiResourceData"/>
+<property name="PAResourceCommand.PACommandNames_IP_PACKAGER_WIZARD, Create and Package IP..." value="1" type="GuiResourceData"/>
+<property name="PAResourceCommand.PACommandNames_PACKAGER_AUTO_INFER_INTERFACE, Package IP_packager_auto_infer_interface" value="1" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources, IP-XACT, component.xml], 3, false" value="1" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources, IP-XACT, component.xml], 3, false, false, false, false, false, true" value="1" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources, IP-XACT], 2, true" value="1" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources, IP-XACT], 2, true, false, false, false, false, true" value="1" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources, vga_output_driver (vga_output_driver.v" value="4" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources], 0, true" value="1" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, [, Project Manager, Package IP], 5, false" value="1" type="GuiResourceData"/>
+<property name="PAResourceEtoH.GUICustomizationTreePanel_TREE, [root, Window, Component Name], 1, false" value="1" type="GuiResourceData"/>
+<property name="PAResourceEtoH.GUICustomizationTreePanel_TREE, [root, Window, Component Name], 1, false, false, false, false, false, true" value="1" type="GuiResourceData"/>
+<property name="PAResourceEtoH.GUICustomizationTreePanel_TREE, [root, Window, Page 0], 2, false" value="1" type="GuiResourceData"/>
+<property name="PAResourceEtoH.GUICustomizationTreePanel_TREE, [root, Window, Page 0], 2, false, false, false, false, false, true" value="1" type="GuiResourceData"/>
+<property name="PAResourceItoN.MainMenuMgr_FLOW, Flow" value="2" type="GuiResourceData"/>
+<property name="PAResourceItoN.MainMenuMgr_REPORT, Report" value="1" type="GuiResourceData"/>
+<property name="PAResourceItoN.MainMenuMgr_TOOLS, Tools" value="6" type="GuiResourceData"/>
+<property name="PAResourceItoN.MainMenuMgr_WINDOW, Window" value="2" type="GuiResourceData"/>
+<property name="PAResourceItoN.NewIpWizard_PACKAGE_YOUR_CURRENT_PROJECT_USE, Package your current project. Use the project as the source for creating a new IP Definition.. Note: All sources to be packaged must be located at or below the specified directory." value="1" type="GuiResourceData"/>
+<property name="PAResourceOtoP.PAViews_PACKAGE_IP, Package IP - vga_output_driver" value="1" type="GuiResourceData"/>
+<property name="PAResourceOtoP.PackagerStepsPanel_PACKAGER_STEPS_LIST, Compatibility, 1" value="2" type="GuiResourceData"/>
+<property name="PAResourceOtoP.PackagerStepsPanel_PACKAGER_STEPS_LIST, Customization GUI, 6" value="4" type="GuiResourceData"/>
+<property name="PAResourceOtoP.PackagerStepsPanel_PACKAGER_STEPS_LIST, Customization Parameters, 3" value="1" type="GuiResourceData"/>
+<property name="PAResourceOtoP.PackagerStepsPanel_PACKAGER_STEPS_LIST, File Groups, 2" value="2" type="GuiResourceData"/>
+<property name="PAResourceOtoP.PackagerStepsPanel_PACKAGER_STEPS_LIST, Identification, 0" value="2" type="GuiResourceData"/>
+<property name="PAResourceOtoP.PackagerStepsPanel_PACKAGER_STEPS_LIST, Ports and Interfaces, 4" value="5" type="GuiResourceData"/>
+<property name="PAResourceOtoP.PackagerStepsPanel_PACKAGER_STEPS_LIST, Review and Package, 7" value="1" type="GuiResourceData"/>
+<property name="PAResourceOtoP.PortAndInterfaceContentPanel_EXPAND_ALL, Package IP_expand_all" value="2" type="GuiResourceData"/>
+<property name="PAResourceOtoP.PortAndInterfaceFacetTable_AUTO_INFER_SINGLE_BIT_INTERFACE, Auto Infer Single Bit Interface" value="2" type="GuiResourceData"/>
+<property name="PAResourceOtoP.PortAndInterfaceFacetTable_PORT_AND_INTERFACE_FACET_TABLE, vga_data_in ;  ;  ;  ; in ;  ; 15 ; 0 ;  ;  ; std_logic_vector, 0, vga_data_in, 0, false" value="2" type="GuiResourceData"/>
+<property name="PAResourceOtoP.PortAndInterfaceFacetTable_PORT_AND_INTERFACE_FACET_TABLE, vga_data_out ;  ;  ;  ; out ;  ; 15 ; 0 ;  ;  ; std_logic_vector, 5, vga_data_out, 0, false" value="1" type="GuiResourceData"/>
+<property name="PAResourceOtoP.PortAndInterfaceFacetTable_PORT_AND_INTERFACE_FACET_TABLE, vga_hblank_in ;  ;  ;  ; in ;  ;  ;  ;  ;  ; std_logic, 3, vga_hblank_in, 0, false" value="1" type="GuiResourceData"/>
+<property name="PAResourceOtoP.PortAndInterfaceFacetTable_PORT_AND_INTERFACE_FACET_TABLE, vga_hsync_in ;  ;  ;  ; in ;  ;  ;  ;  ;  ; std_logic, 1, vga_hsync_in, 0, false" value="2" type="GuiResourceData"/>
+<property name="PAResourceOtoP.PortAndInterfaceFacetTable_PORT_AND_INTERFACE_FACET_TABLE, vga_hsync_in ;  ;  ;  ; in ;  ;  ;  ;  ;  ; std_logic, 1, vga_hsync_in, 0, false, false, false, false, true, false" value="1" type="GuiResourceData"/>
+<property name="PAResourceOtoP.PortAndInterfaceFacetTable_PORT_AND_INTERFACE_FACET_TABLE, vga_vsync_in ;  ;  ;  ; in ;  ;  ;  ;  ;  ; std_logic, 2, vga_vsync_in, 0, false" value="1" type="GuiResourceData"/>
+<property name="PAResourceQtoS.RefreshPackagerTableAction_REFRESH_ALL_ROWS_IN_TABLE, Refresh Table" value="1" type="GuiResourceData"/>
+<property name="PAResourceQtoS.ReviewContentPanel_RE_PACKAGE_IP, Re-Package IP" value="1" type="GuiResourceData"/>
+<property name="RDIResource.BaseDialog_CANCEL, Cancel" value="2" type="GuiResourceData"/>
+<property name="vga_output_driver.v, 221, 368" value="1" type="GuiResourceData"/>
+<property name="vga_output_driver.v, 225, 298" value="1" type="GuiResourceData"/>
+<property name="vga_output_driver.v, 225, 350" value="1" type="GuiResourceData"/>
+<property name="vga_output_driver.v, 55, 354" value="1" type="GuiResourceData"/>
+</item>
+<item name="Other">
+<property name="GuiMode" value="25" type="GuiMode"/>
+<property name="BatchMode" value="0" type="BatchMode"/>
+<property name="TclMode" value="23" type="TclMode"/>
+</item>
+</section>
+</application>
+</document>
