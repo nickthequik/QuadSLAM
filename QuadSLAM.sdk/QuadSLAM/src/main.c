@@ -19,10 +19,11 @@
 #include "xvtc.h"
 
 #include "xdebug.h"
+#include "xgpio.h"
 
 #include "uart.h"
 #include "led.h"
-#include "xgpio.h"
+#include "stereo_camera.h"
 
 extern XScuGic xInterruptController;
 
@@ -144,6 +145,7 @@ static void miscTask(void *pvParameters)
 	VDMA_init();
 	VTC_init();
 	LED_init();
+	STEREO_CAMERA_init();
 
 	while(1)
 	{
