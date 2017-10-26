@@ -2,9 +2,9 @@
 <Root MajorVersion="0" MinorVersion="33">
   <CompositeFile CompositeFileTopName="QuadSLAM_BD" CanBeSetAsTop="true" CanDisplayChildGraph="true">
     <Description>Composite Fileset</Description>
-    <Generation Name="SYNTHESIS" State="GENERATED" Timestamp="1509035982"/>
-    <Generation Name="IMPLEMENTATION" State="GENERATED" Timestamp="1509035982"/>
-    <Generation Name="SIMULATION" State="GENERATED" Timestamp="1509035982"/>
+    <Generation Name="SYNTHESIS" State="GENERATED" Timestamp="1509049415"/>
+    <Generation Name="IMPLEMENTATION" State="GENERATED" Timestamp="1509049415"/>
+    <Generation Name="SIMULATION" State="GENERATED" Timestamp="1509049415"/>
     <FileCollection Name="SOURCES" Type="SOURCES">
       <File Name="ip\QuadSLAM_BD_processing_system7_0_0\QuadSLAM_BD_processing_system7_0_0.xci" Type="IP">
         <Instance HierarchyPath="processing_system7_0"/>
@@ -151,6 +151,30 @@
       </File>
       <File Name="ip\QuadSLAM_BD_camera_input_driver_0_1\QuadSLAM_BD_camera_input_driver_0_1.xci" Type="IP">
         <Instance HierarchyPath="camera_input_driver_0"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip\QuadSLAM_BD_VDMA_to_Scaler_0_0\QuadSLAM_BD_VDMA_to_Scaler_0_0.xci" Type="IP">
+        <Instance HierarchyPath="VDMA_to_Scaler_0"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip\QuadSLAM_BD_Scaler_to_Video_Out_0_0\QuadSLAM_BD_Scaler_to_Video_Out_0_0.xci" Type="IP">
+        <Instance HierarchyPath="Scaler_to_Video_Out_0"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip\QuadSLAM_BD_v_proc_ss_0_0\QuadSLAM_BD_v_proc_ss_0_0.xci" Type="IP">
+        <Instance HierarchyPath="v_proc_ss_0"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
         <UsedIn Val="SYNTHESIS"/>

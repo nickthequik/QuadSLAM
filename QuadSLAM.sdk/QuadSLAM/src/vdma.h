@@ -8,8 +8,10 @@
 #ifndef SRC_VDMA_H_
 #define SRC_VDMA_H_
 
-#define FRAME_WIDTH  1024
-#define FRAME_HEIGHT 768
+//#define FRAME_WIDTH  1024
+//#define FRAME_HEIGHT 768
+#define FRAME_WIDTH  1280
+#define FRAME_HEIGHT 1024
 
 void VDMA_init(void);
 
