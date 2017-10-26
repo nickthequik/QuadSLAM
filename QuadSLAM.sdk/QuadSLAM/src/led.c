@@ -3,6 +3,8 @@
 #include "xgpio.h"
 #include "FreeRTOS.h"
 
+//xGpio0 is attached to the leds
+
 XGpio xGpio0, xGpio1, xGpio2;
 UBaseType_t led_state = 0;
 
@@ -35,7 +37,17 @@ void LED_init( void )
 	XGpio_SetDataDirection(&xGpio2, 1, GPIO_INPUTS);
 }
 
-void set_LED(UBaseType_t uxLED, BaseType_t xValue)
+void LED_set(uint32_t led, uint32_t led_state)
+{
+	uint32_t mask = 1 << led;
+
+	if (led_state == LED_ON)
+		XGpio_DiscreteSet(&xGpio0, 1, mask);
+	else
+		XGpio_DiscreteClear(&xGpio0, 1, mask);
+}
+
+/*void set_LED(UBaseType_t uxLED, BaseType_t xValue)
 {
 	uint32_t i;
 	UBaseType_t uxMask = 1, uxOnMask = 0, uxOffMask = 0;
@@ -53,17 +65,5 @@ void set_LED(UBaseType_t uxLED, BaseType_t xValue)
 	}
 	//XGpio_DiscreteSet(&xGpio, partstLED_OUTPUT, uxOnMask);
 	//XGpio_DiscreteClear(&xGpio, partstLED_OUTPUT, uxOffMask);
-}
-
-void vParTestToggleLED(UBaseType_t uxLED)
-{
-	uint32_t sw_state = 0xFFFF;
-
-	//sw_state = XGpio_DiscreteRead(&xGpio, partstLED_INPUT);
-
-	led_state ^= uxLED;
-	led_state &= sw_state;
-
-	//XGpio_DiscreteWrite(&xGpio, partstLED_OUTPUT, led_state);
-}
+}*/
 

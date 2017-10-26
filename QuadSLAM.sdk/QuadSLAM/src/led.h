@@ -13,8 +13,11 @@
 #define GPIO_OUTPUTS      ( 0 )
 #define GPIO_INPUTS       ( 0xF )
 
+#define LED_ON            ( 1 )
+#define LED_OFF           ( 0 )
+
 void LED_init(void);
-void set_LED(UBaseType_t uxLED, BaseType_t xValue);
+void LED_set(uint32_t led, uint32_t led_state);
 void vParTestToggleLED(UBaseType_t uxLED);
 
 

@@ -9,10 +9,12 @@
 #include "xiicps.h"
 #include "FreeRTOS.h"
 #include "task.h"
+
 /*
- * Call this function once to initialize a i2c_instance
+ * Initializes a i2c_instance
  * */
-void OV9655_i2cPs_init(OV9655_camera* camera) {
+void OV9655_i2cPs_init(OV9655_camera* camera)
+{
 	int status;
 
 	XIicPs_Config* i2c_config;
@@ -32,9 +34,10 @@ void OV9655_i2cPs_init(OV9655_camera* camera) {
 /**
  *Camera configuration.
  */
-void OV9655_init(OV9655_camera* camera) {
+void OV9655_init(OV9655_camera* camera)
+{
 	OV9655_i2cPs_init(camera);
-	uint32_t status;
+	int status;
 
 	//resets the camera, all registers set to defaults
 	status = OV9655_write_register(camera, OV9655_COM7, 0b10000000);
