@@ -251,7 +251,7 @@ set_property IOSTANDARD LVCMOS33 [get_ports {leds_tri_o[3]}]
 ##Pin7
 ##IO_L8P_T1_34
 #set_property PACKAGE_PIN W14 [get_ports {vsync_out}]
-set_property IOSTANDARD LVCMOS33 [get_ports {vsync_out}]
+#set_property IOSTANDARD LVCMOS33 [get_ports {vsync_out}]
 
 ##Pin8
 ##IO_L8N_T1_34
@@ -269,161 +269,89 @@ set_property IOSTANDARD LVCMOS33 [get_ports {vsync_out}]
 #set_property IOSTANDARD LVCMOS33 [get_ports {jc_n[3]}]
 
 
+#############Camera 1###########
 #########Pmod Header JD#########
 
-##Pin1
-set_property PACKAGE_PIN T14 [get_ports {overflow}]
-set_property IOSTANDARD LVCMOS33 [get_ports {overflow}]
 
-##Pin2
-set_property PACKAGE_PIN T15 [get_ports {vblank_out}]
-set_property IOSTANDARD LVCMOS33 [get_ports {vblank_out}]
+##Pin1 - PWDN (0 = ON, 1 = OFF) -> Pulled down on board
+#set_property PACKAGE_PIN T14 [get_ports {}]
+#set_property IOSTANDARD LVCMOS33 [get_ports {}]
 
-##Pin3
-set_property PACKAGE_PIN P14 [get_ports {vsync_out}]
-set_property IOSTANDARD LVCMOS33 [get_ports {vsync_out}]
+##Pin2 - D2
+set_property PACKAGE_PIN T15 [get_ports {camera_vid_data_in[0]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {camera_vid_data_in[0]}]
 
-##Pin4
-set_property PACKAGE_PIN R14 [get_ports {active_video_out}]
-set_property IOSTANDARD LVCMOS33 [get_ports {active_video_out}]
+##Pin3 - D4
+set_property PACKAGE_PIN P14 [get_ports {camera_vid_data_in[2]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {camera_vid_data_in[2]}]
 
-##Pin7
-set_property PACKAGE_PIN U14 [get_ports {hblank_out}]
-set_property IOSTANDARD LVCMOS33 [get_ports {hblank_out}]
+##Pin4 - D6
+set_property PACKAGE_PIN R14 [get_ports {camera_vid_data_in[4]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {camera_vid_data_in[4]}]
 
-##Pin8
-set_property PACKAGE_PIN U15 [get_ports {hsync_out}]
-set_property IOSTANDARD LVCMOS33 [get_ports {hsync_out}]
+##Pin7 - RET (0 = Reset, 1 = Normal) -> Pulled up on board
+#set_property PACKAGE_PIN U14 [get_ports {}]
+#set_property IOSTANDARD LVCMOS33 [get_ports {}]
 
-##Pin9
-#set_property PACKAGE_PIN V17 [get_ports {m_axis_mm2s_tdata[6]}]
-#set_property IOSTANDARD LVCMOS33 [get_ports {m_axis_mm2s_tdata[6]}]
+##Pin7 - PCLK
+set_property PACKAGE_PIN U14 [get_ports {camera_clk_in}]
+set_property IOSTANDARD LVCMOS33 [get_ports {camera_clk_in}]
+create_clock -add -name cam_clk_in_pin -period 4.16666667 -waveform {0 2.083333335} [get_ports {camera_clk_in}]
 
-##Pin10
-#set_property PACKAGE_PIN V18 [get_ports {m_axis_mm2s_tdata[7]}]
-#set_property IOSTANDARD LVCMOS33 [get_ports {m_axis_mm2s_tdata[7]}]
+##Pin8 - D3
+#set_property PACKAGE_PIN U15 [get_ports {camera_vid_data_in[1]}]
+#set_property IOSTANDARD LVCMOS33 [get_ports {camera_vid_data_in[1]}]
+
+##Pin8 - XCLK
+set_property PACKAGE_PIN U15 [get_ports {camera_clk_out}]
+set_property IOSTANDARD LVCMOS33 [get_ports {camera_clk_out}]
+create_clock -add -name cam_clk_out_pin -period 4.16666667 -waveform {0 2.083333335} [get_ports {camera_clk_out}]
+
+##Pin9 - D5
+set_property PACKAGE_PIN V17 [get_ports {camera_vid_data_in[3]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {camera_vid_data_in[3]}]
+
+##Pin10 - D7
+set_property PACKAGE_PIN V18 [get_ports {camera_vid_data_in[5]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {camera_vid_data_in[5]}]
 
 #########Pmod Header JE#########
 
-##Pin1
-#set_property PACKAGE_PIN V12 [get_ports {m_axis_mm2s_tdata[8]}]
-#set_property IOSTANDARD LVCMOS33 [get_ports {m_axis_mm2s_tdata[8]}]
-
-##Pin2
-#set_property PACKAGE_PIN W16 [get_ports {m_axis_mm2s_tdata[9]}]
-#set_property IOSTANDARD LVCMOS33 [get_ports {m_axis_mm2s_tdata[9]}]
-
-##Pin3
-#set_property PACKAGE_PIN J15 [get_ports {m_axis_mm2s_tdata[10]}]
-#set_property IOSTANDARD LVCMOS33 [get_ports {m_axis_mm2s_tdata[10]}]
-
-##Pin4
-#set_property PACKAGE_PIN H15 [get_ports {m_axis_mm2s_tdata[11]}]
-#set_property IOSTANDARD LVCMOS33 [get_ports {m_axis_mm2s_tdata[11]}]
-
-##Pin7
-#set_property PACKAGE_PIN V13 [get_ports {m_axis_mm2s_tdata[12]}]
-#set_property IOSTANDARD LVCMOS33 [get_ports {m_axis_mm2s_tdata[12]}]
-
-##Pin8
-#set_property PACKAGE_PIN U17 [get_ports {m_axis_mm2s_tdata[13]}]
-#set_property IOSTANDARD LVCMOS33 [get_ports {m_axis_mm2s_tdata[13]}]
-
-##Pin9
-#set_property PACKAGE_PIN T17 [get_ports {m_axis_mm2s_tdata[14]}]
-#set_property IOSTANDARD LVCMOS33 [get_ports {m_axis_mm2s_tdata[14]}]
-
-##Pin10
-#set_property PACKAGE_PIN Y17 [get_ports {m_axis_mm2s_tdata[15]}]
-#set_property IOSTANDARD LVCMOS33 [get_ports {m_axis_mm2s_tdata[15]}]
-
-###############Camera 1###############
-       ##Pmod Header JD & JE##
-
-## Pixel Data
-
-##IO_L11P_T1_SRCC_34
-set_property PACKAGE_PIN U15 [get_ports {camera_vid_data_in[7]}]
-set_property IOSTANDARD LVCMOS33 [get_ports {camera_vid_data_in[7]}]
-
-##IO_L5P_T0_34
-set_property PACKAGE_PIN T14 [get_ports {camera_vid_data_in[6]}]
+##Pin1 - D8
+set_property PACKAGE_PIN V12 [get_ports {camera_vid_data_in[6]}]
 set_property IOSTANDARD LVCMOS33 [get_ports {camera_vid_data_in[6]}]
 
-##IO_L7N_T1_34
-set_property PACKAGE_PIN Y17 [get_ports {camera_vid_data_in[5]}]
-set_property IOSTANDARD LVCMOS33 [get_ports {camera_vid_data_in[5]}]
-
-##IO_L19P_T3_35
-set_property PACKAGE_PIN H15 [get_ports {camera_vid_data_in[4]}]
-set_property IOSTANDARD LVCMOS33 [get_ports {camera_vid_data_in[4]}]
-
-##IO_L20P_T3_34
-set_property PACKAGE_PIN T17 [get_ports {camera_vid_data_in[3]}]
-set_property IOSTANDARD LVCMOS33 [get_ports {camera_vid_data_in[3]}]
-
-##IO_25_35
-set_property PACKAGE_PIN J15 [get_ports {camera_vid_data_in[2]}]
-set_property IOSTANDARD LVCMOS33 [get_ports {camera_vid_data_in[2]}]
-
-##IO_L9N_T1_DQS_34
-set_property PACKAGE_PIN U17 [get_ports {camera_vid_data_in[1]}]
+##Pin2 - XCLK
+#set_property PACKAGE_PIN W16 [get_ports {camera_clk_out}]
+#set_property IOSTANDARD LVCMOS33 [get_ports {camera_clk_out}]
+#create_clock -add -name cam_clk_out_pin -period 4.16666667 -waveform {0 2.083333335} [get_ports {camera_clk_out}]
+set_property PACKAGE_PIN W16 [get_ports {camera_vid_data_in[1]}]
 set_property IOSTANDARD LVCMOS33 [get_ports {camera_vid_data_in[1]}]
 
-##IO_L18N_T2_34
-set_property PACKAGE_PIN W16 [get_ports {camera_vid_data_in[0]}]
-set_property IOSTANDARD LVCMOS33 [get_ports {camera_vid_data_in[0]}]
-
-## Camera 1 HSYNC
-
-##IO_L6P_T0_34
-set_property PACKAGE_PIN P14 [get_ports {camera_vid_hsync_in}]
+##Pin3 - HREF
+set_property PACKAGE_PIN J15 [get_ports {camera_vid_hsync_in}]
 set_property IOSTANDARD LVCMOS33 [get_ports {camera_vid_hsync_in}]
 
-# Camera 1 VSYNC
+##Pin4 - SIOD
+set_property PACKAGE_PIN H15 [get_ports {iic_0_sda_io}]
+set_property IOSTANDARD LVCMOS33 [get_ports {iic_0_sda_io}]
 
-##IO_L21P_T3_DQS_34
-set_property PACKAGE_PIN V17 [get_ports {camera_vid_vsync_in}]
+##Pin7 - D9
+set_property PACKAGE_PIN V13 [get_ports {camera_vid_data_in[7]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {camera_vid_data_in[7]}]
+
+##Pin8 - PCLK 
+#set_property PACKAGE_PIN U17 [get_ports {camera_clk_in}]
+#set_property IOSTANDARD LVCMOS33 [get_ports {camera_clk_in}]
+#create_clock -add -name cam_clk_in_pin -period 4.16666667 -waveform {0 2.083333335} [get_ports {camera_clk_in}]
+
+##Pin9 - VSYNC
+set_property PACKAGE_PIN T17 [get_ports {camera_vid_vsync_in}]
 set_property IOSTANDARD LVCMOS33 [get_ports {camera_vid_vsync_in}]
 
-## Pixel Clock
-## 24MHz
-##IO_L11N_T1_SRCC_34
-set_property PACKAGE_PIN U14 [get_ports {camera_clk_in}]
-set_property IOSTANDARD LVCMOS33 [get_ports {camera_clk_in}]
-create_clock -add -name cam_clk_pin -period 4.16666667 -waveform {0 2.083333335} [get_ports {vid_io_in_clk}]
-
-## Camera Clock (XCLK)
-
-##IO_L5N_T0_34
-set_property PACKAGE_PIN T15 [get_ports {camera_clk_out}]
-set_property IOSTANDARD LVCMOS33 [get_ports {camera_clk_out}]
-
-## SCCB IO Data
-
-##IO_L6N_T0_VREF_34
-set_property PACKAGE_PIN R14 [get_ports {I2C0_SDA_I}]
-set_property IOSTANDARD LVCMOS33 [get_ports {I2C0_SDA_I}]
-
-## SCCB IO Clk
-
-##IO_L21N_T3_DQS_34
-set_property PACKAGE_PIN V18 [get_ports {I2C0_SCL_I}]
-set_property IOSTANDARD LVCMOS33 [get_ports {I2C0_SCA_I}]
-
-## Power Down (0 = ON, 1 = OFF)
-## Pulled down on board
-
-##IO_L4P_T0_34
-#set_property PACKAGE_PIN V12 [get_ports {je[0]}]
-#set_property IOSTANDARD LVCMOS33 [get_ports {je[0]}]
-
-## RESETB (0 = Reset, 1 = Normal) 
-## Pulled up on board
-
-##IO_L3N_T0_DQS_34
-#set_property PACKAGE_PIN V13 [get_ports {je[4]}]
-#set_property IOSTANDARD LVCMOS33 [get_ports {je[4]}]
+##Pin10 - SIOC
+set_property PACKAGE_PIN Y17 [get_ports {iic_0_scl_io}]
+set_property IOSTANDARD LVCMOS33 [get_ports {iic_0_scl_io}]
 
 ##USB-OTG overcurrent detect pin
 ##IO_L3P_T0_DQS_PUDC_B_34

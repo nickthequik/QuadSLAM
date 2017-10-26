@@ -1,7 +1,7 @@
 //Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2016.2 (win64) Build 1577090 Thu Jun  2 16:32:40 MDT 2016
-//Date        : Tue Oct 24 20:18:06 2017
+//Date        : Thu Oct 26 09:39:33 2017
 //Host        : nickthequik running 64-bit major release  (build 9200)
 //Command     : generate_target QuadSLAM_BD_wrapper.bd
 //Design      : QuadSLAM_BD_wrapper
@@ -31,13 +31,13 @@ module QuadSLAM_BD_wrapper
     FIXED_IO_ps_clk,
     FIXED_IO_ps_porb,
     FIXED_IO_ps_srstb,
-    I2C0_SCL_I,
-    I2C0_SDA_I,
     camera_clk_in,
     camera_clk_out,
     camera_vid_data_in,
     camera_vid_hsync_in,
     camera_vid_vsync_in,
+    iic_0_scl_io,
+    iic_0_sda_io,
     leds_tri_o,
     vga_data_out,
     vga_hsync_out,
@@ -63,13 +63,13 @@ module QuadSLAM_BD_wrapper
   inout FIXED_IO_ps_clk;
   inout FIXED_IO_ps_porb;
   inout FIXED_IO_ps_srstb;
-  input I2C0_SCL_I;
-  input I2C0_SDA_I;
   input camera_clk_in;
   output camera_clk_out;
   input [7:0]camera_vid_data_in;
   input camera_vid_hsync_in;
   input camera_vid_vsync_in;
+  inout iic_0_scl_io;
+  inout iic_0_sda_io;
   output [3:0]leds_tri_o;
   output [15:0]vga_data_out;
   output vga_hsync_out;
@@ -96,13 +96,19 @@ module QuadSLAM_BD_wrapper
   wire FIXED_IO_ps_clk;
   wire FIXED_IO_ps_porb;
   wire FIXED_IO_ps_srstb;
-  wire I2C0_SCL_I;
-  wire I2C0_SDA_I;
   wire camera_clk_in;
   wire camera_clk_out;
   wire [7:0]camera_vid_data_in;
   wire camera_vid_hsync_in;
   wire camera_vid_vsync_in;
+  wire iic_0_scl_i;
+  wire iic_0_scl_io;
+  wire iic_0_scl_o;
+  wire iic_0_scl_t;
+  wire iic_0_sda_i;
+  wire iic_0_sda_io;
+  wire iic_0_sda_o;
+  wire iic_0_sda_t;
   wire [3:0]leds_tri_o;
   wire [15:0]vga_data_out;
   wire vga_hsync_out;
@@ -130,8 +136,12 @@ module QuadSLAM_BD_wrapper
         .FIXED_IO_ps_clk(FIXED_IO_ps_clk),
         .FIXED_IO_ps_porb(FIXED_IO_ps_porb),
         .FIXED_IO_ps_srstb(FIXED_IO_ps_srstb),
-        .I2C0_SCL_I(I2C0_SCL_I),
-        .I2C0_SDA_I(I2C0_SDA_I),
+        .IIC_0_scl_i(iic_0_scl_i),
+        .IIC_0_scl_o(iic_0_scl_o),
+        .IIC_0_scl_t(iic_0_scl_t),
+        .IIC_0_sda_i(iic_0_sda_i),
+        .IIC_0_sda_o(iic_0_sda_o),
+        .IIC_0_sda_t(iic_0_sda_t),
         .camera_clk_in(camera_clk_in),
         .camera_clk_out(camera_clk_out),
         .camera_vid_data_in(camera_vid_data_in),
@@ -141,4 +151,14 @@ module QuadSLAM_BD_wrapper
         .vga_data_out(vga_data_out),
         .vga_hsync_out(vga_hsync_out),
         .vga_vsync_out(vga_vsync_out));
+  IOBUF iic_0_scl_iobuf
+       (.I(iic_0_scl_o),
+        .IO(iic_0_scl_io),
+        .O(iic_0_scl_i),
+        .T(iic_0_scl_t));
+  IOBUF iic_0_sda_iobuf
+       (.I(iic_0_sda_o),
+        .IO(iic_0_sda_io),
+        .O(iic_0_sda_i),
+        .T(iic_0_sda_t));
 endmodule

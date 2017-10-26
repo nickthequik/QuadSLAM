@@ -1,7 +1,7 @@
 //Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2016.2 (win64) Build 1577090 Thu Jun  2 16:32:40 MDT 2016
-//Date        : Tue Oct 24 20:18:06 2017
+//Date        : Thu Oct 26 09:39:33 2017
 //Host        : nickthequik running 64-bit major release  (build 9200)
 //Command     : generate_target QuadSLAM_BD.bd
 //Design      : QuadSLAM_BD
@@ -32,8 +32,12 @@ module QuadSLAM_BD
     FIXED_IO_ps_clk,
     FIXED_IO_ps_porb,
     FIXED_IO_ps_srstb,
-    I2C0_SCL_I,
-    I2C0_SDA_I,
+    IIC_0_scl_i,
+    IIC_0_scl_o,
+    IIC_0_scl_t,
+    IIC_0_sda_i,
+    IIC_0_sda_o,
+    IIC_0_sda_t,
     camera_clk_in,
     camera_clk_out,
     camera_vid_data_in,
@@ -64,8 +68,12 @@ module QuadSLAM_BD
   inout FIXED_IO_ps_clk;
   inout FIXED_IO_ps_porb;
   inout FIXED_IO_ps_srstb;
-  input I2C0_SCL_I;
-  input I2C0_SDA_I;
+  input IIC_0_scl_i;
+  output IIC_0_scl_o;
+  output IIC_0_scl_t;
+  input IIC_0_sda_i;
+  output IIC_0_sda_o;
+  output IIC_0_sda_t;
   input camera_clk_in;
   output camera_clk_out;
   input [7:0]camera_vid_data_in;
@@ -76,8 +84,6 @@ module QuadSLAM_BD
   output vga_hsync_out;
   output vga_vsync_out;
 
-  wire I2C0_SCL_I_1;
-  wire I2C0_SDA_I_1;
   wire [3:0]axi_gpio_0_GPIO_TRI_O;
   wire [0:0]axi_gpio_0_gpio2_io_o;
   wire [31:0]axi_mem_intercon_M00_AXI_ARADDR;
@@ -185,6 +191,12 @@ module QuadSLAM_BD
   wire processing_system7_0_FIXED_IO_PS_CLK;
   wire processing_system7_0_FIXED_IO_PS_PORB;
   wire processing_system7_0_FIXED_IO_PS_SRSTB;
+  wire processing_system7_0_IIC_0_SCL_I;
+  wire processing_system7_0_IIC_0_SCL_O;
+  wire processing_system7_0_IIC_0_SCL_T;
+  wire processing_system7_0_IIC_0_SDA_I;
+  wire processing_system7_0_IIC_0_SDA_O;
+  wire processing_system7_0_IIC_0_SDA_T;
   wire [31:0]processing_system7_0_M_AXI_GP0_ARADDR;
   wire [1:0]processing_system7_0_M_AXI_GP0_ARBURST;
   wire [3:0]processing_system7_0_M_AXI_GP0_ARCACHE;
@@ -333,13 +345,17 @@ module QuadSLAM_BD
   wire [0:0]xlconstant_0_dout;
   wire [0:0]xlconstant_1_dout;
 
-  assign I2C0_SCL_I_1 = I2C0_SCL_I;
-  assign I2C0_SDA_I_1 = I2C0_SDA_I;
+  assign IIC_0_scl_o = processing_system7_0_IIC_0_SCL_O;
+  assign IIC_0_scl_t = processing_system7_0_IIC_0_SCL_T;
+  assign IIC_0_sda_o = processing_system7_0_IIC_0_SDA_O;
+  assign IIC_0_sda_t = processing_system7_0_IIC_0_SDA_T;
   assign camera_clk_out = clk_wiz_0_clk_out2;
   assign camera_vid_data_in_1 = camera_vid_data_in[7:0];
   assign camera_vid_hsync_in_1 = camera_vid_hsync_in;
   assign camera_vid_vsync_in_1 = camera_vid_vsync_in;
   assign leds_tri_o[3:0] = axi_gpio_0_GPIO_TRI_O;
+  assign processing_system7_0_IIC_0_SCL_I = IIC_0_scl_i;
+  assign processing_system7_0_IIC_0_SDA_I = IIC_0_sda_i;
   assign vga_data_out[15:0] = vga_output_driver_0_vga_data_out;
   assign vga_hsync_out = vga_output_driver_0_vga_hsync_out;
   assign vga_vsync_out = vga_output_driver_0_vga_vsync_out;
@@ -586,8 +602,12 @@ module QuadSLAM_BD
         .DDR_WEB(DDR_we_n),
         .FCLK_CLK0(processing_system7_0_FCLK_CLK0),
         .FCLK_RESET0_N(processing_system7_0_FCLK_RESET0_N),
-        .I2C0_SCL_I(I2C0_SCL_I_1),
-        .I2C0_SDA_I(I2C0_SDA_I_1),
+        .I2C0_SCL_I(processing_system7_0_IIC_0_SCL_I),
+        .I2C0_SCL_O(processing_system7_0_IIC_0_SCL_O),
+        .I2C0_SCL_T(processing_system7_0_IIC_0_SCL_T),
+        .I2C0_SDA_I(processing_system7_0_IIC_0_SDA_I),
+        .I2C0_SDA_O(processing_system7_0_IIC_0_SDA_O),
+        .I2C0_SDA_T(processing_system7_0_IIC_0_SDA_T),
         .MIO(FIXED_IO_mio[53:0]),
         .M_AXI_GP0_ACLK(processing_system7_0_FCLK_CLK0),
         .M_AXI_GP0_ARADDR(processing_system7_0_M_AXI_GP0_ARADDR),
