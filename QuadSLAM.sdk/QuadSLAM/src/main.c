@@ -25,6 +25,7 @@
 #include "xpseudo_asm_gcc.h"
 #include "xgpio.h"
 
+#include "vprocsub.h"
 #include "uart.h"
 #include "led.h"
 #include "stereo_camera.h"
@@ -57,12 +58,15 @@ int main( void )
 static void init_task(void *parameters)
 {
 	int status;
+
+	(void)parameters;
 	uint32_t vid_locked, clk_locked;
 
 	UART_usb_init();
 	LED_init();
 	VDMA_init();
 	VTC_init();
+	VPSS_init();
 	STEREO_CAMERA_init();
 
 	while(1)
@@ -81,6 +85,7 @@ static void init_task(void *parameters)
 			LED_set(1, LED_OFF);
 
 		status = XGpio_DiscreteRead(&xGpio2, 1);
+		status = status;
 	}
 }
 
