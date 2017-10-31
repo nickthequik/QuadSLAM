@@ -2,9 +2,9 @@
 <Root MajorVersion="0" MinorVersion="33">
   <CompositeFile CompositeFileTopName="QuadSLAM_BD" CanBeSetAsTop="true" CanDisplayChildGraph="true">
     <Description>Composite Fileset</Description>
-    <Generation Name="SYNTHESIS" State="GENERATED" Timestamp="1509054081"/>
-    <Generation Name="IMPLEMENTATION" State="GENERATED" Timestamp="1509054081"/>
-    <Generation Name="SIMULATION" State="GENERATED" Timestamp="1509054081"/>
+    <Generation Name="SYNTHESIS" State="GENERATED" Timestamp="1509471632"/>
+    <Generation Name="IMPLEMENTATION" State="GENERATED" Timestamp="1509471632"/>
+    <Generation Name="SIMULATION" State="GENERATED" Timestamp="1509471632"/>
     <FileCollection Name="SOURCES" Type="SOURCES">
       <File Name="ip\QuadSLAM_BD_processing_system7_0_0\QuadSLAM_BD_processing_system7_0_0.xci" Type="IP">
         <Instance HierarchyPath="processing_system7_0"/>
@@ -166,9 +166,24 @@
         <UsedIn Val="IMPLEMENTATION"/>
         <UsedIn Val="SIMULATION"/>
       </File>
+      <File Name="ip\QuadSLAM_BD_v_tpg_0_1\QuadSLAM_BD_v_tpg_0_1.xci" Type="IP">
+        <Instance HierarchyPath="v_tpg_0"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
       <File Name="ip\QuadSLAM_BD_v_proc_ss_0_0\QuadSLAM_BD_v_proc_ss_0_0.xci" Type="IP">
         <Instance HierarchyPath="v_proc_ss_0"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="hdl\QuadSLAM_BD.v" Type="Verilog">
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="false" IsStatusTracked="false"/>
         <Library Name="xil_defaultlib"/>
         <UsedIn Val="SYNTHESIS"/>
         <UsedIn Val="IMPLEMENTATION"/>
@@ -193,13 +208,6 @@
       <File Name="ip\QuadSLAM_BD_auto_us_0\QuadSLAM_BD_auto_us_0.xci" Type="IP">
         <Instance HierarchyPath="axi_mem_intercon/s01_couplers/auto_us"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
-        <Library Name="xil_defaultlib"/>
-        <UsedIn Val="SYNTHESIS"/>
-        <UsedIn Val="IMPLEMENTATION"/>
-        <UsedIn Val="SIMULATION"/>
-      </File>
-      <File Name="hdl\QuadSLAM_BD.v" Type="Verilog">
-        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="false" IsStatusTracked="false"/>
         <Library Name="xil_defaultlib"/>
         <UsedIn Val="SYNTHESIS"/>
         <UsedIn Val="IMPLEMENTATION"/>

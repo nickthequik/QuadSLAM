@@ -39,7 +39,7 @@
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>FREQ_HZ</spirit:name>
-            <spirit:value>100000000</spirit:value>
+            <spirit:value>125000000</spirit:value>
             <spirit:vendorExtensions>
               <bd:configElementInfos>
                 <bd:configElementInfo bd:valueSource="user_prop"/>
@@ -335,7 +335,7 @@
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>FREQ_HZ</spirit:name>
-            <spirit:value>100000000</spirit:value>
+            <spirit:value>125000000</spirit:value>
             <spirit:vendorExtensions>
               <bd:configElementInfos>
                 <bd:configElementInfo bd:valueSource="user_prop"/>
@@ -451,7 +451,7 @@
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>FREQ_HZ</spirit:name>
-            <spirit:value>100000000</spirit:value>
+            <spirit:value>125000000</spirit:value>
             <spirit:vendorExtensions>
               <bd:configElementInfos>
                 <bd:configElementInfo bd:valueSource="user_prop"/>
@@ -545,7 +545,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>FREQ_HZ</spirit:name>
-            <spirit:value>100000000</spirit:value>
+            <spirit:value>125000000</spirit:value>
             <spirit:vendorExtensions>
               <bd:configElementInfos>
                 <bd:configElementInfo bd:valueSource="user_prop"/>
@@ -619,7 +619,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>FREQ_HZ</spirit:name>
-            <spirit:value>100000000</spirit:value>
+            <spirit:value>125000000</spirit:value>
             <spirit:vendorExtensions>
               <bd:configElementInfos>
                 <bd:configElementInfo bd:valueSource="user_prop"/>
@@ -785,10 +785,10 @@
         <spirit:configurableElementValues>
           <spirit:configurableElementValue spirit:referenceId="bd:xciName">bd_776d_vsc_0</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="SAMPLES_PER_CLOCK">1</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="MAX_COLS">1280</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="MAX_ROWS">1024</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="MAX_COLS">2560</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="MAX_ROWS">2048</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="MAX_DATA_WIDTH">8</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="SCALE_MODE">2</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="SCALE_MODE">1</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="TAPS">6</spirit:configurableElementValue>
         </spirit:configurableElementValues>
       </spirit:componentInstance>
@@ -798,10 +798,10 @@
         <spirit:configurableElementValues>
           <spirit:configurableElementValue spirit:referenceId="bd:xciName">bd_776d_hsc_0</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="SAMPLES_PER_CLOCK">1</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="MAX_COLS">1280</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="MAX_ROWS">1024</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="MAX_COLS">2560</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="MAX_ROWS">2048</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="MAX_DATA_WIDTH">8</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="SCALE_MODE">2</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="SCALE_MODE">1</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="TAPS">6</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="ENABLE_422">0</spirit:configurableElementValue>
         </spirit:configurableElementValues>

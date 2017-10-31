@@ -2,6 +2,7 @@
 /* Standard includes. */
 #include <stdio.h>
 #include <limits.h>
+#include <platform.h>
 
 /* Scheduler include files. */
 #include "FreeRTOS.h"
@@ -9,7 +10,6 @@
 #include "semphr.h"
 
 /* Xilinx includes. */
-#include "platform.h"
 #include "xparameters.h"
 #include "xscutimer.h"
 #include "xscugic.h"
@@ -19,13 +19,14 @@
 #include "xvtc.h"
 #include "vtc.h"
 #include "vdma.h"
+#include "tpg.h"
 
 #include "xdebug.h"
 #include "xil_cache_l.h"
 #include "xpseudo_asm_gcc.h"
 #include "xgpio.h"
+#include "xvprocss.h"
 
-#include "vprocsub.h"
 #include "uart.h"
 #include "led.h"
 #include "stereo_camera.h"
@@ -34,6 +35,7 @@ extern XScuGic xInterruptController;
 extern void vPortInstallFreeRTOSVectorTable( void );
 
 extern XGpio xGpio1, xGpio2;
+extern XVprocSs vprocss;
 
 static void prvSetupHardware( void );
 void vApplicationMallocFailedHook( void );
@@ -59,15 +61,16 @@ static void init_task(void *parameters)
 {
 	int status;
 
-	(void)parameters;
 	uint32_t vid_locked, clk_locked;
 
 	UART_usb_init();
 	LED_init();
 	VDMA_init();
-	VTC_init();
 	VPSS_init();
-	STEREO_CAMERA_init();
+	VTC_init();
+	TPG_init();
+	//STEREO_CAMERA_init();
+
 
 	while(1)
 	{
@@ -85,7 +88,14 @@ static void init_task(void *parameters)
 			LED_set(1, LED_OFF);
 
 		status = XGpio_DiscreteRead(&xGpio2, 1);
+
+		XVprocSs_ReportSubsystemConfig(&vprocss);
+		XVprocSs_ReportSubcoreStatus(&vprocss, XVPROCSS_SUBCORE_SCALER_V);
+		XVprocSs_ReportSubcoreStatus(&vprocss, XVPROCSS_SUBCORE_SCALER_H);
+
+		XVprocSs_LogDisplay(&vprocss);
 		status = status;
+
 	}
 }
 

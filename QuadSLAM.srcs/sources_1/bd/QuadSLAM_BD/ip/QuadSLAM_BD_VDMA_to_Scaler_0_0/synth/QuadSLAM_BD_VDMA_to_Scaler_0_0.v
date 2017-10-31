@@ -48,11 +48,11 @@
 
 
 // IP VLNV: xilinx.com:user:VDMA_to_Scaler:1.0
-// IP Revision: 2
+// IP Revision: 3
 
 (* X_CORE_INFO = "VDMA_to_Scaler,Vivado 2016.2" *)
 (* CHECK_LICENSE_TYPE = "QuadSLAM_BD_VDMA_to_Scaler_0_0,VDMA_to_Scaler,{}" *)
-(* CORE_GENERATION_INFO = "QuadSLAM_BD_VDMA_to_Scaler_0_0,VDMA_to_Scaler,{x_ipProduct=Vivado 2016.2,x_ipVendor=xilinx.com,x_ipLibrary=user,x_ipName=VDMA_to_Scaler,x_ipVersion=1.0,x_ipCoreRevision=2,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED}" *)
+(* CORE_GENERATION_INFO = "QuadSLAM_BD_VDMA_to_Scaler_0_0,VDMA_to_Scaler,{x_ipProduct=Vivado 2016.2,x_ipVendor=xilinx.com,x_ipLibrary=user,x_ipName=VDMA_to_Scaler,x_ipVersion=1.0,x_ipCoreRevision=3,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED}" *)
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module QuadSLAM_BD_VDMA_to_Scaler_0_0 (
   vdma_video_in,

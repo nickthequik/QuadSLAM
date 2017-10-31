@@ -52,8 +52,8 @@
 # input clocks. You can use these to time your system. If required
 # commented constraints can be used in the top level xdc 
 #----------------------------------------------------------------
-#create_clock -period 10.0 [get_ports clk_in1]
-#set_input_jitter [get_clocks -of_objects [get_ports clk_in1]] 0.1
+#create_clock -period 8.0 [get_ports clk_in1]
+#set_input_jitter [get_clocks -of_objects [get_ports clk_in1]] 0.08
 
 
 set_false_path -to [get_cells  -hier {*seq_reg*[0]} -filter {is_sequential}]

@@ -1,7 +1,7 @@
 //Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2016.2 (win64) Build 1577090 Thu Jun  2 16:32:40 MDT 2016
-//Date        : Thu Oct 26 14:39:01 2017
+//Date        : Tue Oct 31 10:00:34 2017
 //Host        : nickthequik running 64-bit major release  (build 9200)
 //Command     : generate_target QuadSLAM_BD_wrapper.bd
 //Design      : QuadSLAM_BD_wrapper
@@ -39,9 +39,16 @@ module QuadSLAM_BD_wrapper
     iic_0_scl_io,
     iic_0_sda_io,
     leds_tri_o,
+    tpg_eof,
+    tpg_sof,
+    tpg_valid,
     vga_data_out,
     vga_hsync_out,
-    vga_vsync_out);
+    vga_vsync_out,
+    video_out_ready,
+    vprocss_aresetn,
+    vprocss_ready,
+    vprocss_valid);
   inout [14:0]DDR_addr;
   inout [2:0]DDR_ba;
   inout DDR_cas_n;
@@ -71,9 +78,16 @@ module QuadSLAM_BD_wrapper
   inout iic_0_scl_io;
   inout iic_0_sda_io;
   output [3:0]leds_tri_o;
+  output [0:0]tpg_eof;
+  output [0:0]tpg_sof;
+  output tpg_valid;
   output [15:0]vga_data_out;
   output vga_hsync_out;
   output vga_vsync_out;
+  output video_out_ready;
+  output [0:0]vprocss_aresetn;
+  output vprocss_ready;
+  output vprocss_valid;
 
   wire [14:0]DDR_addr;
   wire [2:0]DDR_ba;
@@ -110,9 +124,16 @@ module QuadSLAM_BD_wrapper
   wire iic_0_sda_o;
   wire iic_0_sda_t;
   wire [3:0]leds_tri_o;
+  wire [0:0]tpg_eof;
+  wire [0:0]tpg_sof;
+  wire tpg_valid;
   wire [15:0]vga_data_out;
   wire vga_hsync_out;
   wire vga_vsync_out;
+  wire video_out_ready;
+  wire [0:0]vprocss_aresetn;
+  wire vprocss_ready;
+  wire vprocss_valid;
 
   QuadSLAM_BD QuadSLAM_BD_i
        (.DDR_addr(DDR_addr),
@@ -148,9 +169,16 @@ module QuadSLAM_BD_wrapper
         .camera_vid_hsync_in(camera_vid_hsync_in),
         .camera_vid_vsync_in(camera_vid_vsync_in),
         .leds_tri_o(leds_tri_o),
+        .tpg_eof(tpg_eof),
+        .tpg_sof(tpg_sof),
+        .tpg_valid(tpg_valid),
         .vga_data_out(vga_data_out),
         .vga_hsync_out(vga_hsync_out),
-        .vga_vsync_out(vga_vsync_out));
+        .vga_vsync_out(vga_vsync_out),
+        .video_out_ready(video_out_ready),
+        .vprocss_aresetn(vprocss_aresetn),
+        .vprocss_ready(vprocss_ready),
+        .vprocss_valid(vprocss_valid));
   IOBUF iic_0_scl_iobuf
        (.I(iic_0_scl_o),
         .IO(iic_0_scl_io),

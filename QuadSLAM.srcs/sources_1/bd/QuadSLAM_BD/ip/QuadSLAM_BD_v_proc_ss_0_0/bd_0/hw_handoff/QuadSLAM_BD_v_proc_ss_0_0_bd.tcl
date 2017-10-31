@@ -210,11 +210,11 @@ CONFIG.FIFO_DEPTH {1024} \
   set hsc [ create_bd_cell -type ip -vlnv xilinx.com:ip:v_hscaler:1.0 hsc ]
   set_property -dict [ list \
 CONFIG.ENABLE_422 {0} \
-CONFIG.MAX_COLS {1280} \
+CONFIG.MAX_COLS {2560} \
 CONFIG.MAX_DATA_WIDTH {8} \
-CONFIG.MAX_ROWS {1024} \
+CONFIG.MAX_ROWS {2048} \
 CONFIG.SAMPLES_PER_CLOCK {1} \
-CONFIG.SCALE_MODE {2} \
+CONFIG.SCALE_MODE {1} \
 CONFIG.TAPS {6} \
  ] $hsc
 
@@ -246,11 +246,11 @@ CONFIG.C_GPIO_WIDTH {2} \
   # Create instance: vsc, and set properties
   set vsc [ create_bd_cell -type ip -vlnv xilinx.com:ip:v_vscaler:1.0 vsc ]
   set_property -dict [ list \
-CONFIG.MAX_COLS {1280} \
+CONFIG.MAX_COLS {2560} \
 CONFIG.MAX_DATA_WIDTH {8} \
-CONFIG.MAX_ROWS {1024} \
+CONFIG.MAX_ROWS {2048} \
 CONFIG.SAMPLES_PER_CLOCK {1} \
-CONFIG.SCALE_MODE {2} \
+CONFIG.SCALE_MODE {1} \
 CONFIG.TAPS {6} \
  ] $vsc
 

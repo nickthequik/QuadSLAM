@@ -52,6 +52,6 @@
 # #########################################################
 
 
-create_clock -period 10 -name ap_clk [get_ports ap_clk]
+create_clock -period 8 -name ap_clk [get_ports ap_clk]
 
 

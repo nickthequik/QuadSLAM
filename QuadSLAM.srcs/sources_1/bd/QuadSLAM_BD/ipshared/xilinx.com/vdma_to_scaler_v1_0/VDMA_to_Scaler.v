@@ -27,15 +27,15 @@ module VDMA_to_Scaler(
     
     //Rearrange 5 Red bits
     assign scaler_video_out[20:16] = vdma_video_in[15:11];
-    assign scaler_video_out[23:21] = {3{0}};
+    assign scaler_video_out[23:21] = {3{1'b0}};
     
     //Rearrange 6 Green bits
     assign scaler_video_out[13:8] = vdma_video_in[10:5];
-    assign scaler_video_out[15:14] = {2{0}};
+    assign scaler_video_out[15:14] = {2{1'b0}};
     
     //Rearrange 5 Blue bits
     assign scaler_video_out[4:0] = vdma_video_in[4:0];
-    assign scaler_video_out[7:5] = {3{0}};
+    assign scaler_video_out[7:5] = {3{1'b0}};
     
     
 endmodule

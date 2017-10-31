@@ -3,8 +3,8 @@
 #ifndef _V_VSCALER_CONFIG_H_
 #define _V_VSCALER_CONFIG_H_
 
-#define VSC_MAX_WIDTH          		1280	// Determines BRAM usage
-#define VSC_MAX_HEIGHT         		1024	// No impact on resources
+#define VSC_MAX_WIDTH          		2560	// Determines BRAM usage
+#define VSC_MAX_HEIGHT         		2048	// No impact on resources
 
 #define VSC_BILINEAR				0
 #define VSC_BICUBIC					1
@@ -15,7 +15,7 @@
 #define VSC_PHASES					(1<<VSC_PHASE_SHIFT)
 #define VSC_BITS_PER_COMPONENT      8   	// 8, 10, 12, 16
 #define VSC_NR_COMPONENTS			3   	// 3 can handle RGB, YUV 444, 422, 420, 2 can handle 422 and 420 only
-#define VSC_SCALE_MODE             	2 		// 0 - Bilinear 1 - Bicubic  2 - Polyphase
+#define VSC_SCALE_MODE             	1 		// 0 - Bilinear 1 - Bicubic  2 - Polyphase
 #define VSC_BITS_PER_CLOCK			(VSC_NR_COMPONENTS*VSC_BITS_PER_COMPONENT*VSC_SAMPLES_PER_CLOCK)
 
 #if (VSC_SCALE_MODE==VSC_BILINEAR)

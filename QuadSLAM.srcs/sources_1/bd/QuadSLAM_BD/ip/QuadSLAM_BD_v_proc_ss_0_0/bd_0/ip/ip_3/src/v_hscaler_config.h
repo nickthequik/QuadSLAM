@@ -3,8 +3,8 @@
 #ifndef _V_HSCALER_CONFIG_H_
 #define _V_HSCALER_CONFIG_H_
 
-#define HSC_MAX_WIDTH          		1280	// Determines BRAM usage
-#define HSC_MAX_HEIGHT         		1024	// No impact on resources
+#define HSC_MAX_WIDTH          		2560	// Determines BRAM usage
+#define HSC_MAX_HEIGHT         		2048	// No impact on resources
 
 #define HSC_BILINEAR				0
 #define HSC_BICUBIC					1
@@ -15,7 +15,7 @@
 #define HSC_PHASES					(1<<HSC_PHASE_SHIFT)
 #define HSC_BITS_PER_COMPONENT      8   	// 8, 10, 12, 16
 #define HSC_NR_COMPONENTS			3   	// 3 can handle RGB, YUV 444, 422, 420, 2 can handle 422 and 420 only
-#define HSC_SCALE_MODE             	2 		// 0 - Bilinear 1 - Bicubic  2 - Polyphase
+#define HSC_SCALE_MODE             	1 		// 0 - Bilinear 1 - Bicubic  2 - Polyphase
 #define HSC_BITS_PER_CLOCK			(HSC_NR_COMPONENTS*HSC_BITS_PER_COMPONENT*HSC_SAMPLES_PER_CLOCK)
 #define HSC_ENABLE_422				0 
 
