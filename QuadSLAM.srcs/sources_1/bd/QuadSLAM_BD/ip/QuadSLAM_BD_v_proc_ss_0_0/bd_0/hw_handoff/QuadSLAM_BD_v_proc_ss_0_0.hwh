@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Tue Oct 31 10:40:22 2017" VIVADOVERSION="2016.2">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Tue Oct 31 11:44:29 2017" VIVADOVERSION="2016.2">
 
   <SYSTEMINFO ARCH="zynq" DEVICE="7z010" NAME="bd_776d" PACKAGE="clg400" SPEEDGRADE="-1"/>
 
@@ -55,36 +55,22 @@
       </CONNECTIONS>
     </PORT>
     <PORT DIR="I" LEFT="17" NAME="s_axi_ctrl_awaddr" RIGHT="0" SIGIS="undef"/>
-    <PORT DIR="I" LEFT="7" NAME="s_axi_ctrl_awlen" RIGHT="0" SIGIS="undef"/>
-    <PORT DIR="I" LEFT="2" NAME="s_axi_ctrl_awsize" RIGHT="0" SIGIS="undef"/>
-    <PORT DIR="I" LEFT="1" NAME="s_axi_ctrl_awburst" RIGHT="0" SIGIS="undef"/>
-    <PORT DIR="I" LEFT="0" NAME="s_axi_ctrl_awlock" RIGHT="0" SIGIS="undef"/>
-    <PORT DIR="I" LEFT="3" NAME="s_axi_ctrl_awcache" RIGHT="0" SIGIS="undef"/>
     <PORT DIR="I" LEFT="2" NAME="s_axi_ctrl_awprot" RIGHT="0" SIGIS="undef"/>
-    <PORT DIR="I" LEFT="3" NAME="s_axi_ctrl_awqos" RIGHT="0" SIGIS="undef"/>
     <PORT DIR="I" LEFT="0" NAME="s_axi_ctrl_awvalid" RIGHT="0" SIGIS="undef"/>
     <PORT DIR="O" LEFT="0" NAME="s_axi_ctrl_awready" RIGHT="0" SIGIS="undef"/>
     <PORT DIR="I" LEFT="31" NAME="s_axi_ctrl_wdata" RIGHT="0" SIGIS="undef"/>
     <PORT DIR="I" LEFT="3" NAME="s_axi_ctrl_wstrb" RIGHT="0" SIGIS="undef"/>
-    <PORT DIR="I" LEFT="0" NAME="s_axi_ctrl_wlast" RIGHT="0" SIGIS="undef"/>
     <PORT DIR="I" LEFT="0" NAME="s_axi_ctrl_wvalid" RIGHT="0" SIGIS="undef"/>
     <PORT DIR="O" LEFT="0" NAME="s_axi_ctrl_wready" RIGHT="0" SIGIS="undef"/>
     <PORT DIR="O" LEFT="1" NAME="s_axi_ctrl_bresp" RIGHT="0" SIGIS="undef"/>
     <PORT DIR="O" LEFT="0" NAME="s_axi_ctrl_bvalid" RIGHT="0" SIGIS="undef"/>
     <PORT DIR="I" LEFT="0" NAME="s_axi_ctrl_bready" RIGHT="0" SIGIS="undef"/>
     <PORT DIR="I" LEFT="17" NAME="s_axi_ctrl_araddr" RIGHT="0" SIGIS="undef"/>
-    <PORT DIR="I" LEFT="7" NAME="s_axi_ctrl_arlen" RIGHT="0" SIGIS="undef"/>
-    <PORT DIR="I" LEFT="2" NAME="s_axi_ctrl_arsize" RIGHT="0" SIGIS="undef"/>
-    <PORT DIR="I" LEFT="1" NAME="s_axi_ctrl_arburst" RIGHT="0" SIGIS="undef"/>
-    <PORT DIR="I" LEFT="0" NAME="s_axi_ctrl_arlock" RIGHT="0" SIGIS="undef"/>
-    <PORT DIR="I" LEFT="3" NAME="s_axi_ctrl_arcache" RIGHT="0" SIGIS="undef"/>
     <PORT DIR="I" LEFT="2" NAME="s_axi_ctrl_arprot" RIGHT="0" SIGIS="undef"/>
-    <PORT DIR="I" LEFT="3" NAME="s_axi_ctrl_arqos" RIGHT="0" SIGIS="undef"/>
     <PORT DIR="I" LEFT="0" NAME="s_axi_ctrl_arvalid" RIGHT="0" SIGIS="undef"/>
     <PORT DIR="O" LEFT="0" NAME="s_axi_ctrl_arready" RIGHT="0" SIGIS="undef"/>
     <PORT DIR="O" LEFT="31" NAME="s_axi_ctrl_rdata" RIGHT="0" SIGIS="undef"/>
     <PORT DIR="O" LEFT="1" NAME="s_axi_ctrl_rresp" RIGHT="0" SIGIS="undef"/>
-    <PORT DIR="O" LEFT="0" NAME="s_axi_ctrl_rlast" RIGHT="0" SIGIS="undef"/>
     <PORT DIR="O" LEFT="0" NAME="s_axi_ctrl_rvalid" RIGHT="0" SIGIS="undef"/>
     <PORT DIR="I" LEFT="0" NAME="s_axi_ctrl_rready" RIGHT="0" SIGIS="undef"/>
   </EXTERNALPORTS>
@@ -119,36 +105,22 @@
       <PARAMETER NAME="CLK_DOMAIN" VALUE="QuadSLAM_BD_processing_system7_0_0_FCLK_CLK0"/>
       <PORTMAPS>
         <PORTMAP LOGICAL="AWADDR" PHYSICAL="s_axi_ctrl_awaddr"/>
-        <PORTMAP LOGICAL="AWLEN" PHYSICAL="s_axi_ctrl_awlen"/>
-        <PORTMAP LOGICAL="AWSIZE" PHYSICAL="s_axi_ctrl_awsize"/>
-        <PORTMAP LOGICAL="AWBURST" PHYSICAL="s_axi_ctrl_awburst"/>
-        <PORTMAP LOGICAL="AWLOCK" PHYSICAL="s_axi_ctrl_awlock"/>
-        <PORTMAP LOGICAL="AWCACHE" PHYSICAL="s_axi_ctrl_awcache"/>
         <PORTMAP LOGICAL="AWPROT" PHYSICAL="s_axi_ctrl_awprot"/>
-        <PORTMAP LOGICAL="AWQOS" PHYSICAL="s_axi_ctrl_awqos"/>
         <PORTMAP LOGICAL="AWVALID" PHYSICAL="s_axi_ctrl_awvalid"/>
         <PORTMAP LOGICAL="AWREADY" PHYSICAL="s_axi_ctrl_awready"/>
         <PORTMAP LOGICAL="WDATA" PHYSICAL="s_axi_ctrl_wdata"/>
         <PORTMAP LOGICAL="WSTRB" PHYSICAL="s_axi_ctrl_wstrb"/>
-        <PORTMAP LOGICAL="WLAST" PHYSICAL="s_axi_ctrl_wlast"/>
         <PORTMAP LOGICAL="WVALID" PHYSICAL="s_axi_ctrl_wvalid"/>
         <PORTMAP LOGICAL="WREADY" PHYSICAL="s_axi_ctrl_wready"/>
         <PORTMAP LOGICAL="BRESP" PHYSICAL="s_axi_ctrl_bresp"/>
         <PORTMAP LOGICAL="BVALID" PHYSICAL="s_axi_ctrl_bvalid"/>
         <PORTMAP LOGICAL="BREADY" PHYSICAL="s_axi_ctrl_bready"/>
         <PORTMAP LOGICAL="ARADDR" PHYSICAL="s_axi_ctrl_araddr"/>
-        <PORTMAP LOGICAL="ARLEN" PHYSICAL="s_axi_ctrl_arlen"/>
-        <PORTMAP LOGICAL="ARSIZE" PHYSICAL="s_axi_ctrl_arsize"/>
-        <PORTMAP LOGICAL="ARBURST" PHYSICAL="s_axi_ctrl_arburst"/>
-        <PORTMAP LOGICAL="ARLOCK" PHYSICAL="s_axi_ctrl_arlock"/>
-        <PORTMAP LOGICAL="ARCACHE" PHYSICAL="s_axi_ctrl_arcache"/>
         <PORTMAP LOGICAL="ARPROT" PHYSICAL="s_axi_ctrl_arprot"/>
-        <PORTMAP LOGICAL="ARQOS" PHYSICAL="s_axi_ctrl_arqos"/>
         <PORTMAP LOGICAL="ARVALID" PHYSICAL="s_axi_ctrl_arvalid"/>
         <PORTMAP LOGICAL="ARREADY" PHYSICAL="s_axi_ctrl_arready"/>
         <PORTMAP LOGICAL="RDATA" PHYSICAL="s_axi_ctrl_rdata"/>
         <PORTMAP LOGICAL="RRESP" PHYSICAL="s_axi_ctrl_rresp"/>
-        <PORTMAP LOGICAL="RLAST" PHYSICAL="s_axi_ctrl_rlast"/>
         <PORTMAP LOGICAL="RVALID" PHYSICAL="s_axi_ctrl_rvalid"/>
         <PORTMAP LOGICAL="RREADY" PHYSICAL="s_axi_ctrl_rready"/>
       </PORTMAPS>
@@ -845,36 +817,22 @@
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" LEFT="17" NAME="S00_AXI_awaddr" RIGHT="0" SIGIS="undef"/>
-        <PORT DIR="I" LEFT="7" NAME="S00_AXI_awlen" RIGHT="0" SIGIS="undef"/>
-        <PORT DIR="I" LEFT="2" NAME="S00_AXI_awsize" RIGHT="0" SIGIS="undef"/>
-        <PORT DIR="I" LEFT="1" NAME="S00_AXI_awburst" RIGHT="0" SIGIS="undef"/>
-        <PORT DIR="I" LEFT="0" NAME="S00_AXI_awlock" RIGHT="0" SIGIS="undef"/>
-        <PORT DIR="I" LEFT="3" NAME="S00_AXI_awcache" RIGHT="0" SIGIS="undef"/>
         <PORT DIR="I" LEFT="2" NAME="S00_AXI_awprot" RIGHT="0" SIGIS="undef"/>
-        <PORT DIR="I" LEFT="3" NAME="S00_AXI_awqos" RIGHT="0" SIGIS="undef"/>
         <PORT DIR="I" LEFT="0" NAME="S00_AXI_awvalid" RIGHT="0" SIGIS="undef"/>
         <PORT DIR="O" LEFT="0" NAME="S00_AXI_awready" RIGHT="0" SIGIS="undef"/>
         <PORT DIR="I" LEFT="31" NAME="S00_AXI_wdata" RIGHT="0" SIGIS="undef"/>
         <PORT DIR="I" LEFT="3" NAME="S00_AXI_wstrb" RIGHT="0" SIGIS="undef"/>
-        <PORT DIR="I" LEFT="0" NAME="S00_AXI_wlast" RIGHT="0" SIGIS="undef"/>
         <PORT DIR="I" LEFT="0" NAME="S00_AXI_wvalid" RIGHT="0" SIGIS="undef"/>
         <PORT DIR="O" LEFT="0" NAME="S00_AXI_wready" RIGHT="0" SIGIS="undef"/>
         <PORT DIR="O" LEFT="1" NAME="S00_AXI_bresp" RIGHT="0" SIGIS="undef"/>
         <PORT DIR="O" LEFT="0" NAME="S00_AXI_bvalid" RIGHT="0" SIGIS="undef"/>
         <PORT DIR="I" LEFT="0" NAME="S00_AXI_bready" RIGHT="0" SIGIS="undef"/>
         <PORT DIR="I" LEFT="17" NAME="S00_AXI_araddr" RIGHT="0" SIGIS="undef"/>
-        <PORT DIR="I" LEFT="7" NAME="S00_AXI_arlen" RIGHT="0" SIGIS="undef"/>
-        <PORT DIR="I" LEFT="2" NAME="S00_AXI_arsize" RIGHT="0" SIGIS="undef"/>
-        <PORT DIR="I" LEFT="1" NAME="S00_AXI_arburst" RIGHT="0" SIGIS="undef"/>
-        <PORT DIR="I" LEFT="0" NAME="S00_AXI_arlock" RIGHT="0" SIGIS="undef"/>
-        <PORT DIR="I" LEFT="3" NAME="S00_AXI_arcache" RIGHT="0" SIGIS="undef"/>
         <PORT DIR="I" LEFT="2" NAME="S00_AXI_arprot" RIGHT="0" SIGIS="undef"/>
-        <PORT DIR="I" LEFT="3" NAME="S00_AXI_arqos" RIGHT="0" SIGIS="undef"/>
         <PORT DIR="I" LEFT="0" NAME="S00_AXI_arvalid" RIGHT="0" SIGIS="undef"/>
         <PORT DIR="O" LEFT="0" NAME="S00_AXI_arready" RIGHT="0" SIGIS="undef"/>
         <PORT DIR="O" LEFT="31" NAME="S00_AXI_rdata" RIGHT="0" SIGIS="undef"/>
         <PORT DIR="O" LEFT="1" NAME="S00_AXI_rresp" RIGHT="0" SIGIS="undef"/>
-        <PORT DIR="O" LEFT="0" NAME="S00_AXI_rlast" RIGHT="0" SIGIS="undef"/>
         <PORT DIR="O" LEFT="0" NAME="S00_AXI_rvalid" RIGHT="0" SIGIS="undef"/>
         <PORT DIR="I" LEFT="0" NAME="S00_AXI_rready" RIGHT="0" SIGIS="undef"/>
       </PORTS>
@@ -882,36 +840,22 @@
         <BUSINTERFACE BUSNAME="External_Interface_s_axi_ctrl" DATAWIDTH="32" NAME="S00_AXI" TYPE="SLAVE" VLNV="xilinx.com:interface:aximm:1.0">
           <PORTMAPS>
             <PORTMAP LOGICAL="AWADDR" PHYSICAL="S00_AXI_awaddr"/>
-            <PORTMAP LOGICAL="AWLEN" PHYSICAL="S00_AXI_awlen"/>
-            <PORTMAP LOGICAL="AWSIZE" PHYSICAL="S00_AXI_awsize"/>
-            <PORTMAP LOGICAL="AWBURST" PHYSICAL="S00_AXI_awburst"/>
-            <PORTMAP LOGICAL="AWLOCK" PHYSICAL="S00_AXI_awlock"/>
-            <PORTMAP LOGICAL="AWCACHE" PHYSICAL="S00_AXI_awcache"/>
             <PORTMAP LOGICAL="AWPROT" PHYSICAL="S00_AXI_awprot"/>
-            <PORTMAP LOGICAL="AWQOS" PHYSICAL="S00_AXI_awqos"/>
             <PORTMAP LOGICAL="AWVALID" PHYSICAL="S00_AXI_awvalid"/>
             <PORTMAP LOGICAL="AWREADY" PHYSICAL="S00_AXI_awready"/>
             <PORTMAP LOGICAL="WDATA" PHYSICAL="S00_AXI_wdata"/>
             <PORTMAP LOGICAL="WSTRB" PHYSICAL="S00_AXI_wstrb"/>
-            <PORTMAP LOGICAL="WLAST" PHYSICAL="S00_AXI_wlast"/>
             <PORTMAP LOGICAL="WVALID" PHYSICAL="S00_AXI_wvalid"/>
             <PORTMAP LOGICAL="WREADY" PHYSICAL="S00_AXI_wready"/>
             <PORTMAP LOGICAL="BRESP" PHYSICAL="S00_AXI_bresp"/>
             <PORTMAP LOGICAL="BVALID" PHYSICAL="S00_AXI_bvalid"/>
             <PORTMAP LOGICAL="BREADY" PHYSICAL="S00_AXI_bready"/>
             <PORTMAP LOGICAL="ARADDR" PHYSICAL="S00_AXI_araddr"/>
-            <PORTMAP LOGICAL="ARLEN" PHYSICAL="S00_AXI_arlen"/>
-            <PORTMAP LOGICAL="ARSIZE" PHYSICAL="S00_AXI_arsize"/>
-            <PORTMAP LOGICAL="ARBURST" PHYSICAL="S00_AXI_arburst"/>
-            <PORTMAP LOGICAL="ARLOCK" PHYSICAL="S00_AXI_arlock"/>
-            <PORTMAP LOGICAL="ARCACHE" PHYSICAL="S00_AXI_arcache"/>
             <PORTMAP LOGICAL="ARPROT" PHYSICAL="S00_AXI_arprot"/>
-            <PORTMAP LOGICAL="ARQOS" PHYSICAL="S00_AXI_arqos"/>
             <PORTMAP LOGICAL="ARVALID" PHYSICAL="S00_AXI_arvalid"/>
             <PORTMAP LOGICAL="ARREADY" PHYSICAL="S00_AXI_arready"/>
             <PORTMAP LOGICAL="RDATA" PHYSICAL="S00_AXI_rdata"/>
             <PORTMAP LOGICAL="RRESP" PHYSICAL="S00_AXI_rresp"/>
-            <PORTMAP LOGICAL="RLAST" PHYSICAL="S00_AXI_rlast"/>
             <PORTMAP LOGICAL="RVALID" PHYSICAL="S00_AXI_rvalid"/>
             <PORTMAP LOGICAL="RREADY" PHYSICAL="S00_AXI_rready"/>
           </PORTMAPS>

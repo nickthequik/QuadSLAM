@@ -5,9 +5,9 @@
  *      Author: NicholasKimball
  */
 
-#ifndef SRC_TPG_H_
-#define SRC_TPG_H_
+#ifndef SRC_TPG_H_OLD_
+#define SRC_TPG_H_OLD_
 
 void TPG_init(void);
 
-#endif /* SRC_TPG_H_ */
+#endif /* SRC_TPG_H_OLD_ */

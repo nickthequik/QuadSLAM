@@ -19,8 +19,6 @@
 #include "xvtc.h"
 #include "vtc.h"
 #include "vdma.h"
-#include "tpg.h"
-
 #include "xdebug.h"
 #include "xil_cache_l.h"
 #include "xpseudo_asm_gcc.h"
@@ -30,6 +28,7 @@
 #include "uart.h"
 #include "led.h"
 #include "stereo_camera.h"
+#include "vprocsub.h"
 
 extern XScuGic xInterruptController;
 extern void vPortInstallFreeRTOSVectorTable( void );
@@ -68,8 +67,7 @@ static void init_task(void *parameters)
 	VDMA_init();
 	VPSS_init();
 	VTC_init();
-	TPG_init();
-	//STEREO_CAMERA_init();
+	STEREO_CAMERA_init();
 
 
 	while(1)
@@ -88,13 +86,6 @@ static void init_task(void *parameters)
 			LED_set(1, LED_OFF);
 
 		status = XGpio_DiscreteRead(&xGpio2, 1);
-
-		XVprocSs_ReportSubsystemConfig(&vprocss);
-		XVprocSs_ReportSubcoreStatus(&vprocss, XVPROCSS_SUBCORE_SCALER_V);
-		XVprocSs_ReportSubcoreStatus(&vprocss, XVPROCSS_SUBCORE_SCALER_H);
-
-		XVprocSs_LogDisplay(&vprocss);
-		status = status;
 
 	}
 }

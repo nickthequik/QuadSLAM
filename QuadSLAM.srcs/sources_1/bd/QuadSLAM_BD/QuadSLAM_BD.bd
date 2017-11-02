@@ -232,35 +232,6 @@
           </spirit:parameter>
         </spirit:parameters>
       </spirit:busInterface>
-      <spirit:busInterface>
-        <spirit:name>RST.VPROCSS_ARESETN</spirit:name>
-        <spirit:displayName>Reset</spirit:displayName>
-        <spirit:description>Reset</spirit:description>
-        <spirit:busType spirit:library="signal" spirit:name="reset" spirit:vendor="xilinx.com" spirit:version="1.0"/>
-        <spirit:abstractionType spirit:library="signal" spirit:name="reset_rtl" spirit:vendor="xilinx.com" spirit:version="1.0"/>
-        <spirit:slave/>
-        <spirit:portMaps>
-          <spirit:portMap>
-            <spirit:logicalPort>
-              <spirit:name>RST</spirit:name>
-            </spirit:logicalPort>
-            <spirit:physicalPort>
-              <spirit:name>vprocss_aresetn</spirit:name>
-            </spirit:physicalPort>
-          </spirit:portMap>
-        </spirit:portMaps>
-        <spirit:parameters>
-          <spirit:parameter>
-            <spirit:name>POLARITY</spirit:name>
-            <spirit:value>ACTIVE_LOW</spirit:value>
-            <spirit:vendorExtensions>
-              <bd:configElementInfos>
-                <bd:configElementInfo bd:valueSource="default"/>
-              </bd:configElementInfos>
-            </spirit:vendorExtensions>
-          </spirit:parameter>
-        </spirit:parameters>
-      </spirit:busInterface>
     </spirit:busInterfaces>
     <spirit:model>
       <spirit:views>
@@ -325,60 +296,6 @@
           <spirit:name>camera_clk_out</spirit:name>
           <spirit:wire>
             <spirit:direction>out</spirit:direction>
-          </spirit:wire>
-        </spirit:port>
-        <spirit:port>
-          <spirit:name>tpg_eof</spirit:name>
-          <spirit:wire>
-            <spirit:direction>out</spirit:direction>
-            <spirit:vector>
-              <spirit:left>0</spirit:left>
-              <spirit:right>0</spirit:right>
-            </spirit:vector>
-          </spirit:wire>
-        </spirit:port>
-        <spirit:port>
-          <spirit:name>vprocss_ready</spirit:name>
-          <spirit:wire>
-            <spirit:direction>out</spirit:direction>
-          </spirit:wire>
-        </spirit:port>
-        <spirit:port>
-          <spirit:name>tpg_sof</spirit:name>
-          <spirit:wire>
-            <spirit:direction>out</spirit:direction>
-            <spirit:vector>
-              <spirit:left>0</spirit:left>
-              <spirit:right>0</spirit:right>
-            </spirit:vector>
-          </spirit:wire>
-        </spirit:port>
-        <spirit:port>
-          <spirit:name>tpg_valid</spirit:name>
-          <spirit:wire>
-            <spirit:direction>out</spirit:direction>
-          </spirit:wire>
-        </spirit:port>
-        <spirit:port>
-          <spirit:name>vprocss_valid</spirit:name>
-          <spirit:wire>
-            <spirit:direction>out</spirit:direction>
-          </spirit:wire>
-        </spirit:port>
-        <spirit:port>
-          <spirit:name>video_out_ready</spirit:name>
-          <spirit:wire>
-            <spirit:direction>out</spirit:direction>
-          </spirit:wire>
-        </spirit:port>
-        <spirit:port>
-          <spirit:name>vprocss_aresetn</spirit:name>
-          <spirit:wire>
-            <spirit:direction>out</spirit:direction>
-            <spirit:vector>
-              <spirit:left>0</spirit:left>
-              <spirit:right>0</spirit:right>
-            </spirit:vector>
           </spirit:wire>
         </spirit:port>
       </spirit:ports>
@@ -593,15 +510,6 @@
         </spirit:configurableElementValues>
       </spirit:componentInstance>
       <spirit:componentInstance>
-        <spirit:instanceName>v_tpg_0</spirit:instanceName>
-        <spirit:componentRef spirit:library="ip" spirit:name="v_tpg" spirit:vendor="xilinx.com" spirit:version="7.0"/>
-        <spirit:configurableElementValues>
-          <spirit:configurableElementValue spirit:referenceId="bd:xciName">QuadSLAM_BD_v_tpg_0_1</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="MAX_COLS">1280</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="MAX_ROWS">1024</spirit:configurableElementValue>
-        </spirit:configurableElementValues>
-      </spirit:componentInstance>
-      <spirit:componentInstance>
         <spirit:instanceName>v_proc_ss_0</spirit:instanceName>
         <spirit:componentRef spirit:library="ip" spirit:name="v_proc_ss" spirit:vendor="xilinx.com" spirit:version="2.0"/>
         <spirit:configurableElementValues>
@@ -678,11 +586,6 @@
         <spirit:activeInterface spirit:busRef="video_out" spirit:componentRef="v_vid_in_axi4s_0"/>
       </spirit:interconnection>
       <spirit:interconnection>
-        <spirit:name>processing_system7_0_axi_periph_M06_AXI</spirit:name>
-        <spirit:activeInterface spirit:busRef="M06_AXI" spirit:componentRef="processing_system7_0_axi_periph"/>
-        <spirit:activeInterface spirit:busRef="s_axi_CTRL" spirit:componentRef="v_tpg_0"/>
-      </spirit:interconnection>
-      <spirit:interconnection>
         <spirit:name>processing_system7_0_axi_periph_M05_AXI</spirit:name>
         <spirit:activeInterface spirit:busRef="M05_AXI" spirit:componentRef="processing_system7_0_axi_periph"/>
         <spirit:activeInterface spirit:busRef="s_axi_ctrl" spirit:componentRef="v_proc_ss_0"/>
@@ -718,7 +621,6 @@
         <spirit:internalPortReference spirit:componentRef="axi_vdma_0" spirit:portRef="m_axi_s2mm_aclk"/>
         <spirit:internalPortReference spirit:componentRef="v_vid_in_axi4s_0" spirit:portRef="aclk"/>
         <spirit:internalPortReference spirit:componentRef="axi_vdma_0" spirit:portRef="s_axis_s2mm_aclk"/>
-        <spirit:internalPortReference spirit:componentRef="v_tpg_0" spirit:portRef="ap_clk"/>
         <spirit:internalPortReference spirit:componentRef="v_proc_ss_0" spirit:portRef="aclk_ctrl"/>
         <spirit:internalPortReference spirit:componentRef="v_proc_ss_0" spirit:portRef="aclk_axis"/>
         <spirit:internalPortReference spirit:componentRef="processing_system7_0_axi_periph" spirit:portRef="S00_ACLK"/>
@@ -926,35 +828,6 @@
         <spirit:internalPortReference spirit:componentRef="v_axi4s_vid_out_0" spirit:portRef="s_axis_video_tdata"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
-        <spirit:name>v_tpg_0_m_axis_video_TDATA</spirit:name>
-        <spirit:internalPortReference spirit:componentRef="v_tpg_0" spirit:portRef="m_axis_video_TDATA"/>
-        <spirit:internalPortReference spirit:componentRef="v_proc_ss_0" spirit:portRef="s_axis_tdata"/>
-      </spirit:adHocConnection>
-      <spirit:adHocConnection>
-        <spirit:name>v_tpg_0_m_axis_video_TLAST</spirit:name>
-        <spirit:internalPortReference spirit:componentRef="v_tpg_0" spirit:portRef="m_axis_video_TLAST"/>
-        <spirit:externalPortReference spirit:portRef="tpg_eof"/>
-        <spirit:internalPortReference spirit:componentRef="v_proc_ss_0" spirit:portRef="s_axis_tlast"/>
-      </spirit:adHocConnection>
-      <spirit:adHocConnection>
-        <spirit:name>v_proc_ss_0_s_axis_tready</spirit:name>
-        <spirit:internalPortReference spirit:componentRef="v_proc_ss_0" spirit:portRef="s_axis_tready"/>
-        <spirit:externalPortReference spirit:portRef="vprocss_ready"/>
-        <spirit:internalPortReference spirit:componentRef="v_tpg_0" spirit:portRef="m_axis_video_TREADY"/>
-      </spirit:adHocConnection>
-      <spirit:adHocConnection>
-        <spirit:name>v_tpg_0_m_axis_video_TUSER</spirit:name>
-        <spirit:internalPortReference spirit:componentRef="v_tpg_0" spirit:portRef="m_axis_video_TUSER"/>
-        <spirit:externalPortReference spirit:portRef="tpg_sof"/>
-        <spirit:internalPortReference spirit:componentRef="v_proc_ss_0" spirit:portRef="s_axis_tuser"/>
-      </spirit:adHocConnection>
-      <spirit:adHocConnection>
-        <spirit:name>v_tpg_0_m_axis_video_TVALID</spirit:name>
-        <spirit:internalPortReference spirit:componentRef="v_tpg_0" spirit:portRef="m_axis_video_TVALID"/>
-        <spirit:externalPortReference spirit:portRef="tpg_valid"/>
-        <spirit:internalPortReference spirit:componentRef="v_proc_ss_0" spirit:portRef="s_axis_tvalid"/>
-      </spirit:adHocConnection>
-      <spirit:adHocConnection>
         <spirit:name>v_proc_ss_0_m_axis_tdata</spirit:name>
         <spirit:internalPortReference spirit:componentRef="v_proc_ss_0" spirit:portRef="m_axis_tdata"/>
         <spirit:internalPortReference spirit:componentRef="Scaler_to_Video_Out_0" spirit:portRef="scaler_video_in"/>
@@ -968,7 +841,6 @@
         <spirit:name>v_axi4s_vid_out_0_s_axis_video_tready</spirit:name>
         <spirit:internalPortReference spirit:componentRef="v_axi4s_vid_out_0" spirit:portRef="s_axis_video_tready"/>
         <spirit:internalPortReference spirit:componentRef="v_proc_ss_0" spirit:portRef="m_axis_tready"/>
-        <spirit:externalPortReference spirit:portRef="video_out_ready"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
         <spirit:name>v_proc_ss_0_m_axis_tuser</spirit:name>
@@ -978,15 +850,37 @@
       <spirit:adHocConnection>
         <spirit:name>v_proc_ss_0_m_axis_tvalid</spirit:name>
         <spirit:internalPortReference spirit:componentRef="v_proc_ss_0" spirit:portRef="m_axis_tvalid"/>
-        <spirit:externalPortReference spirit:portRef="vprocss_valid"/>
         <spirit:internalPortReference spirit:componentRef="v_axi4s_vid_out_0" spirit:portRef="s_axis_video_tvalid"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
         <spirit:name>v_proc_ss_0_aresetn_io_axis</spirit:name>
         <spirit:internalPortReference spirit:componentRef="v_proc_ss_0" spirit:portRef="aresetn_io_axis"/>
         <spirit:internalPortReference spirit:componentRef="v_axi4s_vid_out_0" spirit:portRef="aresetn"/>
-        <spirit:internalPortReference spirit:componentRef="v_tpg_0" spirit:portRef="ap_rst_n"/>
-        <spirit:externalPortReference spirit:portRef="vprocss_aresetn"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>VDMA_to_Scaler_0_scaler_video_out</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="VDMA_to_Scaler_0" spirit:portRef="scaler_video_out"/>
+        <spirit:internalPortReference spirit:componentRef="v_proc_ss_0" spirit:portRef="s_axis_tdata"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>axi_vdma_0_m_axis_mm2s_tlast</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="axi_vdma_0" spirit:portRef="m_axis_mm2s_tlast"/>
+        <spirit:internalPortReference spirit:componentRef="v_proc_ss_0" spirit:portRef="s_axis_tlast"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>v_proc_ss_0_s_axis_tready</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="v_proc_ss_0" spirit:portRef="s_axis_tready"/>
+        <spirit:internalPortReference spirit:componentRef="axi_vdma_0" spirit:portRef="m_axis_mm2s_tready"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>axi_vdma_0_m_axis_mm2s_tuser</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="axi_vdma_0" spirit:portRef="m_axis_mm2s_tuser"/>
+        <spirit:internalPortReference spirit:componentRef="v_proc_ss_0" spirit:portRef="s_axis_tuser"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>axi_vdma_0_m_axis_mm2s_tvalid</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="axi_vdma_0" spirit:portRef="m_axis_mm2s_tvalid"/>
+        <spirit:internalPortReference spirit:componentRef="v_proc_ss_0" spirit:portRef="s_axis_tvalid"/>
       </spirit:adHocConnection>
     </spirit:adHocConnections>
     <spirit:hierConnections>
@@ -4545,12 +4439,6 @@
             <spirit:name>SEG_axi_gpio_2_Reg</spirit:name>
             <spirit:displayName>/axi_gpio_2/S_AXI/Reg</spirit:displayName>
             <spirit:addressOffset>0x41220000</spirit:addressOffset>
-            <spirit:range>64K</spirit:range>
-          </spirit:segment>
-          <spirit:segment>
-            <spirit:name>SEG_v_tpg_0_Reg</spirit:name>
-            <spirit:displayName>/v_tpg_0/s_axi_CTRL/Reg</spirit:displayName>
-            <spirit:addressOffset>0x43C10000</spirit:addressOffset>
             <spirit:range>64K</spirit:range>
           </spirit:segment>
           <spirit:segment>
