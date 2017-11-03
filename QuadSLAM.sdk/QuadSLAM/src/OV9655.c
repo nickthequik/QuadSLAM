@@ -40,21 +40,22 @@ void OV9655_init(OV9655_camera* camera)
 	int status;
 
 	//resets the camera, all registers set to defaults
+	//COM7 0x12. they out 63, we put 80
 	status = OV9655_write_register(camera, OV9655_COM7, 0b10000000);
 	while(status != XST_SUCCESS);
 	vTaskDelay(pdMS_TO_TICKS(100));
 
-	//configures camera to use external clock with no internal pre-scalers
-	status = OV9655_write_register(camera, OV9655_CLKRC, 0b01000000);
-	while(status != XST_SUCCESS);
+	OV9655_write_registers(camera);
+}
 
-	//Sets output to be full resolution 15fps. Sets output format to be RGB instead of YUV
-	status = OV9655_write_register(camera, OV9655_COM7, 0b00000010);
-	while(status != XST_SUCCESS);
+void OV9655_write_registers(OV9655_camera* camera) {
+	int i, status;
 
-	//sets RGB 565
-	status = OV9655_write_register(camera, OV9655_COM15, 0b11010000);
-	while(status != XST_SUCCESS);
+	for(i = 0; i < 150; i+=2) {
+		status = OV9655_write_register(camera, camera_registers[i], camera_registers[i+1]);
+		vTaskDelay(pdMS_TO_TICKS(1));
+		while(status != XST_SUCCESS);
+	}
 }
 
 uint32_t OV9655_write_register(OV9655_camera* camera, uint8_t register_address, uint8_t register_value) {
