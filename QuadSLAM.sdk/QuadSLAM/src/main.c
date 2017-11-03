@@ -35,6 +35,7 @@ extern void vPortInstallFreeRTOSVectorTable( void );
 
 extern XGpio xGpio1, xGpio2;
 extern XVprocSs vprocss;
+extern uint16_t *frame_buffer_1;
 
 static void prvSetupHardware( void );
 void vApplicationMallocFailedHook( void );
@@ -58,15 +59,16 @@ int main( void )
 
 static void init_task(void *parameters)
 {
-	int status;
-
 	uint32_t vid_locked, clk_locked;
+
+	(void) parameters;
 
 	UART_usb_init();
 	LED_init();
 	VDMA_init();
 	VPSS_init();
 	VTC_init();
+	//TPG_init();
 	STEREO_CAMERA_init();
 
 
@@ -75,17 +77,27 @@ static void init_task(void *parameters)
 		clk_locked = XGpio_DiscreteRead(&xGpio1, 1);
 		vid_locked = XGpio_DiscreteRead(&xGpio1, 2);
 
+
 		if (clk_locked)
-			LED_set(0, LED_ON);
+			LED_set(3, LED_ON);
 		else
-			LED_set(0, LED_OFF);
+			LED_set(3, LED_OFF);
 
 		if (vid_locked)
 			LED_set(1, LED_ON);
 		else
 			LED_set(1, LED_OFF);
 
-		status = XGpio_DiscreteRead(&xGpio2, 1);
+		if (VTC_detector_locked())
+		{
+			LED_set(0, LED_ON);
+			XGpio_DiscreteWrite(&xGpio2, 2, 1);
+		}
+		else
+		{
+			LED_set(0, LED_OFF);
+			XGpio_DiscreteWrite(&xGpio2, 2, 0);
+		}
 
 	}
 }

@@ -49,12 +49,39 @@ void OV9655_init(OV9655_camera* camera)
 	while(status != XST_SUCCESS);
 
 	//Sets output to be full resolution 15fps. Sets output format to be RGB instead of YUV
-	status = OV9655_write_register(camera, OV9655_COM7, 0b00000010);
+	status = OV9655_write_register(camera, OV9655_COM7, 0b00000111);
 	while(status != XST_SUCCESS);
 
 	//sets RGB 565
 	status = OV9655_write_register(camera, OV9655_COM15, 0b11010000);
 	while(status != XST_SUCCESS);
+
+	//enable color bar
+	status = OV9655_write_register(camera, OV9655_COM3, 0b10000000);
+	while(status != XST_SUCCESS);
+
+	//change AGC max value to be x8
+	//status = OV9655_write_register(camera, OV9655_COM9, 0b00101010);
+	//while(status != XST_SUCCESS);
+
+	//increase blue gain
+	status = OV9655_write_register(camera, OV9655_BLUE, 0b1111111);
+	while(status != XST_SUCCESS);
+
+	//decrease green gain
+	status = OV9655_write_register(camera, OV9655_GREEN, 0b00100000);
+	while(status != XST_SUCCESS);
+
+	//decrease red gain
+	status = OV9655_write_register(camera, OV9655_RED, 0b00100000);
+	while(status != XST_SUCCESS);
+
+	//increase gain
+	status = OV9655_write_register(camera, OV9655_GAIN, 0b11110000);
+	while(status != XST_SUCCESS);
+	status = OV9655_write_register(camera, OV9655_VREF, 0b11010010);
+	while(status != XST_SUCCESS);
+
 }
 
 uint32_t OV9655_write_register(OV9655_camera* camera, uint8_t register_address, uint8_t register_value) {

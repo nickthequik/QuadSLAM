@@ -20,9 +20,6 @@ void VDMA_read_init(XAxiVdma_DmaSetup *Read_config)
 	Read_config->VertSizeInput = FRAME_HEIGHT;
 	Read_config->HoriSizeInput = FRAME_WIDTH * 2;
 	Read_config->Stride = FRAME_WIDTH * 2;
-	//Read_config->VertSizeInput = 768;
-	//Read_config->HoriSizeInput = 1024 * 2;
-	//Read_config->Stride = 1024 * 2;
 	Read_config->FrameDelay = 0;
 	Read_config->EnableCircularBuf = 1;
 	Read_config->EnableSync = 1;
@@ -69,17 +66,16 @@ void VDMA_init(void)
 	frame_buffer_2 = (uint16_t*) pvPortMalloc(FRAME_WIDTH * FRAME_HEIGHT * 2);
 	frame_buffer_3 = (uint16_t*) pvPortMalloc(FRAME_WIDTH * FRAME_HEIGHT * 2);
 
-	/*for (i = 0; i < (FRAME_WIDTH * FRAME_HEIGHT)/2; i++)
+	/*for (i = 0; i < (FRAME_WIDTH * FRAME_HEIGHT); i++)
 	{
-		// move over 2 bytes each time
-		*(frame_buffer_1 + 2*i) = color_1;
-		*(frame_buffer_2 + 2*i) = color_2;
-		*(frame_buffer_3 + 2*i) = color_3;
-	}*/
+		*(frame_buffer_1 + i) = color_1;
+		*(frame_buffer_2 + i) = color_2;
+		*(frame_buffer_3 + i) = color_3;
+	}
 
 	// flush cache
-	//Xil_L1DCacheFlush();
-	//Xil_L2CacheFlush();
+	Xil_L1DCacheFlush();
+	Xil_L2CacheFlush();*/
 
 	VDMA_config = XAxiVdma_LookupConfig(XPAR_AXI_VDMA_0_DEVICE_ID);
 	status = XAxiVdma_CfgInitialize(&VDMA, VDMA_config, VDMA_config->BaseAddress);

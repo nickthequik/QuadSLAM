@@ -1,13 +1,10 @@
-/*
- * vtc.h
- *
- *  Created on: Oct 26, 2017
- *      Author: Ryan
- */
 
 #ifndef SRC_VTC_H_
 #define SRC_VTC_H_
 
+#include "xvtc.h"
+
 void VTC_init(void);
+int VTC_detector_locked(void);
 
 #endif /* SRC_VTC_H_ */

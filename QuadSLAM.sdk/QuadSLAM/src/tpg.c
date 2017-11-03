@@ -30,7 +30,8 @@ void TPG_init(void)
 	//XV_tpg_Set_bckgndId(&tpg, XTPG_BKGND_CHECKER_BOARD);
 	//XV_tpg_Set_bckgndId(&tpg, XTPG_BKGND_RAINBOW_COLOR);
 	//XV_tpg_Set_bckgndId(&tpg, XTPG_BKGND_TARTAN_COLOR_BARS);
-	XV_tpg_Set_bckgndId(&tpg, XTPG_BKGND_CROSS_HATCH);
+	//XV_tpg_Set_bckgndId(&tpg, XTPG_BKGND_CROSS_HATCH);
+	XV_tpg_Set_bckgndId(&tpg, XTPG_BKGND_SOLID_WHITE);
 
 	XV_tpg_EnableAutoRestart(&tpg);
 

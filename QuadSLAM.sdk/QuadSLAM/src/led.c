@@ -35,8 +35,10 @@ void LED_init( void )
 	XGpio_SetDataDirection(&xGpio1, 2, GPIO_INPUTS);
 
 	XGpio_SetDataDirection(&xGpio2, 1, GPIO_INPUTS);
-	//XGpio_SetDataDirection(&xGpio2, 2, GPIO_OUTPUTS);
-	//XGpio_DiscreteWrite (&xGpio2, 2, 1);
+
+	// VTC locked -> Video In AXI-Stream enable
+	XGpio_SetDataDirection(&xGpio2, 2, GPIO_OUTPUTS);
+	XGpio_DiscreteWrite (&xGpio2, 2, 0);
 }
 
 void LED_set(uint32_t led, uint32_t led_state)
