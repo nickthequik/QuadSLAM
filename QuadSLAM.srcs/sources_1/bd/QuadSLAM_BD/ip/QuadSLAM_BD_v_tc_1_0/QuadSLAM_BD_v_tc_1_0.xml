@@ -654,7 +654,7 @@
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>customizationCRC</spirit:name>
-            <spirit:value>3fe1995c</spirit:value>
+            <spirit:value>7b56216a</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>customizationCRCversion</spirit:name>
@@ -672,7 +672,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Fri Nov 03 03:39:10 UTC 2017</spirit:value>
+            <spirit:value>Fri Nov 03 22:58:26 UTC 2017</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>boundaryCRC</spirit:name>
@@ -684,7 +684,7 @@
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>customizationCRC</spirit:name>
-            <spirit:value>3fe1995c</spirit:value>
+            <spirit:value>7b56216a</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>customizationCRCversion</spirit:name>
@@ -703,7 +703,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Fri Nov 03 03:39:10 UTC 2017</spirit:value>
+            <spirit:value>Fri Nov 03 22:58:26 UTC 2017</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>boundaryCRC</spirit:name>
@@ -715,7 +715,7 @@
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>customizationCRC</spirit:name>
-            <spirit:value>3fe1995c</spirit:value>
+            <spirit:value>7b56216a</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>customizationCRCversion</spirit:name>
@@ -749,7 +749,7 @@
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>customizationCRC</spirit:name>
-            <spirit:value>f47d8105</spirit:value>
+            <spirit:value>fd279650</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>customizationCRCversion</spirit:name>
@@ -768,7 +768,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Fri Nov 03 03:39:10 UTC 2017</spirit:value>
+            <spirit:value>Fri Nov 03 22:58:26 UTC 2017</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>boundaryCRC</spirit:name>
@@ -780,7 +780,7 @@
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>customizationCRC</spirit:name>
-            <spirit:value>f47d8105</spirit:value>
+            <spirit:value>fd279650</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>customizationCRCversion</spirit:name>
@@ -1994,7 +1994,7 @@
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="integer">
         <spirit:name>C_MAX_LINES</spirit:name>
-        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_MAX_LINES">2048</spirit:value>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_MAX_LINES">1024</spirit:value>
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="integer">
         <spirit:name>C_NUM_FSYNCS</spirit:name>
@@ -2085,25 +2085,6 @@
       <spirit:enumeration>High</spirit:enumeration>
     </spirit:choice>
     <spirit:choice>
-      <spirit:name>choice_list_48cc9c7b</spirit:name>
-      <spirit:enumeration>480p</spirit:enumeration>
-      <spirit:enumeration>576p</spirit:enumeration>
-      <spirit:enumeration>1080p</spirit:enumeration>
-      <spirit:enumeration>352x288p</spirit:enumeration>
-      <spirit:enumeration>352x576p</spirit:enumeration>
-      <spirit:enumeration>480x576p</spirit:enumeration>
-      <spirit:enumeration>544x576p</spirit:enumeration>
-      <spirit:enumeration>704x576p</spirit:enumeration>
-      <spirit:enumeration>704x480p</spirit:enumeration>
-      <spirit:enumeration>640x480p</spirit:enumeration>
-      <spirit:enumeration>800x600p</spirit:enumeration>
-      <spirit:enumeration>1024x768p</spirit:enumeration>
-      <spirit:enumeration>1280x1024p</spirit:enumeration>
-      <spirit:enumeration>1600x1200p</spirit:enumeration>
-      <spirit:enumeration>720p</spirit:enumeration>
-      <spirit:enumeration>Custom</spirit:enumeration>
-    </spirit:choice>
-    <spirit:choice>
       <spirit:name>choice_list_6e3ded9c</spirit:name>
       <spirit:enumeration>0</spirit:enumeration>
       <spirit:enumeration>1</spirit:enumeration>
@@ -2116,6 +2097,22 @@
       <spirit:enumeration>YUV_444</spirit:enumeration>
       <spirit:enumeration>YUV_422</spirit:enumeration>
       <spirit:enumeration>YUV_420</spirit:enumeration>
+    </spirit:choice>
+    <spirit:choice>
+      <spirit:name>choice_list_816a19e2</spirit:name>
+      <spirit:enumeration>480p</spirit:enumeration>
+      <spirit:enumeration>576p</spirit:enumeration>
+      <spirit:enumeration>352x288p</spirit:enumeration>
+      <spirit:enumeration>352x576p</spirit:enumeration>
+      <spirit:enumeration>480x576p</spirit:enumeration>
+      <spirit:enumeration>544x576p</spirit:enumeration>
+      <spirit:enumeration>704x576p</spirit:enumeration>
+      <spirit:enumeration>704x480p</spirit:enumeration>
+      <spirit:enumeration>640x480p</spirit:enumeration>
+      <spirit:enumeration>800x600p</spirit:enumeration>
+      <spirit:enumeration>1024x768p</spirit:enumeration>
+      <spirit:enumeration>720p</spirit:enumeration>
+      <spirit:enumeration>Custom</spirit:enumeration>
     </spirit:choice>
     <spirit:choice>
       <spirit:name>choice_list_979459bc</spirit:name>
@@ -2345,7 +2342,7 @@
     <spirit:parameter>
       <spirit:name>max_lines_per_frame</spirit:name>
       <spirit:displayName>Max Lines Per Frame</spirit:displayName>
-      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.max_lines_per_frame" spirit:choiceRef="choice_list_979459bc" spirit:order="6">2048</spirit:value>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.max_lines_per_frame" spirit:choiceRef="choice_list_979459bc" spirit:order="6">1024</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
@@ -2357,7 +2354,7 @@
     <spirit:parameter>
       <spirit:name>VIDEO_MODE</spirit:name>
       <spirit:displayName>Generator Video Format</spirit:displayName>
-      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.VIDEO_MODE" spirit:choiceRef="choice_list_48cc9c7b" spirit:order="7">720p</spirit:value>
+      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.VIDEO_MODE" spirit:choiceRef="choice_list_816a19e2" spirit:order="7">720p</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
@@ -2381,7 +2378,7 @@
     <spirit:parameter>
       <spirit:name>FSYNC_VSTART0</spirit:name>
       <spirit:displayName>Frame Sync 0 Vertical Start</spirit:displayName>
-      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.FSYNC_VSTART0" spirit:order="9" spirit:minimum="0" spirit:maximum="2047" spirit:rangeType="long">0</spirit:value>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.FSYNC_VSTART0" spirit:order="9" spirit:minimum="0" spirit:maximum="1023" spirit:rangeType="long">0</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
@@ -2405,7 +2402,7 @@
     <spirit:parameter>
       <spirit:name>FSYNC_VSTART1</spirit:name>
       <spirit:displayName>Frame Sync 1 Vertical Start</spirit:displayName>
-      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.FSYNC_VSTART1" spirit:order="11" spirit:minimum="0" spirit:maximum="2047" spirit:rangeType="long">0</spirit:value>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.FSYNC_VSTART1" spirit:order="11" spirit:minimum="0" spirit:maximum="1023" spirit:rangeType="long">0</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
@@ -2429,7 +2426,7 @@
     <spirit:parameter>
       <spirit:name>FSYNC_VSTART2</spirit:name>
       <spirit:displayName>Frame Sync 2 Vertical Start</spirit:displayName>
-      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.FSYNC_VSTART2" spirit:order="13" spirit:minimum="0" spirit:maximum="2047" spirit:rangeType="long">0</spirit:value>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.FSYNC_VSTART2" spirit:order="13" spirit:minimum="0" spirit:maximum="1023" spirit:rangeType="long">0</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
@@ -2453,7 +2450,7 @@
     <spirit:parameter>
       <spirit:name>FSYNC_VSTART3</spirit:name>
       <spirit:displayName>Frame Sync 3 Vertical Start</spirit:displayName>
-      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.FSYNC_VSTART3" spirit:order="15" spirit:minimum="0" spirit:maximum="2047" spirit:rangeType="long">0</spirit:value>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.FSYNC_VSTART3" spirit:order="15" spirit:minimum="0" spirit:maximum="1023" spirit:rangeType="long">0</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
@@ -2477,7 +2474,7 @@
     <spirit:parameter>
       <spirit:name>FSYNC_VSTART4</spirit:name>
       <spirit:displayName>Frame Sync 4 Vertical Start</spirit:displayName>
-      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.FSYNC_VSTART4" spirit:order="17" spirit:minimum="0" spirit:maximum="2047" spirit:rangeType="long">0</spirit:value>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.FSYNC_VSTART4" spirit:order="17" spirit:minimum="0" spirit:maximum="1023" spirit:rangeType="long">0</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
@@ -2501,7 +2498,7 @@
     <spirit:parameter>
       <spirit:name>FSYNC_VSTART5</spirit:name>
       <spirit:displayName>Frame Sync 5 Vertical Start</spirit:displayName>
-      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.FSYNC_VSTART5" spirit:order="19" spirit:minimum="0" spirit:maximum="2047" spirit:rangeType="long">0</spirit:value>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.FSYNC_VSTART5" spirit:order="19" spirit:minimum="0" spirit:maximum="1023" spirit:rangeType="long">0</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
@@ -2525,7 +2522,7 @@
     <spirit:parameter>
       <spirit:name>FSYNC_VSTART6</spirit:name>
       <spirit:displayName>Frame Sync 6 Vertical Start</spirit:displayName>
-      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.FSYNC_VSTART6" spirit:order="21" spirit:minimum="0" spirit:maximum="2047" spirit:rangeType="long">0</spirit:value>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.FSYNC_VSTART6" spirit:order="21" spirit:minimum="0" spirit:maximum="1023" spirit:rangeType="long">0</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
@@ -2549,7 +2546,7 @@
     <spirit:parameter>
       <spirit:name>FSYNC_VSTART7</spirit:name>
       <spirit:displayName>Frame Sync 7 Vertical Start</spirit:displayName>
-      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.FSYNC_VSTART7" spirit:order="23" spirit:minimum="0" spirit:maximum="2047" spirit:rangeType="long">0</spirit:value>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.FSYNC_VSTART7" spirit:order="23" spirit:minimum="0" spirit:maximum="1023" spirit:rangeType="long">0</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
@@ -2573,7 +2570,7 @@
     <spirit:parameter>
       <spirit:name>FSYNC_VSTART8</spirit:name>
       <spirit:displayName>Frame Sync 8 Vertical Start</spirit:displayName>
-      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.FSYNC_VSTART8" spirit:order="25" spirit:minimum="0" spirit:maximum="2047" spirit:rangeType="long">0</spirit:value>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.FSYNC_VSTART8" spirit:order="25" spirit:minimum="0" spirit:maximum="1023" spirit:rangeType="long">0</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
@@ -2597,7 +2594,7 @@
     <spirit:parameter>
       <spirit:name>FSYNC_VSTART9</spirit:name>
       <spirit:displayName>Frame Sync 9 Vertical Start</spirit:displayName>
-      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.FSYNC_VSTART9" spirit:order="27" spirit:minimum="0" spirit:maximum="2047" spirit:rangeType="long">0</spirit:value>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.FSYNC_VSTART9" spirit:order="27" spirit:minimum="0" spirit:maximum="1023" spirit:rangeType="long">0</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
@@ -2621,7 +2618,7 @@
     <spirit:parameter>
       <spirit:name>FSYNC_VSTART10</spirit:name>
       <spirit:displayName>Frame Sync 10 Vertical Start</spirit:displayName>
-      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.FSYNC_VSTART10" spirit:order="29" spirit:minimum="0" spirit:maximum="2047" spirit:rangeType="long">0</spirit:value>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.FSYNC_VSTART10" spirit:order="29" spirit:minimum="0" spirit:maximum="1023" spirit:rangeType="long">0</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
@@ -2645,7 +2642,7 @@
     <spirit:parameter>
       <spirit:name>FSYNC_VSTART11</spirit:name>
       <spirit:displayName>Frame Sync 11 Vertical Start</spirit:displayName>
-      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.FSYNC_VSTART11" spirit:order="31" spirit:minimum="0" spirit:maximum="2047" spirit:rangeType="long">0</spirit:value>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.FSYNC_VSTART11" spirit:order="31" spirit:minimum="0" spirit:maximum="1023" spirit:rangeType="long">0</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
@@ -2669,7 +2666,7 @@
     <spirit:parameter>
       <spirit:name>FSYNC_VSTART12</spirit:name>
       <spirit:displayName>Frame Sync 12 Vertical Start</spirit:displayName>
-      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.FSYNC_VSTART12" spirit:order="33" spirit:minimum="0" spirit:maximum="2047" spirit:rangeType="long">0</spirit:value>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.FSYNC_VSTART12" spirit:order="33" spirit:minimum="0" spirit:maximum="1023" spirit:rangeType="long">0</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
@@ -2693,7 +2690,7 @@
     <spirit:parameter>
       <spirit:name>FSYNC_VSTART13</spirit:name>
       <spirit:displayName>Frame Sync 13 Vertical Start</spirit:displayName>
-      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.FSYNC_VSTART13" spirit:order="35" spirit:minimum="0" spirit:maximum="2047" spirit:rangeType="long">0</spirit:value>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.FSYNC_VSTART13" spirit:order="35" spirit:minimum="0" spirit:maximum="1023" spirit:rangeType="long">0</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
@@ -2717,7 +2714,7 @@
     <spirit:parameter>
       <spirit:name>FSYNC_VSTART14</spirit:name>
       <spirit:displayName>Frame Sync 14 Vertical Start</spirit:displayName>
-      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.FSYNC_VSTART14" spirit:order="37" spirit:minimum="0" spirit:maximum="2047" spirit:rangeType="long">0</spirit:value>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.FSYNC_VSTART14" spirit:order="37" spirit:minimum="0" spirit:maximum="1023" spirit:rangeType="long">0</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
@@ -2741,7 +2738,7 @@
     <spirit:parameter>
       <spirit:name>FSYNC_VSTART15</spirit:name>
       <spirit:displayName>Frame Sync 15 Vertical Start</spirit:displayName>
-      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.FSYNC_VSTART15" spirit:order="39" spirit:minimum="0" spirit:maximum="2047" spirit:rangeType="long">0</spirit:value>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.FSYNC_VSTART15" spirit:order="39" spirit:minimum="0" spirit:maximum="1023" spirit:rangeType="long">0</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
@@ -2753,7 +2750,7 @@
     <spirit:parameter>
       <spirit:name>GEN_F0_VSYNC_VSTART</spirit:name>
       <spirit:displayName>Generator Vsync Vertical Start</spirit:displayName>
-      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.GEN_F0_VSYNC_VSTART" spirit:order="55" spirit:minimum="0" spirit:maximum="2047" spirit:rangeType="long">724</spirit:value>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.GEN_F0_VSYNC_VSTART" spirit:order="55" spirit:minimum="0" spirit:maximum="1023" spirit:rangeType="long">724</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
@@ -2765,7 +2762,7 @@
     <spirit:parameter>
       <spirit:name>GEN_F1_VSYNC_VSTART</spirit:name>
       <spirit:displayName>Generator Field 1 Vsync Vertical Start</spirit:displayName>
-      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.GEN_F1_VSYNC_VSTART" spirit:order="100" spirit:minimum="0" spirit:maximum="2047" spirit:rangeType="long">724</spirit:value>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.GEN_F1_VSYNC_VSTART" spirit:order="100" spirit:minimum="0" spirit:maximum="1023" spirit:rangeType="long">724</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
@@ -2861,7 +2858,7 @@
     <spirit:parameter>
       <spirit:name>GEN_F0_VFRAME_SIZE</spirit:name>
       <spirit:displayName>Generator Vertical Frame Size</spirit:displayName>
-      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.GEN_F0_VFRAME_SIZE" spirit:order="61" spirit:minimum="0" spirit:maximum="2047" spirit:rangeType="long">750</spirit:value>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.GEN_F0_VFRAME_SIZE" spirit:order="61" spirit:minimum="0" spirit:maximum="1023" spirit:rangeType="long">750</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
@@ -2873,7 +2870,7 @@
     <spirit:parameter>
       <spirit:name>GEN_F1_VFRAME_SIZE</spirit:name>
       <spirit:displayName>Generator Field 1 Vertical Frame Size</spirit:displayName>
-      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.GEN_F1_VFRAME_SIZE" spirit:order="103" spirit:minimum="0" spirit:maximum="2047" spirit:rangeType="long">750</spirit:value>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.GEN_F1_VFRAME_SIZE" spirit:order="103" spirit:minimum="0" spirit:maximum="1023" spirit:rangeType="long">750</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
@@ -2885,7 +2882,7 @@
     <spirit:parameter>
       <spirit:name>GEN_F0_VSYNC_VEND</spirit:name>
       <spirit:displayName>Generator Vsync Veritical End</spirit:displayName>
-      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.GEN_F0_VSYNC_VEND" spirit:order="62" spirit:minimum="0" spirit:maximum="2047" spirit:rangeType="long">729</spirit:value>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.GEN_F0_VSYNC_VEND" spirit:order="62" spirit:minimum="0" spirit:maximum="1023" spirit:rangeType="long">729</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
@@ -2897,7 +2894,7 @@
     <spirit:parameter>
       <spirit:name>GEN_F1_VSYNC_VEND</spirit:name>
       <spirit:displayName>Generator Field 1 Vsync Veritical End</spirit:displayName>
-      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.GEN_F1_VSYNC_VEND" spirit:order="104" spirit:minimum="0" spirit:maximum="2047" spirit:rangeType="long">729</spirit:value>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.GEN_F1_VSYNC_VEND" spirit:order="104" spirit:minimum="0" spirit:maximum="1023" spirit:rangeType="long">729</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
@@ -2945,7 +2942,7 @@
     <spirit:parameter>
       <spirit:name>GEN_VACTIVE_SIZE</spirit:name>
       <spirit:displayName>Generator Vertical Active Size</spirit:displayName>
-      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.GEN_VACTIVE_SIZE" spirit:order="65" spirit:minimum="0" spirit:maximum="2047" spirit:rangeType="long">720</spirit:value>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.GEN_VACTIVE_SIZE" spirit:order="65" spirit:minimum="0" spirit:maximum="1023" spirit:rangeType="long">720</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>

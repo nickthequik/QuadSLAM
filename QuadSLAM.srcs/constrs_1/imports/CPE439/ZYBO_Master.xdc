@@ -291,12 +291,12 @@ set_property IOSTANDARD LVCMOS33 [get_ports {camera_vid_data_in[6]}]
 ##Pin7 - PCLK
 set_property PACKAGE_PIN U14 [get_ports {camera_clk_in}]
 set_property IOSTANDARD LVCMOS33 [get_ports {camera_clk_in}]
-create_clock -add -name cam_clk_in_pin -period 4.16666667 -waveform {0 2.083333335} [get_ports {camera_clk_in}]
+create_clock -add -name cam_clk_in_pin -period 25.431 -waveform {0 12.716} [get_ports {camera_clk_in}]
 
 ##Pin8 - XCLK
 set_property PACKAGE_PIN U15 [get_ports {camera_clk_out}]
 set_property IOSTANDARD LVCMOS33 [get_ports {camera_clk_out}]
-create_clock -add -name cam_clk_out_pin -period 4.16666667 -waveform {0 2.083333335} [get_ports {camera_clk_out}]
+create_clock -add -name cam_clk_out_pin -period 25.431 -waveform {0 12.716} [get_ports {camera_clk_out}]
 
 ##Pin9 - SDA
 set_property PACKAGE_PIN V17 [get_ports {iic_0_sda_io}]

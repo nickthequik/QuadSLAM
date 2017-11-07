@@ -1,7 +1,7 @@
 //Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2016.2 (win64) Build 1577090 Thu Jun  2 16:32:40 MDT 2016
-//Date        : Thu Nov 02 20:39:04 2017
+//Date        : Fri Nov 03 17:42:28 2017
 //Host        : nickthequik running 64-bit major release  (build 9200)
 //Command     : generate_target QuadSLAM_BD.bd
 //Design      : QuadSLAM_BD
@@ -9,7 +9,7 @@
 //--------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* CORE_GENERATION_INFO = "QuadSLAM_BD,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=QuadSLAM_BD,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=37,numReposBlks=23,numNonXlnxBlks=0,numHierBlks=14,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=0,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=19,da_board_cnt=4,da_ps7_cnt=1,synth_mode=Global}" *) (* HW_HANDOFF = "QuadSLAM_BD.hwdef" *) 
+(* CORE_GENERATION_INFO = "QuadSLAM_BD,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=QuadSLAM_BD,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=38,numReposBlks=24,numNonXlnxBlks=0,numHierBlks=14,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=0,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=19,da_board_cnt=4,da_ps7_cnt=1,synth_mode=Global}" *) (* HW_HANDOFF = "QuadSLAM_BD.hwdef" *) 
 module QuadSLAM_BD
    (DDR_addr,
     DDR_ba,
@@ -85,6 +85,7 @@ module QuadSLAM_BD
   output vga_vsync_out;
 
   wire [15:0]Scaler_to_Video_Out_0_video_out;
+  wire Signal_CrossDomain_0_SignalOut_clkB;
   wire [23:0]VDMA_to_Scaler_0_scaler_video_out;
   wire [3:0]axi_gpio_0_GPIO_TRI_O;
   wire [0:0]axi_gpio_0_gpio2_io_o;
@@ -415,6 +416,10 @@ module QuadSLAM_BD
   QuadSLAM_BD_Scaler_to_Video_Out_0_0 Scaler_to_Video_Out_0
        (.scaler_video_in(v_proc_ss_0_m_axis_tdata),
         .video_out(Scaler_to_Video_Out_0_video_out));
+  QuadSLAM_BD_Signal_CrossDomain_0_0 Signal_CrossDomain_0
+       (.SignalIn_clkA(axi_gpio_2_gpio2_io_o),
+        .SignalOut_clkB(Signal_CrossDomain_0_SignalOut_clkB),
+        .clkB(vid_io_in_clk_1));
   QuadSLAM_BD_VDMA_to_Scaler_0_0 VDMA_to_Scaler_0
        (.scaler_video_out(VDMA_to_Scaler_0_scaler_video_out),
         .vdma_video_in(axi_vdma_0_m_axis_mm2s_tdata));
@@ -1071,7 +1076,7 @@ module QuadSLAM_BD
        (.aclk(processing_system7_0_FCLK_CLK0),
         .aclken(xlconstant_1_dout),
         .aresetn(rst_processing_system7_0_100M_peripheral_aresetn),
-        .axis_enable(axi_gpio_2_gpio2_io_o),
+        .axis_enable(Signal_CrossDomain_0_SignalOut_clkB),
         .m_axis_video_tdata(v_vid_in_axi4s_0_m_axis_video_tdata),
         .m_axis_video_tlast(v_vid_in_axi4s_0_m_axis_video_tlast),
         .m_axis_video_tready(axi_vdma_0_s_axis_s2mm_tready),
@@ -1849,9 +1854,11 @@ module QuadSLAM_BD_processing_system7_0_axi_periph_1
     M07_ACLK,
     M07_ARESETN,
     M07_AXI_araddr,
+    M07_AXI_arprot,
     M07_AXI_arready,
     M07_AXI_arvalid,
     M07_AXI_awaddr,
+    M07_AXI_awprot,
     M07_AXI_awready,
     M07_AXI_awvalid,
     M07_AXI_bready,
@@ -2044,9 +2051,11 @@ module QuadSLAM_BD_processing_system7_0_axi_periph_1
   input M07_ACLK;
   input [0:0]M07_ARESETN;
   output M07_AXI_araddr;
+  output M07_AXI_arprot;
   input M07_AXI_arready;
   output M07_AXI_arvalid;
   output M07_AXI_awaddr;
+  output M07_AXI_awprot;
   input M07_AXI_awready;
   output M07_AXI_awvalid;
   output M07_AXI_bready;
@@ -2240,9 +2249,11 @@ module QuadSLAM_BD_processing_system7_0_axi_periph_1
   wire [3:0]m06_couplers_to_processing_system7_0_axi_periph_WSTRB;
   wire m06_couplers_to_processing_system7_0_axi_periph_WVALID;
   wire m07_couplers_to_processing_system7_0_axi_periph_ARADDR;
+  wire m07_couplers_to_processing_system7_0_axi_periph_ARPROT;
   wire m07_couplers_to_processing_system7_0_axi_periph_ARREADY;
   wire m07_couplers_to_processing_system7_0_axi_periph_ARVALID;
   wire m07_couplers_to_processing_system7_0_axi_periph_AWADDR;
+  wire m07_couplers_to_processing_system7_0_axi_periph_AWPROT;
   wire m07_couplers_to_processing_system7_0_axi_periph_AWREADY;
   wire m07_couplers_to_processing_system7_0_axi_periph_AWVALID;
   wire m07_couplers_to_processing_system7_0_axi_periph_BREADY;
@@ -2436,9 +2447,11 @@ module QuadSLAM_BD_processing_system7_0_axi_periph_1
   wire [27:24]xbar_to_m06_couplers_WSTRB;
   wire [6:6]xbar_to_m06_couplers_WVALID;
   wire [255:224]xbar_to_m07_couplers_ARADDR;
+  wire [23:21]xbar_to_m07_couplers_ARPROT;
   wire xbar_to_m07_couplers_ARREADY;
   wire [7:7]xbar_to_m07_couplers_ARVALID;
   wire [255:224]xbar_to_m07_couplers_AWADDR;
+  wire [23:21]xbar_to_m07_couplers_AWPROT;
   wire xbar_to_m07_couplers_AWREADY;
   wire [7:7]xbar_to_m07_couplers_AWVALID;
   wire [7:7]xbar_to_m07_couplers_BREADY;
@@ -2537,8 +2550,10 @@ module QuadSLAM_BD_processing_system7_0_axi_periph_1
   assign M07_ACLK_1 = M07_ACLK;
   assign M07_ARESETN_1 = M07_ARESETN[0];
   assign M07_AXI_araddr = m07_couplers_to_processing_system7_0_axi_periph_ARADDR;
+  assign M07_AXI_arprot = m07_couplers_to_processing_system7_0_axi_periph_ARPROT;
   assign M07_AXI_arvalid = m07_couplers_to_processing_system7_0_axi_periph_ARVALID;
   assign M07_AXI_awaddr = m07_couplers_to_processing_system7_0_axi_periph_AWADDR;
+  assign M07_AXI_awprot = m07_couplers_to_processing_system7_0_axi_periph_AWPROT;
   assign M07_AXI_awvalid = m07_couplers_to_processing_system7_0_axi_periph_AWVALID;
   assign M07_AXI_bready = m07_couplers_to_processing_system7_0_axi_periph_BREADY;
   assign M07_AXI_rready = m07_couplers_to_processing_system7_0_axi_periph_RREADY;
@@ -2930,9 +2945,11 @@ module QuadSLAM_BD_processing_system7_0_axi_periph_1
        (.M_ACLK(M07_ACLK_1),
         .M_ARESETN(M07_ARESETN_1),
         .M_AXI_araddr(m07_couplers_to_processing_system7_0_axi_periph_ARADDR),
+        .M_AXI_arprot(m07_couplers_to_processing_system7_0_axi_periph_ARPROT),
         .M_AXI_arready(m07_couplers_to_processing_system7_0_axi_periph_ARREADY),
         .M_AXI_arvalid(m07_couplers_to_processing_system7_0_axi_periph_ARVALID),
         .M_AXI_awaddr(m07_couplers_to_processing_system7_0_axi_periph_AWADDR),
+        .M_AXI_awprot(m07_couplers_to_processing_system7_0_axi_periph_AWPROT),
         .M_AXI_awready(m07_couplers_to_processing_system7_0_axi_periph_AWREADY),
         .M_AXI_awvalid(m07_couplers_to_processing_system7_0_axi_periph_AWVALID),
         .M_AXI_bready(m07_couplers_to_processing_system7_0_axi_periph_BREADY),
@@ -2949,9 +2966,11 @@ module QuadSLAM_BD_processing_system7_0_axi_periph_1
         .S_ACLK(processing_system7_0_axi_periph_ACLK_net),
         .S_ARESETN(processing_system7_0_axi_periph_ARESETN_net),
         .S_AXI_araddr(xbar_to_m07_couplers_ARADDR[224]),
+        .S_AXI_arprot(xbar_to_m07_couplers_ARPROT[21]),
         .S_AXI_arready(xbar_to_m07_couplers_ARREADY),
         .S_AXI_arvalid(xbar_to_m07_couplers_ARVALID),
         .S_AXI_awaddr(xbar_to_m07_couplers_AWADDR[224]),
+        .S_AXI_awprot(xbar_to_m07_couplers_AWPROT[21]),
         .S_AXI_awready(xbar_to_m07_couplers_AWREADY),
         .S_AXI_awvalid(xbar_to_m07_couplers_AWVALID),
         .S_AXI_bready(xbar_to_m07_couplers_BREADY),
@@ -3031,11 +3050,11 @@ module QuadSLAM_BD_processing_system7_0_axi_periph_1
        (.aclk(processing_system7_0_axi_periph_ACLK_net),
         .aresetn(processing_system7_0_axi_periph_ARESETN_net),
         .m_axi_araddr({xbar_to_m07_couplers_ARADDR,xbar_to_m06_couplers_ARADDR,xbar_to_m05_couplers_ARADDR,xbar_to_m04_couplers_ARADDR,xbar_to_m03_couplers_ARADDR,xbar_to_m02_couplers_ARADDR,xbar_to_m01_couplers_ARADDR,xbar_to_m00_couplers_ARADDR}),
-        .m_axi_arprot({xbar_to_m05_couplers_ARPROT,NLW_xbar_m_axi_arprot_UNCONNECTED[14:0]}),
+        .m_axi_arprot({xbar_to_m07_couplers_ARPROT,NLW_xbar_m_axi_arprot_UNCONNECTED[20:18],xbar_to_m05_couplers_ARPROT,NLW_xbar_m_axi_arprot_UNCONNECTED[14:0]}),
         .m_axi_arready({xbar_to_m07_couplers_ARREADY,xbar_to_m06_couplers_ARREADY,xbar_to_m05_couplers_ARREADY,xbar_to_m04_couplers_ARREADY,xbar_to_m03_couplers_ARREADY,xbar_to_m02_couplers_ARREADY,xbar_to_m01_couplers_ARREADY,xbar_to_m00_couplers_ARREADY}),
         .m_axi_arvalid({xbar_to_m07_couplers_ARVALID,xbar_to_m06_couplers_ARVALID,xbar_to_m05_couplers_ARVALID,xbar_to_m04_couplers_ARVALID,xbar_to_m03_couplers_ARVALID,xbar_to_m02_couplers_ARVALID,xbar_to_m01_couplers_ARVALID,xbar_to_m00_couplers_ARVALID}),
         .m_axi_awaddr({xbar_to_m07_couplers_AWADDR,xbar_to_m06_couplers_AWADDR,xbar_to_m05_couplers_AWADDR,xbar_to_m04_couplers_AWADDR,xbar_to_m03_couplers_AWADDR,xbar_to_m02_couplers_AWADDR,xbar_to_m01_couplers_AWADDR,xbar_to_m00_couplers_AWADDR}),
-        .m_axi_awprot({xbar_to_m05_couplers_AWPROT,NLW_xbar_m_axi_awprot_UNCONNECTED[14:0]}),
+        .m_axi_awprot({xbar_to_m07_couplers_AWPROT,NLW_xbar_m_axi_awprot_UNCONNECTED[20:18],xbar_to_m05_couplers_AWPROT,NLW_xbar_m_axi_awprot_UNCONNECTED[14:0]}),
         .m_axi_awready({xbar_to_m07_couplers_AWREADY,xbar_to_m06_couplers_AWREADY,xbar_to_m05_couplers_AWREADY,xbar_to_m04_couplers_AWREADY,xbar_to_m03_couplers_AWREADY,xbar_to_m02_couplers_AWREADY,xbar_to_m01_couplers_AWREADY,xbar_to_m00_couplers_AWREADY}),
         .m_axi_awvalid({xbar_to_m07_couplers_AWVALID,xbar_to_m06_couplers_AWVALID,xbar_to_m05_couplers_AWVALID,xbar_to_m04_couplers_AWVALID,xbar_to_m03_couplers_AWVALID,xbar_to_m02_couplers_AWVALID,xbar_to_m01_couplers_AWVALID,xbar_to_m00_couplers_AWVALID}),
         .m_axi_bready({xbar_to_m07_couplers_BREADY,xbar_to_m06_couplers_BREADY,xbar_to_m05_couplers_BREADY,xbar_to_m04_couplers_BREADY,xbar_to_m03_couplers_BREADY,xbar_to_m02_couplers_BREADY,xbar_to_m01_couplers_BREADY,xbar_to_m00_couplers_BREADY}),
@@ -4410,9 +4429,11 @@ module m07_couplers_imp_1DK5GGP
    (M_ACLK,
     M_ARESETN,
     M_AXI_araddr,
+    M_AXI_arprot,
     M_AXI_arready,
     M_AXI_arvalid,
     M_AXI_awaddr,
+    M_AXI_awprot,
     M_AXI_awready,
     M_AXI_awvalid,
     M_AXI_bready,
@@ -4429,9 +4450,11 @@ module m07_couplers_imp_1DK5GGP
     S_ACLK,
     S_ARESETN,
     S_AXI_araddr,
+    S_AXI_arprot,
     S_AXI_arready,
     S_AXI_arvalid,
     S_AXI_awaddr,
+    S_AXI_awprot,
     S_AXI_awready,
     S_AXI_awvalid,
     S_AXI_bready,
@@ -4448,9 +4471,11 @@ module m07_couplers_imp_1DK5GGP
   input M_ACLK;
   input [0:0]M_ARESETN;
   output M_AXI_araddr;
+  output M_AXI_arprot;
   input M_AXI_arready;
   output M_AXI_arvalid;
   output M_AXI_awaddr;
+  output M_AXI_awprot;
   input M_AXI_awready;
   output M_AXI_awvalid;
   output M_AXI_bready;
@@ -4467,9 +4492,11 @@ module m07_couplers_imp_1DK5GGP
   input S_ACLK;
   input [0:0]S_ARESETN;
   input S_AXI_araddr;
+  input S_AXI_arprot;
   output S_AXI_arready;
   input S_AXI_arvalid;
   input S_AXI_awaddr;
+  input S_AXI_awprot;
   output S_AXI_awready;
   input S_AXI_awvalid;
   input S_AXI_bready;
@@ -4485,9 +4512,11 @@ module m07_couplers_imp_1DK5GGP
   input S_AXI_wvalid;
 
   wire m07_couplers_to_m07_couplers_ARADDR;
+  wire m07_couplers_to_m07_couplers_ARPROT;
   wire m07_couplers_to_m07_couplers_ARREADY;
   wire m07_couplers_to_m07_couplers_ARVALID;
   wire m07_couplers_to_m07_couplers_AWADDR;
+  wire m07_couplers_to_m07_couplers_AWPROT;
   wire m07_couplers_to_m07_couplers_AWREADY;
   wire m07_couplers_to_m07_couplers_AWVALID;
   wire m07_couplers_to_m07_couplers_BREADY;
@@ -4503,8 +4532,10 @@ module m07_couplers_imp_1DK5GGP
   wire m07_couplers_to_m07_couplers_WVALID;
 
   assign M_AXI_araddr = m07_couplers_to_m07_couplers_ARADDR;
+  assign M_AXI_arprot = m07_couplers_to_m07_couplers_ARPROT;
   assign M_AXI_arvalid = m07_couplers_to_m07_couplers_ARVALID;
   assign M_AXI_awaddr = m07_couplers_to_m07_couplers_AWADDR;
+  assign M_AXI_awprot = m07_couplers_to_m07_couplers_AWPROT;
   assign M_AXI_awvalid = m07_couplers_to_m07_couplers_AWVALID;
   assign M_AXI_bready = m07_couplers_to_m07_couplers_BREADY;
   assign M_AXI_rready = m07_couplers_to_m07_couplers_RREADY;
@@ -4520,9 +4551,11 @@ module m07_couplers_imp_1DK5GGP
   assign S_AXI_rvalid = m07_couplers_to_m07_couplers_RVALID;
   assign S_AXI_wready = m07_couplers_to_m07_couplers_WREADY;
   assign m07_couplers_to_m07_couplers_ARADDR = S_AXI_araddr;
+  assign m07_couplers_to_m07_couplers_ARPROT = S_AXI_arprot;
   assign m07_couplers_to_m07_couplers_ARREADY = M_AXI_arready;
   assign m07_couplers_to_m07_couplers_ARVALID = S_AXI_arvalid;
   assign m07_couplers_to_m07_couplers_AWADDR = S_AXI_awaddr;
+  assign m07_couplers_to_m07_couplers_AWPROT = S_AXI_awprot;
   assign m07_couplers_to_m07_couplers_AWREADY = M_AXI_awready;
   assign m07_couplers_to_m07_couplers_AWVALID = S_AXI_awvalid;
   assign m07_couplers_to_m07_couplers_BREADY = S_AXI_bready;

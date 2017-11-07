@@ -321,7 +321,7 @@ BEGIN
       C_FSYNC_HSTART15 => 0,
       C_FSYNC_VSTART15 => 0,
       C_MAX_PIXELS => 4096,
-      C_MAX_LINES => 2048,
+      C_MAX_LINES => 1024,
       C_NUM_FSYNCS => 1,
       C_INTERLACE_EN => 0,
       C_GEN_AUTO_SWITCH => 0,

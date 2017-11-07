@@ -541,10 +541,17 @@
         <spirit:configurableElementValues>
           <spirit:configurableElementValue spirit:referenceId="bd:xciName">QuadSLAM_BD_v_tc_1_0</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="max_clocks_per_line">4096</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="max_lines_per_frame">2048</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="max_lines_per_frame">1024</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="horizontal_blank_detection">false</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="enable_generation">false</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="vertical_blank_detection">false</spirit:configurableElementValue>
+        </spirit:configurableElementValues>
+      </spirit:componentInstance>
+      <spirit:componentInstance>
+        <spirit:instanceName>Signal_CrossDomain_0</spirit:instanceName>
+        <spirit:componentRef spirit:library="user" spirit:name="Signal_CrossDomain" spirit:vendor="xilinx.com" spirit:version="1.0"/>
+        <spirit:configurableElementValues>
+          <spirit:configurableElementValue spirit:referenceId="bd:xciName">QuadSLAM_BD_Signal_CrossDomain_0_0</spirit:configurableElementValue>
         </spirit:configurableElementValues>
       </spirit:componentInstance>
     </spirit:componentInstances>
@@ -838,6 +845,7 @@
         <spirit:externalPortReference spirit:portRef="camera_clk_in"/>
         <spirit:internalPortReference spirit:componentRef="v_vid_in_axi4s_0" spirit:portRef="vid_io_in_clk"/>
         <spirit:internalPortReference spirit:componentRef="v_tc_1" spirit:portRef="clk"/>
+        <spirit:internalPortReference spirit:componentRef="Signal_CrossDomain_0" spirit:portRef="clkB"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
         <spirit:name>clk_wiz_0_clk_out2</spirit:name>
@@ -935,9 +943,14 @@
         <spirit:internalPortReference spirit:componentRef="v_vid_in_axi4s_0" spirit:portRef="m_axis_video_tready"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
+        <spirit:name>Signal_CrossDomain_0_SignalOut_clkB</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="Signal_CrossDomain_0" spirit:portRef="SignalOut_clkB"/>
+        <spirit:internalPortReference spirit:componentRef="v_vid_in_axi4s_0" spirit:portRef="axis_enable"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
         <spirit:name>axi_gpio_2_gpio2_io_o</spirit:name>
         <spirit:internalPortReference spirit:componentRef="axi_gpio_2" spirit:portRef="gpio2_io_o"/>
-        <spirit:internalPortReference spirit:componentRef="v_vid_in_axi4s_0" spirit:portRef="axis_enable"/>
+        <spirit:internalPortReference spirit:componentRef="Signal_CrossDomain_0" spirit:portRef="SignalIn_clkA"/>
       </spirit:adHocConnection>
     </spirit:adHocConnections>
     <spirit:hierConnections>

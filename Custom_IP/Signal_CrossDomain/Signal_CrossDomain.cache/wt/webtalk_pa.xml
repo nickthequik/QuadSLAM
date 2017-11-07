@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<document>
+<!--The data in this file is primarily intended for consumption by Xilinx tools.
+The structure and the elements are likely to change over the next few releases.
+This means code written to parse this file will need to be revisited each subsequent release.-->
+<application name="pa" timeStamp="Fri Nov 03 17:37:12 2017">
+<section name="Project Information" visible="false">
+<property name="ProjectID" value="8c7b90c4f3f34ff8a806cd45556382b7" type="ProjectID"/>
+<property name="ProjectIteration" value="1" type="ProjectIteration"/>
+</section>
+<section name="PlanAhead Usage" visible="true">
+<item name="Project Data">
+<property name="SrcSetCount" value="1" type="SrcSetCount"/>
+<property name="ConstraintSetCount" value="1" type="ConstraintSetCount"/>
+<property name="DesignMode" value="RTL" type="DesignMode"/>
+<property name="SynthesisStrategy" value="Vivado Synthesis Defaults" type="SynthesisStrategy"/>
+<property name="ImplStrategy" value="Vivado Implementation Defaults" type="ImplStrategy"/>
+</item>
+<item name="Java Command Handlers">
+<property name="CloseProject" value="1" type="JavaHandler"/>
+<property name="EditDelete" value="1" type="JavaHandler"/>
+<property name="EditRedo" value="1" type="JavaHandler"/>
+<property name="EditUndo" value="1" type="JavaHandler"/>
+<property name="IPPackagerHandler" value="1" type="JavaHandler"/>
+<property name="IPPackagerWizardHandler" value="1" type="JavaHandler"/>
+<property name="NewProject" value="1" type="JavaHandler"/>
+<property name="OpenBlockDesign" value="1" type="JavaHandler"/>
+<property name="RunSchematic" value="1" type="JavaHandler"/>
+<property name="SelectClockPathPreference" value="2" type="JavaHandler"/>
+<property name="ShowView" value="1" type="JavaHandler"/>
+<property name="ViewTaskImplementation" value="2" type="JavaHandler"/>
+<property name="ZoomFit" value="1" type="JavaHandler"/>
+</item>
+<item name="Gui Resources Info">
+<property name="FINISH, Finish" value="2" type="GuiResourceData"/>
+<property name="NEXT, Next " value="10" type="GuiResourceData"/>
+<property name="PAResourceAtoD.CoreTreeTablePanel_CORE_TREE_TABLE, FIFO Generator, 4" value="1" type="GuiResourceData"/>
+<property name="PAResourceAtoD.CoreTreeTablePanel_CORE_TREE_TABLE, FIFO Generator, 4, FIFO Generator, 0, false" value="1" type="GuiResourceData"/>
+<property name="PAResourceAtoD.CoreTreeTablePanel_CORE_TREE_TABLE, FIFO Generator, 4, FIFO Generator, 0, false, false, false, false, false, true" value="1" type="GuiResourceData"/>
+<property name="PAResourceAtoD.CreateSrcFileDialog_FILE_NAME, Signal_CrossDomain" value="1" type="GuiResourceData"/>
+<property name="PAResourceAtoD.DesignTimingSumSectionPanel_WORST_HOLD_SLACK, -0.344 ns" value="1" type="GuiResourceData"/>
+<property name="PAResourceCommand.PACommandNames_IP_PACKAGER_WIZARD, Create and Package IP..." value="1" type="GuiResourceData"/>
+<property name="PAResourceCommand.PACommandNames_NEW_PROJECT, New Project..." value="1" type="GuiResourceData"/>
+<property name="PAResourceCommand.PACommandNames_SCHEMATIC, TimingPathsResultPanel_run_schematic" value="1" type="GuiResourceData"/>
+<property name="PAResourceCommand.PACommandNames_SELECT_CLOCK_PATH, TimingPathsResultPanel_select_clock_path" value="2" type="GuiResourceData"/>
+<property name="PAResourceCommand.PACommandNames_ZOOM_FIT, Device_zoom_fit" value="1" type="GuiResourceData"/>
+<property name="PAResourceEtoH.ExpReportTreePanel_EXP_REPORT_TREE_TABLE, Timing Summary Report ;  ;  ; , 4, (String" value="1" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources, Signal_CrossDomain (Signal_CrossDomain.v" value="2" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, [, IP Integrator, Open Block Design], 7, false" value="1" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, [, Implementation, Implemented Design], 22, true" value="1" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, [, Implementation, Open Implemented Design], 22, true" value="1" type="GuiResourceData"/>
+<property name="PAResourceItoN.MainMenuMgr_FILE, File" value="2" type="GuiResourceData"/>
+<property name="PAResourceItoN.MainMenuMgr_REPORT, Report" value="1" type="GuiResourceData"/>
+<property name="PAResourceItoN.MainMenuMgr_TOOLS, Tools" value="2" type="GuiResourceData"/>
+<property name="PAResourceItoN.MainMenuMgr_WINDOW, Window" value="2" type="GuiResourceData"/>
+<property name="PAResourceItoN.NavigableTimingReportTab_TIMING_REPORT_NAVIGATION_TREE, [Root, Design Timing Summary], 2, false" value="1" type="GuiResourceData"/>
+<property name="PAResourceItoN.NavigableTimingReportTab_TIMING_REPORT_NAVIGATION_TREE, [Root, Inter-Clock Paths, clk_fpga_0 to cam_clk_in_pin, Hold -0.344 ns], 9, false" value="1" type="GuiResourceData"/>
+<property name="PAResourceItoN.NavigableTimingReportTab_TIMING_REPORT_NAVIGATION_TREE, [Root, Inter-Clock Paths, clk_fpga_0 to cam_clk_in_pin, Hold -0.344 ns], 9, false, false, false, false, false, true" value="1" type="GuiResourceData"/>
+<property name="PAResourceItoN.NavigableTimingReportTab_TIMING_REPORT_NAVIGATION_TREE, [Root, Inter-Clock Paths, clk_fpga_0 to cam_clk_in_pin, Setup -1.541 ns], 8, false" value="3" type="GuiResourceData"/>
+<property name="PAResourceItoN.NavigableTimingReportTab_TIMING_REPORT_NAVIGATION_TREE, [Root, Inter-Clock Paths, clk_fpga_0 to cam_clk_in_pin, Setup -1.541 ns], 8, false, false, false, false, false, true" value="2" type="GuiResourceData"/>
+<property name="PAResourceItoN.NavigableTimingReportTab_TIMING_REPORT_NAVIGATION_TREE, [Root, Inter-Clock Paths, clk_fpga_0 to cam_clk_in_pin], 7" value="1" type="GuiResourceData"/>
+<property name="PAResourceItoN.NavigableTimingReportTab_TIMING_REPORT_NAVIGATION_TREE, [Root, Inter-Clock Paths], 6" value="1" type="GuiResourceData"/>
+<property name="PAResourceItoN.NewProjectWizard_DO_NOT_SPECIFY_SOURCES_AT_THIS_TIME, Do not specify sources at this time, false" value="1" type="GuiResourceData"/>
+<property name="PAResourceOtoP.PAViews_DEVICE, 161148, 181297" value="1" type="GuiResourceData"/>
+<property name="PAResourceOtoP.PAViews_DEVICE, 170343, 186726" value="1" type="GuiResourceData"/>
+<property name="PAResourceOtoP.PAViews_DEVICE, 185070, 201112" value="1" type="GuiResourceData"/>
+<property name="PAResourceOtoP.PAViews_DEVICE, 185239, 199951" value="1" type="GuiResourceData"/>
+<property name="PAResourceOtoP.PAViews_DEVICE, 186011, 201918" value="1" type="GuiResourceData"/>
+<property name="PAResourceOtoP.PAViews_DEVICE, 186060, 202692" value="1" type="GuiResourceData"/>
+<property name="PAResourceOtoP.PAViews_SCHEMATIC, Schematic" value="1" type="GuiResourceData"/>
+<property name="PAResourceOtoP.PackagerStepsPanel_PACKAGER_STEPS_LIST, Addressing and Memory, 5" value="1" type="GuiResourceData"/>
+<property name="PAResourceOtoP.PackagerStepsPanel_PACKAGER_STEPS_LIST, Customization GUI, 6" value="1" type="GuiResourceData"/>
+<property name="PAResourceOtoP.PackagerStepsPanel_PACKAGER_STEPS_LIST, Customization Parameters, 3" value="1" type="GuiResourceData"/>
+<property name="PAResourceOtoP.PackagerStepsPanel_PACKAGER_STEPS_LIST, Ports and Interfaces, 4" value="1" type="GuiResourceData"/>
+<property name="PAResourceOtoP.PackagerStepsPanel_PACKAGER_STEPS_LIST, Review and Package, 7" value="1" type="GuiResourceData"/>
+<property name="PAResourceOtoP.PartChooser_PARTS, xc7z010clg400-1 ; 400 ; 60 ; 80 ; 35200 ; 0 ; 0 ; 100 ; 17600 ; 2 ; 0 ; 85 ; 0 ; 85 ; C ; 1.05 ; 0.95 ; 0.95 ; 0, 5, xc7z010clg400-1, 0" value="1" type="GuiResourceData"/>
+<property name="PAResourceOtoP.PowerResultTab_REPORT_NAVIGATION_TREE, [Report Contents, Utilization Details, Signals], 6" value="1" type="GuiResourceData"/>
+<property name="PAResourceOtoP.PowerResultTab_REPORT_NAVIGATION_TREE, [Report Contents, Utilization Details], 3" value="1" type="GuiResourceData"/>
+<property name="PAResourceOtoP.ProjectNameChooser_CHOOSE_PROJECT_LOCATION, (String" value="1" type="GuiResourceData"/>
+<property name="PAResourceOtoP.ProjectNameChooser_PROJECT_NAME, Signal_CrossDomain" value="1" type="GuiResourceData"/>
+<property name="PAResourceQtoS.ReviewContentPanel_PACKAGE_IP, Package IP" value="1" type="GuiResourceData"/>
+<property name="PAResourceQtoS.SrcChooserPanel_CREATE_FILE, Create File" value="1" type="GuiResourceData"/>
+<property name="PAResourceQtoS.SystemBuilderMenu_ADD_IP, Add IP..." value="2" type="GuiResourceData"/>
+<property name="PAResourceQtoS.SystemBuilderView_EXPAND_COLLAPSE, Expand/Collapse" value="2" type="GuiResourceData"/>
+<property name="PAResourceTtoZ.TaskBanner_CLOSE, (String" value="3" type="GuiResourceData"/>
+<property name="PAResourceTtoZ.TimingItemFlatTablePanel_TABLE, From, 4" value="1" type="GuiResourceData"/>
+<property name="PAResourceTtoZ.TimingItemFlatTablePanel_TABLE, Path 77 ; -1.5409021 ; 1 ; 2 ; QuadSLAM_BD_i/axi_gpio_2/U0/gpio_core_1/Dual.gpio2_Data_Out_reg[0]/C ; QuadSLAM_BD_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/vtd_locked_reg/D ; 1.7864705 ; 0.26 ; 1.5264703 ; 0.0129603 ; clk_fpga_0 ; cam_clk_in_pin ; , 0, -1.5409021, 1" value="2" type="GuiResourceData"/>
+<property name="PAResourceTtoZ.TimingItemFlatTablePanel_TABLE, Path 77 ; -1.5409021 ; 1 ; 2 ; QuadSLAM_BD_i/axi_gpio_2/U0/gpio_core_1/Dual.gpio2_Data_Out_reg[0]/C ; QuadSLAM_BD_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/vtd_locked_reg/D ; 1.7864705 ; 0.26 ; 1.5264703 ; 0.0129603 ; clk_fpga_0 ; cam_clk_in_pin ; , 0, -1.5409021, 1, false, false, false, false, true" value="1" type="GuiResourceData"/>
+<property name="PAResourceTtoZ.TimingItemFlatTablePanel_TABLE, Path 77 ; -1.5409021 ; 1 ; 2 ; QuadSLAM_BD_i/axi_gpio_2/U0/gpio_core_1/Dual.gpio2_Data_Out_reg[0]/C ; QuadSLAM_BD_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/vtd_locked_reg/D ; 1.7864705 ; 0.26 ; 1.5264703 ; 0.0129603 ; clk_fpga_0 ; cam_clk_in_pin ; , 0, Path 77, 0" value="1" type="GuiResourceData"/>
+<property name="PAResourceTtoZ.TimingItemFlatTablePanel_TABLE, Path 77 ; -1.5409021 ; 1 ; 2 ; QuadSLAM_BD_i/axi_gpio_2/U0/gpio_core_1/Dual.gpio2_Data_Out_reg[0]/C ; QuadSLAM_BD_i/v_vid_in_axi4s_0/inst/FORMATTER_INST/vtd_locked_reg/D ; 1.7864705 ; 0.26 ; 1.5264703 ; 0.0129603 ; clk_fpga_0 ; cam_clk_in_pin ; , 0, Path 77, 0, false, false, false, false, true" value="1" type="GuiResourceData"/>
+<property name="PAResourceTtoZ.TimingItemFlatTablePanel_TABLE, Total Delay, 6" value="1" type="GuiResourceData"/>
+<property name="RDIResource.BaseDialog_CANCEL, Cancel" value="1" type="GuiResourceData"/>
+<property name="RDIResource.BaseDialog_OK, OK" value="7" type="GuiResourceData"/>
+<property name="RDIResourceCommand.RDICommands_DELETE, Delete" value="1" type="GuiResourceData"/>
+<property name="RDIResourceCommand.RDICommands_REDO, redo" value="1" type="GuiResourceData"/>
+<property name="Signal_CrossDomain.v, 0, 26" value="1" type="GuiResourceData"/>
+<property name="Signal_CrossDomain.v, 110, 282" value="1" type="GuiResourceData"/>
+<property name="Signal_CrossDomain.v, 111, 284" value="1" type="GuiResourceData"/>
+<property name="Signal_CrossDomain.v, 128, 282" value="1" type="GuiResourceData"/>
+<property name="Signal_CrossDomain.v, 128, 283" value="1" type="GuiResourceData"/>
+<property name="Signal_CrossDomain.v, 69, 433" value="1" type="GuiResourceData"/>
+<property name="Signal_CrossDomain.v, 69, 440" value="1" type="GuiResourceData"/>
+<property name="Signal_CrossDomain.v, 8, 268" value="1" type="GuiResourceData"/>
+</item>
+<item name="Other">
+<property name="GuiMode" value="46" type="GuiMode"/>
+<property name="BatchMode" value="0" type="BatchMode"/>
+<property name="TclMode" value="45" type="TclMode"/>
+</item>
+</section>
+</application>
+</document>

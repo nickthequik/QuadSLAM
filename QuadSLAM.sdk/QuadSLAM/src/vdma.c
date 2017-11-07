@@ -8,6 +8,7 @@
 #include "vdma.h"
 #include "xaxivdma.h"
 #include "FreeRTOS.h"
+#include "xil_cache_l.h"
 
 XAxiVdma VDMA;
 
@@ -56,17 +57,17 @@ void VDMA_init(void)
 	XAxiVdma_DmaSetup Read_config;
 	XAxiVdma_DmaSetup Write_config;
 
-	//uint32_t i;
-	//uint16_t color_1 = 0xF800;
-	//uint16_t color_2 = 0x001F;
-	//uint16_t color_3 = 0x07E0;
-
 	// number of bytes per frame
 	frame_buffer_1 = (uint16_t*) pvPortMalloc(FRAME_WIDTH * FRAME_HEIGHT * 2);
 	frame_buffer_2 = (uint16_t*) pvPortMalloc(FRAME_WIDTH * FRAME_HEIGHT * 2);
 	frame_buffer_3 = (uint16_t*) pvPortMalloc(FRAME_WIDTH * FRAME_HEIGHT * 2);
 
-	/*for (i = 0; i < (FRAME_WIDTH * FRAME_HEIGHT); i++)
+	/*uint32_t i;
+	uint16_t color_1 = 0xF800;
+	uint16_t color_2 = 0x001F;
+	uint16_t color_3 = 0x07E0;
+
+	for (i = 0; i < (FRAME_WIDTH * FRAME_HEIGHT); i++)
 	{
 		*(frame_buffer_1 + i) = color_1;
 		*(frame_buffer_2 + i) = color_2;

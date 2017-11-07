@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Thu Nov 02 20:39:11 2017" VIVADOVERSION="2016.2">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Fri Nov 03 17:42:39 2017" VIVADOVERSION="2016.2">
 
   <SYSTEMINFO ARCH="zynq" DEVICE="7z010" NAME="QuadSLAM_BD" PACKAGE="clg400" SPEEDGRADE="-1"/>
 
@@ -66,6 +66,7 @@
       <CONNECTIONS>
         <CONNECTION INSTANCE="v_vid_in_axi4s_0" PORT="vid_io_in_clk"/>
         <CONNECTION INSTANCE="v_tc_1" PORT="clk"/>
+        <CONNECTION INSTANCE="Signal_CrossDomain_0" PORT="clkB"/>
       </CONNECTIONS>
     </PORT>
     <PORT CLKFREQUENCY="39270833" DIR="O" NAME="camera_clk_out" SIGIS="clk" SIGNAME="clk_wiz_0_clk_out2">
@@ -200,6 +201,31 @@
         <PORT DIR="O" LEFT="15" NAME="video_out" RIGHT="0" SIGIS="undef" SIGNAME="Scaler_to_Video_Out_0_video_out">
           <CONNECTIONS>
             <CONNECTION INSTANCE="v_axi4s_vid_out_0" PORT="s_axis_video_tdata"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+    <MODULE FULLNAME="/Signal_CrossDomain_0" HWVERSION="1.0" INSTANCE="Signal_CrossDomain_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="Signal_CrossDomain" VLNV="xilinx.com:user:Signal_CrossDomain:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="Component_Name" VALUE="QuadSLAM_BD_Signal_CrossDomain_0_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="I" NAME="SignalIn_clkA" SIGIS="undef" SIGNAME="axi_gpio_2_gpio2_io_o">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_gpio_2" PORT="gpio2_io_o"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="clkB" SIGIS="undef" SIGNAME="External_Ports_camera_clk_in">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="camera_clk_in"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="SignalOut_clkB" SIGIS="undef" SIGNAME="Signal_CrossDomain_0_SignalOut_clkB">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="v_vid_in_axi4s_0" PORT="axis_enable"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
@@ -1240,7 +1266,7 @@
         </PORT>
         <PORT DIR="O" LEFT="0" NAME="gpio2_io_o" RIGHT="0" SIGIS="undef" SIGNAME="axi_gpio_2_gpio2_io_o">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="v_vid_in_axi4s_0" PORT="axis_enable"/>
+            <CONNECTION INSTANCE="Signal_CrossDomain_0" PORT="SignalIn_clkA"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
@@ -7660,23 +7686,25 @@
             <CONNECTION INSTANCE="v_tc_1" PORT="s_axi_wvalid"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" NAME="M07_AXI_araddr" SIGIS="undef"/>
-        <PORT DIR="I" NAME="M07_AXI_arready" SIGIS="undef"/>
-        <PORT DIR="O" NAME="M07_AXI_arvalid" SIGIS="undef"/>
         <PORT DIR="O" NAME="M07_AXI_awaddr" SIGIS="undef"/>
-        <PORT DIR="I" NAME="M07_AXI_awready" SIGIS="undef"/>
+        <PORT DIR="O" NAME="M07_AXI_awprot" SIGIS="undef"/>
         <PORT DIR="O" NAME="M07_AXI_awvalid" SIGIS="undef"/>
-        <PORT DIR="O" NAME="M07_AXI_bready" SIGIS="undef"/>
-        <PORT DIR="I" NAME="M07_AXI_bresp" SIGIS="undef"/>
-        <PORT DIR="I" NAME="M07_AXI_bvalid" SIGIS="undef"/>
-        <PORT DIR="I" NAME="M07_AXI_rdata" SIGIS="undef"/>
-        <PORT DIR="O" NAME="M07_AXI_rready" SIGIS="undef"/>
-        <PORT DIR="I" NAME="M07_AXI_rresp" SIGIS="undef"/>
-        <PORT DIR="I" NAME="M07_AXI_rvalid" SIGIS="undef"/>
+        <PORT DIR="I" NAME="M07_AXI_awready" SIGIS="undef"/>
         <PORT DIR="O" NAME="M07_AXI_wdata" SIGIS="undef"/>
-        <PORT DIR="I" NAME="M07_AXI_wready" SIGIS="undef"/>
         <PORT DIR="O" NAME="M07_AXI_wstrb" SIGIS="undef"/>
         <PORT DIR="O" NAME="M07_AXI_wvalid" SIGIS="undef"/>
+        <PORT DIR="I" NAME="M07_AXI_wready" SIGIS="undef"/>
+        <PORT DIR="I" NAME="M07_AXI_bresp" SIGIS="undef"/>
+        <PORT DIR="I" NAME="M07_AXI_bvalid" SIGIS="undef"/>
+        <PORT DIR="O" NAME="M07_AXI_bready" SIGIS="undef"/>
+        <PORT DIR="O" NAME="M07_AXI_araddr" SIGIS="undef"/>
+        <PORT DIR="O" NAME="M07_AXI_arprot" SIGIS="undef"/>
+        <PORT DIR="O" NAME="M07_AXI_arvalid" SIGIS="undef"/>
+        <PORT DIR="I" NAME="M07_AXI_arready" SIGIS="undef"/>
+        <PORT DIR="I" NAME="M07_AXI_rdata" SIGIS="undef"/>
+        <PORT DIR="I" NAME="M07_AXI_rresp" SIGIS="undef"/>
+        <PORT DIR="I" NAME="M07_AXI_rvalid" SIGIS="undef"/>
+        <PORT DIR="O" NAME="M07_AXI_rready" SIGIS="undef"/>
       </PORTS>
       <BUSINTERFACES>
         <BUSINTERFACE BUSNAME="processing_system7_0_M_AXI_GP0" DATAWIDTH="32" NAME="S00_AXI" TYPE="SLAVE" VLNV="xilinx.com:interface:aximm:1.0">
@@ -7871,23 +7899,25 @@
         </BUSINTERFACE>
         <BUSINTERFACE BUSNAME="__NOC__" NAME="M07_AXI" TYPE="MASTER" VLNV="xilinx.com:interface:aximm:1.0">
           <PORTMAPS>
-            <PORTMAP LOGICAL="ARADDR" PHYSICAL="M07_AXI_araddr"/>
-            <PORTMAP LOGICAL="ARREADY" PHYSICAL="M07_AXI_arready"/>
-            <PORTMAP LOGICAL="ARVALID" PHYSICAL="M07_AXI_arvalid"/>
             <PORTMAP LOGICAL="AWADDR" PHYSICAL="M07_AXI_awaddr"/>
-            <PORTMAP LOGICAL="AWREADY" PHYSICAL="M07_AXI_awready"/>
+            <PORTMAP LOGICAL="AWPROT" PHYSICAL="M07_AXI_awprot"/>
             <PORTMAP LOGICAL="AWVALID" PHYSICAL="M07_AXI_awvalid"/>
-            <PORTMAP LOGICAL="BREADY" PHYSICAL="M07_AXI_bready"/>
-            <PORTMAP LOGICAL="BRESP" PHYSICAL="M07_AXI_bresp"/>
-            <PORTMAP LOGICAL="BVALID" PHYSICAL="M07_AXI_bvalid"/>
-            <PORTMAP LOGICAL="RDATA" PHYSICAL="M07_AXI_rdata"/>
-            <PORTMAP LOGICAL="RREADY" PHYSICAL="M07_AXI_rready"/>
-            <PORTMAP LOGICAL="RRESP" PHYSICAL="M07_AXI_rresp"/>
-            <PORTMAP LOGICAL="RVALID" PHYSICAL="M07_AXI_rvalid"/>
+            <PORTMAP LOGICAL="AWREADY" PHYSICAL="M07_AXI_awready"/>
             <PORTMAP LOGICAL="WDATA" PHYSICAL="M07_AXI_wdata"/>
-            <PORTMAP LOGICAL="WREADY" PHYSICAL="M07_AXI_wready"/>
             <PORTMAP LOGICAL="WSTRB" PHYSICAL="M07_AXI_wstrb"/>
             <PORTMAP LOGICAL="WVALID" PHYSICAL="M07_AXI_wvalid"/>
+            <PORTMAP LOGICAL="WREADY" PHYSICAL="M07_AXI_wready"/>
+            <PORTMAP LOGICAL="BRESP" PHYSICAL="M07_AXI_bresp"/>
+            <PORTMAP LOGICAL="BVALID" PHYSICAL="M07_AXI_bvalid"/>
+            <PORTMAP LOGICAL="BREADY" PHYSICAL="M07_AXI_bready"/>
+            <PORTMAP LOGICAL="ARADDR" PHYSICAL="M07_AXI_araddr"/>
+            <PORTMAP LOGICAL="ARPROT" PHYSICAL="M07_AXI_arprot"/>
+            <PORTMAP LOGICAL="ARVALID" PHYSICAL="M07_AXI_arvalid"/>
+            <PORTMAP LOGICAL="ARREADY" PHYSICAL="M07_AXI_arready"/>
+            <PORTMAP LOGICAL="RDATA" PHYSICAL="M07_AXI_rdata"/>
+            <PORTMAP LOGICAL="RRESP" PHYSICAL="M07_AXI_rresp"/>
+            <PORTMAP LOGICAL="RVALID" PHYSICAL="M07_AXI_rvalid"/>
+            <PORTMAP LOGICAL="RREADY" PHYSICAL="M07_AXI_rready"/>
           </PORTMAPS>
         </BUSINTERFACE>
       </BUSINTERFACES>
@@ -8937,7 +8967,7 @@
         <PARAMETER NAME="C_FSYNC_HSTART15" VALUE="0"/>
         <PARAMETER NAME="C_FSYNC_VSTART15" VALUE="0"/>
         <PARAMETER NAME="C_MAX_PIXELS" VALUE="4096"/>
-        <PARAMETER NAME="C_MAX_LINES" VALUE="2048"/>
+        <PARAMETER NAME="C_MAX_LINES" VALUE="1024"/>
         <PARAMETER NAME="C_NUM_FSYNCS" VALUE="1"/>
         <PARAMETER NAME="C_INTERLACE_EN" VALUE="0"/>
         <PARAMETER NAME="C_GEN_AUTO_SWITCH" VALUE="0"/>
@@ -8965,7 +8995,7 @@
         <PARAMETER NAME="INTERLACE_EN" VALUE="false"/>
         <PARAMETER NAME="SYNC_EN" VALUE="false"/>
         <PARAMETER NAME="max_clocks_per_line" VALUE="4096"/>
-        <PARAMETER NAME="max_lines_per_frame" VALUE="2048"/>
+        <PARAMETER NAME="max_lines_per_frame" VALUE="1024"/>
         <PARAMETER NAME="VIDEO_MODE" VALUE="720p"/>
         <PARAMETER NAME="FSYNC_HSTART0" VALUE="0"/>
         <PARAMETER NAME="FSYNC_VSTART0" VALUE="0"/>
@@ -9364,9 +9394,9 @@
         <PORT DIR="O" NAME="vtd_field_id" SIGIS="undef"/>
         <PORT DIR="O" NAME="overflow" SIGIS="undef"/>
         <PORT DIR="O" NAME="underflow" SIGIS="undef"/>
-        <PORT DIR="I" NAME="axis_enable" SIGIS="undef" SIGNAME="axi_gpio_2_gpio2_io_o">
+        <PORT DIR="I" NAME="axis_enable" SIGIS="undef" SIGNAME="Signal_CrossDomain_0_SignalOut_clkB">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="axi_gpio_2" PORT="gpio2_io_o"/>
+            <CONNECTION INSTANCE="Signal_CrossDomain_0" PORT="SignalOut_clkB"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>

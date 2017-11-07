@@ -2,12 +2,11 @@
 <Root MajorVersion="0" MinorVersion="33">
   <CompositeFile CompositeFileTopName="bd_776d" CanBeSetAsTop="true" CanDisplayChildGraph="true">
     <Description>Composite Fileset</Description>
-    <Generation Name="SYNTHESIS" State="GENERATED" Timestamp="1509680350"/>
-    <Generation Name="IMPLEMENTATION" State="GENERATED" Timestamp="1509680350"/>
-    <Generation Name="SIMULATION" State="GENERATED" Timestamp="1509680350"/>
+    <Generation Name="SYNTHESIS" State="GENERATED" Timestamp="1509756155"/>
+    <Generation Name="IMPLEMENTATION" State="GENERATED" Timestamp="1509756155"/>
+    <Generation Name="SIMULATION" State="GENERATED" Timestamp="1509756155"/>
     <FileCollection Name="SOURCES" Type="SOURCES">
       <File Name="ip\ip_0\bd_776d_axi_interconnect_0_0.xci" Type="IP">
-        <Instance HierarchyPath="axi_interconnect_0"/>
         <Properties IsEditable="false" IsVisible="false" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
         <UsedIn Val="SYNTHESIS"/>
