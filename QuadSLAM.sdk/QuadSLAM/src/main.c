@@ -1,6 +1,6 @@
 
 /* Standard includes. */
-#include <stdio.h>
+#include <stdarg.h>
 #include <limits.h>
 #include <platform.h>
 
@@ -14,6 +14,7 @@
 #include "xscutimer.h"
 #include "xscugic.h"
 #include "xil_exception.h"
+#include "xtime_l.h"
 
 #include "xaxivdma.h"
 #include "xvtc.h"
@@ -29,6 +30,8 @@
 #include "led.h"
 #include "stereo_camera.h"
 #include "vprocsub.h"
+
+#include "mpu9250.h"
 
 extern XScuGic xInterruptController;
 extern void vPortInstallFreeRTOSVectorTable( void );
@@ -64,19 +67,20 @@ static void init_task(void *parameters)
 	(void) parameters;
 
 	UART_usb_init();
-	LED_init();
-	VDMA_init();
-	VPSS_init();
-	VTC_init();
+	//LED_init();
+	//VDMA_init();
+	//VPSS_init();
+	//VTC_init();
 	//TPG_init();
-	STEREO_CAMERA_init();
-
+	//STEREO_CAMERA_init();
+	IMU_init();
 
 	while(1)
 	{
+		MPU9250_print_orientation();
+/*
 		clk_locked = XGpio_DiscreteRead(&xGpio1, 1);
 		vid_locked = XGpio_DiscreteRead(&xGpio1, 2);
-
 
 		if (clk_locked)
 			LED_set(3, LED_ON);
@@ -98,7 +102,7 @@ static void init_task(void *parameters)
 			LED_set(0, LED_OFF);
 			XGpio_DiscreteWrite(&xGpio2, 2, 0);
 		}
-
+*/
 	}
 }
 

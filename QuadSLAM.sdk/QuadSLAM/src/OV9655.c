@@ -10,7 +10,7 @@
 #include "FreeRTOS.h"
 #include "task.h"
 
-/*uint8_t camera_registers[] = {
+uint8_t camera_registers[] = {
 	OV9655_GAIN,    0x00,
 	OV9655_BLUE,    0x80,
 	OV9655_RED,     0x80,
@@ -19,10 +19,13 @@
 	OV9655_COM1,    0x00,
 	OV9655_COM2,    0x03,  // Output drive capability = x4
 	OV9655_VER,     0x57,
-	OV9655_COM3,    0x80,
+	OV9655_COM3,    0x00,
 	OV9655_COM5,    0x01,
 	OV9655_COM6,    0xc0,
-	OV9655_AEC,     0x50,
+
+	OV9655_AEC,     0x10,
+	//OV9655_AEC,     0x50,
+
 	OV9655_CLKRC,   0x40,  //they set 80 we set 40 to use external clock
 	OV9655_COM7,    0x07,  //they set 63 we set 07 for 15fps
 	OV9655_COM8,    0xef,
@@ -56,6 +59,7 @@
 	OV9655_AREF3,   0x3a,
 	OV9655_ADC2,    0x72,
 	OV9655_AREF4,   0x57,
+	//OV9655_TSLB,    0x8c,
 	OV9655_TSLB,    0xca,
 	OV9655_COM11,   0x04,
 	OV9655_COM13,   0x99,
@@ -175,8 +179,8 @@
 	0xcb, 0xf0,
 	0xcc, 0xd8,
 	0xcd, 0x93
-};*/
-
+};
+/*
 uint8_t camera_registers[] = {
 		OV9655_CLKRC,   0x40,
 		OV9655_COM7,    0x02,
@@ -189,7 +193,7 @@ uint8_t camera_registers[] = {
 		OV9655_COM6,    0xc0,
 		OV9655_AEC,     0x50,
 		*/
-		/*
+/*
 		OV9655_AEW,     0x3c,
 		OV9655_AEB,     0x36,
 		OV9655_VPT,     0x72,
@@ -210,8 +214,8 @@ uint8_t camera_registers[] = {
 		OV9655_COM13,   0x99,
 		OV9655_COM14,   0x00,
 		OV9655_EDGE,    0xc1,
-		*/
-		/*OV9655_MTX1,    0x98,
+
+		OV9655_MTX1,    0x98,
 		OV9655_MTX2,    0x98,
 		OV9655_MTX3,    0x00,
 		OV9655_MTX4,    0x28,
@@ -234,7 +238,7 @@ uint8_t camera_registers[] = {
 		OV9655_GAM13,   0xd6,
 		OV9655_GAM14,   0xe6,
 		OV9655_GAM15,   0xf2,
-		//
+
 		0x8a, 0x24,
 		OV9655_COM19,   0x80,
 		0x90, 0x7d,
@@ -276,8 +280,8 @@ uint8_t camera_registers[] = {
 		0xca, 0xe8,
 		0xcb, 0xf0,
 		0xcc, 0xd8,
-		0xcd, 0x93*/
-};
+		0xcd, 0x93
+};*/
 
 /*
  * Initializes a i2c_instance
