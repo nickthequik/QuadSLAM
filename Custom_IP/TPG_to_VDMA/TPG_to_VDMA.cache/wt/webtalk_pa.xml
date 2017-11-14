@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<document>
+<!--The data in this file is primarily intended for consumption by Xilinx tools.
+The structure and the elements are likely to change over the next few releases.
+This means code written to parse this file will need to be revisited each subsequent release.-->
+<application name="pa" timeStamp="Thu Nov 02 13:08:30 2017">
+<section name="Project Information" visible="false">
+<property name="ProjectID" value="e681d8250b3c4fa0bb55282fe35591db" type="ProjectID"/>
+<property name="ProjectIteration" value="1" type="ProjectIteration"/>
+</section>
+<section name="PlanAhead Usage" visible="true">
+<item name="Project Data">
+<property name="SrcSetCount" value="1" type="SrcSetCount"/>
+<property name="ConstraintSetCount" value="1" type="ConstraintSetCount"/>
+<property name="DesignMode" value="RTL" type="DesignMode"/>
+<property name="SynthesisStrategy" value="Vivado Synthesis Defaults" type="SynthesisStrategy"/>
+<property name="ImplStrategy" value="Vivado Implementation Defaults" type="ImplStrategy"/>
+</item>
+<item name="Java Command Handlers">
+<property name="CloseProject" value="1" type="JavaHandler"/>
+<property name="IPPackagerHandler" value="1" type="JavaHandler"/>
+<property name="IPPackagerWizardHandler" value="1" type="JavaHandler"/>
+</item>
+<item name="Gui Resources Info">
+<property name="FINISH, Finish" value="1" type="GuiResourceData"/>
+<property name="NEXT, Next " value="3" type="GuiResourceData"/>
+<property name="PAResourceCommand.PACommandNames_IP_PACKAGER_WIZARD, Create and Package IP..." value="1" type="GuiResourceData"/>
+<property name="PAResourceItoN.MainMenuMgr_EDIT, Edit" value="2" type="GuiResourceData"/>
+<property name="PAResourceItoN.MainMenuMgr_FLOW, Flow" value="4" type="GuiResourceData"/>
+<property name="PAResourceItoN.MainMenuMgr_REPORT, Report" value="1" type="GuiResourceData"/>
+<property name="PAResourceItoN.MainMenuMgr_TOOLS, Tools" value="4" type="GuiResourceData"/>
+<property name="PAResourceOtoP.PackagerStepsPanel_PACKAGER_STEPS_LIST, Addressing and Memory, 5" value="1" type="GuiResourceData"/>
+<property name="PAResourceOtoP.PackagerStepsPanel_PACKAGER_STEPS_LIST, Customization GUI, 6" value="1" type="GuiResourceData"/>
+<property name="PAResourceOtoP.PackagerStepsPanel_PACKAGER_STEPS_LIST, Customization Parameters, 3" value="2" type="GuiResourceData"/>
+<property name="PAResourceOtoP.PackagerStepsPanel_PACKAGER_STEPS_LIST, File Groups, 2" value="1" type="GuiResourceData"/>
+<property name="PAResourceOtoP.PackagerStepsPanel_PACKAGER_STEPS_LIST, Ports and Interfaces, 4" value="1" type="GuiResourceData"/>
+<property name="PAResourceOtoP.PackagerStepsPanel_PACKAGER_STEPS_LIST, Review and Package, 7" value="1" type="GuiResourceData"/>
+<property name="PAResourceQtoS.ReviewContentPanel_PACKAGE_IP, Package IP" value="1" type="GuiResourceData"/>
+<property name="RDIResource.AbstractSearchablePanel_SHOW_SEARCH, Package IP_search" value="1" type="GuiResourceData"/>
+<property name="RDIResource.BaseDialog_OK, OK" value="1" type="GuiResourceData"/>
+<property name="tpg_to_vdma.v, 118, 293" value="1" type="GuiResourceData"/>
+<property name="tpg_to_vdma.v, 119, 318" value="1" type="GuiResourceData"/>
+<property name="tpg_to_vdma.v, 137, 400" value="1" type="GuiResourceData"/>
+<property name="tpg_to_vdma.v, 18, 393" value="1" type="GuiResourceData"/>
+<property name="tpg_to_vdma.v, 199, 365" value="1" type="GuiResourceData"/>
+<property name="tpg_to_vdma.v, 208, 372" value="1" type="GuiResourceData"/>
+<property name="tpg_to_vdma.v, 259, 365" value="1" type="GuiResourceData"/>
+<property name="tpg_to_vdma.v, 333, 361" value="1" type="GuiResourceData"/>
+<property name="tpg_to_vdma.v, 363, 363, false, false, false, true, false" value="1" type="GuiResourceData"/>
+<property name="tpg_to_vdma.v, 383, 363" value="1" type="GuiResourceData"/>
+<property name="tpg_to_vdma.v, 384, 365, false, false, false, true, false" value="1" type="GuiResourceData"/>
+<property name="tpg_to_vdma.v, 406, 365" value="1" type="GuiResourceData"/>
+<property name="tpg_to_vdma.v, 50, 432" value="1" type="GuiResourceData"/>
+<property name="tpg_to_vdma.v, 56, 381" value="1" type="GuiResourceData"/>
+<property name="tpg_to_vdma.v, 75, 437" value="1" type="GuiResourceData"/>
+<property name="tpg_to_vdma.v, 75, 488" value="1" type="GuiResourceData"/>
+<property name="tpg_to_vdma.v, 76, 387" value="1" type="GuiResourceData"/>
+</item>
+<item name="Other">
+<property name="GuiMode" value="43" type="GuiMode"/>
+<property name="BatchMode" value="0" type="BatchMode"/>
+<property name="TclMode" value="42" type="TclMode"/>
+</item>
+</section>
+</application>
+</document>

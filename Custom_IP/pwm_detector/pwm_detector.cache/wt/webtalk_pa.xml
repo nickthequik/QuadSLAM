@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<document>
+<!--The data in this file is primarily intended for consumption by Xilinx tools.
+The structure and the elements are likely to change over the next few releases.
+This means code written to parse this file will need to be revisited each subsequent release.-->
+<application name="pa" timeStamp="Tue Nov 14 01:40:03 2017">
+<section name="Project Information" visible="false">
+<property name="ProjectID" value="46681116989f4b929d29cab1e556f514" type="ProjectID"/>
+<property name="ProjectIteration" value="1" type="ProjectIteration"/>
+</section>
+<section name="PlanAhead Usage" visible="true">
+<item name="Project Data">
+<property name="SrcSetCount" value="1" type="SrcSetCount"/>
+<property name="ConstraintSetCount" value="1" type="ConstraintSetCount"/>
+<property name="DesignMode" value="RTL" type="DesignMode"/>
+<property name="SynthesisStrategy" value="Vivado Synthesis Defaults" type="SynthesisStrategy"/>
+<property name="ImplStrategy" value="Vivado Implementation Defaults" type="ImplStrategy"/>
+</item>
+<item name="Java Command Handlers">
+<property name="AddSources" value="1" type="JavaHandler"/>
+<property name="CloseProject" value="1" type="JavaHandler"/>
+<property name="IPPackagerHandler" value="3" type="JavaHandler"/>
+<property name="IPPackagerWizardHandler" value="1" type="JavaHandler"/>
+<property name="NewProject" value="1" type="JavaHandler"/>
+<property name="ProjectSettingsCmdHandler" value="2" type="JavaHandler"/>
+<property name="RunSchematic" value="1" type="JavaHandler"/>
+<property name="RunSynthesis" value="2" type="JavaHandler"/>
+<property name="SetTopNode" value="1" type="JavaHandler"/>
+<property name="ShowView" value="1" type="JavaHandler"/>
+<property name="SimulationClose" value="2" type="JavaHandler"/>
+<property name="SimulationRelaunch" value="3" type="JavaHandler"/>
+<property name="SimulationRun" value="5" type="JavaHandler"/>
+<property name="ToggleViewNavigator" value="1" type="JavaHandler"/>
+<property name="ViewTaskSynthesis" value="2" type="JavaHandler"/>
+<property name="ZoomFit" value="1" type="JavaHandler"/>
+<property name="ZoomIn" value="4" type="JavaHandler"/>
+<property name="ZoomOut" value="3" type="JavaHandler"/>
+</item>
+<item name="Gui Resources Info">
+<property name="APPLY, Apply" value="1" type="GuiResourceData"/>
+<property name="CANCEL, Cancel" value="1" type="GuiResourceData"/>
+<property name="FINISH, Finish" value="1" type="GuiResourceData"/>
+<property name="NEXT, Next " value="1" type="GuiResourceData"/>
+<property name="OK, OK" value="1" type="GuiResourceData"/>
+<property name="PAResourceAtoD.AddSrcWizard_SPECIFY_SIMULATION_SPECIFIC_HDL_FILES, Add or create simulation sources" value="1" type="GuiResourceData"/>
+<property name="PAResourceAtoD.CreateSrcFileDialog_FILE_NAME, pwm_detector_sim" value="1" type="GuiResourceData"/>
+<property name="PAResourceCommand.PACommandNames_ADD_SOURCES, Sources_add_sources" value="1" type="GuiResourceData"/>
+<property name="PAResourceCommand.PACommandNames_AUTO_UPDATE_HIER, Hierarchy Update" value="1" type="GuiResourceData"/>
+<property name="PAResourceCommand.PACommandNames_GOTO_NETLIST_DESIGN, Open Synthesized Design" value="1" type="GuiResourceData"/>
+<property name="PAResourceCommand.PACommandNames_SET_AS_TOP, Set as Top" value="1" type="GuiResourceData"/>
+<property name="PAResourceCommand.PACommandNames_SIMULATION_RELAUNCH, simulation_relaunch" value="3" type="GuiResourceData"/>
+<property name="PAResourceCommand.PACommandNames_SIMULATION_RUN_BEHAVIORAL, Run Behavioral Simulation" value="5" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Simulation Sources, sim_1, pwm_detector (pwm_detector.v" value="5" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Simulation Sources, sim_1, pwm_detector_sim (pwm_detector_sim.v" value="4" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Simulation Sources], 10" value="1" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, [, Project Manager, Package IP], 5, false" value="1" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, [, Simulation, Run Simulation], 12, false" value="5" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, [, Simulation, Simulation Settings], 11, false" value="2" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, [, Synthesis, Synthesized Design], 19" value="1" type="GuiResourceData"/>
+<property name="PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, [, Synthesis, [Synth 8-5546] ROM clk_div won't be mapped to RAM because it is too sparse. ], 12" value="2" type="GuiResourceData"/>
+<property name="PAResourceItoN.MsgView_CLEAR_MESSAGES_RESULTING_FROM_USER_EXECUTED, Messages_cleanUpMessages" value="1" type="GuiResourceData"/>
+<property name="PAResourceItoN.MsgView_WARNING_MESSAGES, (String" value="1" type="GuiResourceData"/>
+<property name="PAResourceOtoP.PAViews_PACKAGE_IP, Package IP - pwm_detector" value="2" type="GuiResourceData"/>
+<property name="PAResourceOtoP.ProjectSettingsSimulationPanel_TABBED_PANE, PAResourceOtoP.ProjectSettingsSimulationPanel_SIMULATION, Simulation, 2" value="1" type="GuiResourceData"/>
+<property name="PAResourceQtoS.ReviewContentPanel_RE_PACKAGE_IP, Re-Package IP" value="2" type="GuiResourceData"/>
+<property name="PAResourceQtoS.SimulationObjectsPanel_SIMULATION_OBJECTS_TREE_TABLE, clk_div ; 0 ; Logic, 6, clk_div, 0, false, false, true, false, false, false" value="1" type="GuiResourceData"/>
+<property name="PAResourceQtoS.SimulationObjectsPanel_SIMULATION_OBJECTS_TREE_TABLE, clk_div ; 1 ; Logic, 6, clk_div, 0, false, false, true, false, false, false" value="2" type="GuiResourceData"/>
+<property name="PAResourceQtoS.SimulationObjectsPanel_SIMULATION_OBJECTS_TREE_TABLE, clk_div_count[6:0] ; 00 ; Array, 5, clk_div_count[6:0], 0, true, false, true, false, false, false" value="1" type="GuiResourceData"/>
+<property name="PAResourceQtoS.SimulationObjectsPanel_SIMULATION_OBJECTS_TREE_TABLE, clk_div_count[6:0] ; 69 ; Array, 5, clk_div_count[6:0], 0, true, false, true, false, false, false" value="2" type="GuiResourceData"/>
+<property name="PAResourceQtoS.SimulationObjectsPanel_SIMULATION_OBJECTS_TREE_TABLE, pwm_count[10:0] ; 000 ; Array, 4, pwm_count[10:0], 0, true" value="2" type="GuiResourceData"/>
+<property name="PAResourceQtoS.SimulationObjectsPanel_SIMULATION_OBJECTS_TREE_TABLE, pwm_count[10:0] ; 000 ; Array, 4, pwm_count[10:0], 0, true, false, false, false, true, false" value="1" type="GuiResourceData"/>
+<property name="PAResourceQtoS.SimulationObjectsPanel_SIMULATION_OBJECTS_TREE_TABLE, pwm_count[10:0] ; 1c2 ; Array, 4, pwm_count[10:0], 0, true, false, false, false, true, false" value="1" type="GuiResourceData"/>
+<property name="PAResourceQtoS.SimulationObjectsPanel_SIMULATION_OBJECTS_TREE_TABLE, pwm_count[10:0] ; 1c2 ; Array, 4, pwm_count[10:0], 0, true, false, true, false, false, false" value="1" type="GuiResourceData"/>
+<property name="PAResourceQtoS.SimulationObjectsPanel_SIMULATION_OBJECTS_TREE_TABLE, state[1:0] ; 0 ; Array, 7, state[1:0], 0, true" value="1" type="GuiResourceData"/>
+<property name="PAResourceQtoS.SimulationObjectsPanel_SIMULATION_OBJECTS_TREE_TABLE, state[1:0] ; 0 ; Array, 7, state[1:0], 0, true, false, false, false, true, false" value="1" type="GuiResourceData"/>
+<property name="PAResourceQtoS.SimulationObjectsPanel_SIMULATION_OBJECTS_TREE_TABLE, state[1:0] ; 0 ; Array, 7, state[1:0], 0, true, false, true, false, false, false" value="1" type="GuiResourceData"/>
+<property name="PAResourceQtoS.SimulationObjectsPanel_SIMULATION_OBJECTS_TREE_TABLE, state[1:0] ; 3 ; Array, 7, state[1:0], 0, true, false, true, false, false, false" value="1" type="GuiResourceData"/>
+<property name="PAResourceQtoS.SimulationScopesPanel_SIMULATION_SCOPES_TREE_TABLE, pwm_detector_dut ; pwm_detector_submodule ; Verilog Module, 1, pwm_detector_dut, 0, false" value="3" type="GuiResourceData"/>
+<property name="PAResourceQtoS.SimulationScopesPanel_SIMULATION_SCOPES_TREE_TABLE, pwm_detector_sim ; pwm_detector_sim ; Verilog Module, 0, pwm_detector_sim, 0, true" value="1" type="GuiResourceData"/>
+<property name="PAResourceQtoS.SrcChooserPanel_CREATE_FILE, Create File" value="1" type="GuiResourceData"/>
+<property name="PAResourceQtoS.SrcMenu_IP_HIERARCHY, IP Hierarchy" value="1" type="GuiResourceData"/>
+<property name="PAResourceTtoZ.TaskBanner_CLOSE, (String" value="6" type="GuiResourceData"/>
+<property name="RDIResource.BaseDialog_CANCEL, Cancel" value="1" type="GuiResourceData"/>
+<property name="RDIResource.BaseDialog_OK, OK" value="10" type="GuiResourceData"/>
+<property name="RDIResource.FilterToolBar_SHOW_ALL, Show All" value="1" type="GuiResourceData"/>
+<property name="RDIResource.GraphicalView_ZOOM_FIT, Waveform Viewer_zoom_fit" value="5" type="GuiResourceData"/>
+<property name="RDIResource.GraphicalView_ZOOM_IN, Waveform Viewer_zoom_in" value="17" type="GuiResourceData"/>
+<property name="RDIResource.GraphicalView_ZOOM_OUT, Waveform Viewer_zoom_out" value="6" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 16, 216" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 285, 222" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 432, 200" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 481, 160" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 52, 27" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 577, 177" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 605, 160" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 607, 157" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 628, 207" value="1" type="GuiResourceData"/>
+<property name="RDIResource.WaveformNameTree_WAVEFORM_NAME_TREE, [true, pwm_read_1[21:0]], 0" value="2" type="GuiResourceData"/>
+<property name="pwm_detector_sim.v, 110, 229" value="1" type="GuiResourceData"/>
+<property name="pwm_detector_sim.v, 110, 46" value="1" type="GuiResourceData"/>
+<property name="pwm_detector_sim.v, 126, 215" value="1" type="GuiResourceData"/>
+<property name="pwm_detector_sim.v, 137, 175" value="1" type="GuiResourceData"/>
+<property name="pwm_detector_sim.v, 153, 212" value="1" type="GuiResourceData"/>
+<property name="pwm_detector_sim.v, 154, 194" value="1" type="GuiResourceData"/>
+<property name="pwm_detector_sim.v, 22, 417" value="1" type="GuiResourceData"/>
+<property name="pwm_detector_sim.v, 222, 168" value="1" type="GuiResourceData"/>
+<property name="pwm_detector_sim.v, 23, 451" value="1" type="GuiResourceData"/>
+<property name="pwm_detector_sim.v, 26, 327" value="1" type="GuiResourceData"/>
+<property name="pwm_detector_sim.v, 28, 114" value="1" type="GuiResourceData"/>
+<property name="pwm_detector_sim.v, 33, 284" value="1" type="GuiResourceData"/>
+<property name="pwm_detector_sim.v, 49, 132" value="1" type="GuiResourceData"/>
+<property name="pwm_detector_sim.v, 61, 434" value="1" type="GuiResourceData"/>
+<property name="pwm_detector_sim.v, 61, 59" value="1" type="GuiResourceData"/>
+<property name="pwm_detector_sim.v, 65, 266" value="1" type="GuiResourceData"/>
+<property name="pwm_detector_sim.v, 67, 398" value="1" type="GuiResourceData"/>
+<property name="pwm_detector_sim.v, 68, 215" value="1" type="GuiResourceData"/>
+<property name="pwm_detector_sim.v, 68, 367" value="1" type="GuiResourceData"/>
+<property name="pwm_detector_sim.v, 74, 436" value="1" type="GuiResourceData"/>
+<property name="pwm_detector_sim.v, 75, 182" value="1" type="GuiResourceData"/>
+<property name="pwm_detector_sim.v, 80, 431" value="1" type="GuiResourceData"/>
+<property name="pwm_detector_sim.v, 83, 199" value="1" type="GuiResourceData"/>
+<property name="pwm_detector_sim.v, 83, 232" value="1" type="GuiResourceData"/>
+<property name="pwm_detector_sim.v, 84, 162" value="1" type="GuiResourceData"/>
+<property name="pwm_detector_sim.v, 84, 402" value="1" type="GuiResourceData"/>
+<property name="pwm_detector_sim.v, 87, 129" value="1" type="GuiResourceData"/>
+<property name="pwm_detector_submodule.v, 140, 176" value="1" type="GuiResourceData"/>
+<property name="pwm_detector_submodule.v, 179, 246" value="1" type="GuiResourceData"/>
+<property name="pwm_detector_submodule.v, 180, 195" value="1" type="GuiResourceData"/>
+<property name="pwm_detector_submodule.v, 180, 210" value="1" type="GuiResourceData"/>
+<property name="pwm_detector_submodule.v, 181, 265" value="1" type="GuiResourceData"/>
+<property name="pwm_detector_submodule.v, 182, 165" value="1" type="GuiResourceData"/>
+<property name="pwm_detector_submodule.v, 202, 309" value="1" type="GuiResourceData"/>
+<property name="pwm_detector_submodule.v, 242, 228" value="1" type="GuiResourceData"/>
+<property name="pwm_detector_submodule.v, 29, 56" value="1" type="GuiResourceData"/>
+<property name="pwm_detector_submodule.v, 30, 145" value="1" type="GuiResourceData"/>
+<property name="pwm_detector_submodule.v, 327, 265" value="1" type="GuiResourceData"/>
+<property name="pwm_detector_submodule.v, 55, 300" value="1" type="GuiResourceData"/>
+<property name="pwm_detector_submodule.v, 56, 319" value="1" type="GuiResourceData"/>
+<property name="pwm_detector_submodule.v, 97, 197" value="1" type="GuiResourceData"/>
+</item>
+<item name="Other">
+<property name="GuiMode" value="64" type="GuiMode"/>
+<property name="BatchMode" value="0" type="BatchMode"/>
+<property name="TclMode" value="57" type="TclMode"/>
+</item>
+</section>
+</application>
+</document>

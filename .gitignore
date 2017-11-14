@@ -6,3 +6,4 @@
 /QuadSLAM.sdk/*
 !/QuadSLAM.sdk/QuadSLAM
 /QuadSLAM.sdk/QuadSLAM/Debug
+!/Custom_IP
