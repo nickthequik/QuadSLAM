@@ -7,7 +7,7 @@
 
 `timescale 1 ns / 1 ps
 
-module bd_776d_vsc_0_v_vscaler_mac_muladd_19s_16ns_8ns_29_1_DSP48_1(
+module bd_776d_vsc_0_v_vscaler_mac_muladd_19s_16ns_8ns_29_1_DSP48_2(
     input  [19 - 1:0] in0,
     input  [16 - 1:0] in1,
     input  [8 - 1:0] in2,
@@ -50,7 +50,7 @@ output[dout_WIDTH - 1:0] dout;
 
 
 
-bd_776d_vsc_0_v_vscaler_mac_muladd_19s_16ns_8ns_29_1_DSP48_1 bd_776d_vsc_0_v_vscaler_mac_muladd_19s_16ns_8ns_29_1_DSP48_1_U(
+bd_776d_vsc_0_v_vscaler_mac_muladd_19s_16ns_8ns_29_1_DSP48_2 bd_776d_vsc_0_v_vscaler_mac_muladd_19s_16ns_8ns_29_1_DSP48_2_U(
     .in0( din0 ),
     .in1( din1 ),
     .in2( din2 ),

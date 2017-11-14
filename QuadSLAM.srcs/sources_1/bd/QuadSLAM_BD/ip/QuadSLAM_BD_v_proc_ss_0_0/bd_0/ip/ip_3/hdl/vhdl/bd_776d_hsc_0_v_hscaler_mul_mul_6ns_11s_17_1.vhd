@@ -3,7 +3,7 @@ library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
 
-entity bd_776d_hsc_0_v_hscaler_mul_mul_6ns_11s_17_1_DSP48_1 is
+entity bd_776d_hsc_0_v_hscaler_mul_mul_6ns_11s_17_1_DSP48_2 is
 port (
     a: in std_logic_vector(6 - 1 downto 0);
     b: in std_logic_vector(11 - 1 downto 0);
@@ -11,7 +11,7 @@ port (
 
 end entity;
 
-architecture behav of bd_776d_hsc_0_v_hscaler_mul_mul_6ns_11s_17_1_DSP48_1 is
+architecture behav of bd_776d_hsc_0_v_hscaler_mul_mul_6ns_11s_17_1_DSP48_2 is
     signal a_cvt: unsigned(6 - 1 downto 0);
     signal b_cvt: signed(11 - 1 downto 0);
     signal p_cvt: signed(17 - 1 downto 0);
@@ -42,7 +42,7 @@ entity bd_776d_hsc_0_v_hscaler_mul_mul_6ns_11s_17_1 is
 end entity;
 
 architecture arch of bd_776d_hsc_0_v_hscaler_mul_mul_6ns_11s_17_1 is
-    component bd_776d_hsc_0_v_hscaler_mul_mul_6ns_11s_17_1_DSP48_1 is
+    component bd_776d_hsc_0_v_hscaler_mul_mul_6ns_11s_17_1_DSP48_2 is
         port (
             a : IN STD_LOGIC_VECTOR;
             b : IN STD_LOGIC_VECTOR;
@@ -52,7 +52,7 @@ architecture arch of bd_776d_hsc_0_v_hscaler_mul_mul_6ns_11s_17_1 is
 
 
 begin
-    bd_776d_hsc_0_v_hscaler_mul_mul_6ns_11s_17_1_DSP48_1_U :  component bd_776d_hsc_0_v_hscaler_mul_mul_6ns_11s_17_1_DSP48_1
+    bd_776d_hsc_0_v_hscaler_mul_mul_6ns_11s_17_1_DSP48_2_U :  component bd_776d_hsc_0_v_hscaler_mul_mul_6ns_11s_17_1_DSP48_2
     port map (
         a => din0,
         b => din1,

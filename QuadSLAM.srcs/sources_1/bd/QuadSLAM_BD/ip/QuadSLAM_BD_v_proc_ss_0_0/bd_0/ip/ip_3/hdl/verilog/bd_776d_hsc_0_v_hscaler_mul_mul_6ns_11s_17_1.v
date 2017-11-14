@@ -1,7 +1,7 @@
 
 `timescale 1 ns / 1 ps
 
-  module bd_776d_hsc_0_v_hscaler_mul_mul_6ns_11s_17_1_DSP48_1(a, b, p);
+  module bd_776d_hsc_0_v_hscaler_mul_mul_6ns_11s_17_1_DSP48_2(a, b, p);
 input [6 - 1 : 0] a; 
 input signed [11 - 1 : 0] b; 
 output signed [17 - 1 : 0] p; 
@@ -27,7 +27,7 @@ output[dout_WIDTH - 1:0] dout;
 
 
 
-bd_776d_hsc_0_v_hscaler_mul_mul_6ns_11s_17_1_DSP48_1 bd_776d_hsc_0_v_hscaler_mul_mul_6ns_11s_17_1_DSP48_1_U(
+bd_776d_hsc_0_v_hscaler_mul_mul_6ns_11s_17_1_DSP48_2 bd_776d_hsc_0_v_hscaler_mul_mul_6ns_11s_17_1_DSP48_2_U(
     .a( din0 ),
     .b( din1 ),
     .p( dout ));

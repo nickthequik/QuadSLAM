@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<document>
+<!--The data in this file is primarily intended for consumption by Xilinx tools.
+The structure and the elements are likely to change over the next few releases.
+This means code written to parse this file will need to be revisited each subsequent release.-->
+<application name="pa" timeStamp="Fri Nov 10 17:01:01 2017">
+<section name="Project Information" visible="false">
+<property name="ProjectID" value="32ba47b9199b45b9a58527c5f2151c52" type="ProjectID"/>
+<property name="ProjectIteration" value="1" type="ProjectIteration"/>
+</section>
+<section name="PlanAhead Usage" visible="true">
+<item name="Project Data">
+<property name="SrcSetCount" value="1" type="SrcSetCount"/>
+<property name="ConstraintSetCount" value="1" type="ConstraintSetCount"/>
+<property name="DesignMode" value="RTL" type="DesignMode"/>
+<property name="SynthesisStrategy" value="Vivado Synthesis Defaults" type="SynthesisStrategy"/>
+<property name="ImplStrategy" value="Vivado Implementation Defaults" type="ImplStrategy"/>
+</item>
+<item name="Java Command Handlers">
+<property name="AddSources" value="2" type="JavaHandler"/>
+<property name="CloseProject" value="3" type="JavaHandler"/>
+<property name="CustomizeRSBBlock" value="2" type="JavaHandler"/>
+<property name="EditPaste" value="1" type="JavaHandler"/>
+<property name="IPPackagerHandler" value="1" type="JavaHandler"/>
+<property name="IPPackagerWizardHandler" value="1" type="JavaHandler"/>
+<property name="NewProject" value="2" type="JavaHandler"/>
+<property name="OpenBlockDesign" value="1" type="JavaHandler"/>
+<property name="OpenProject" value="4" type="JavaHandler"/>
+<property name="ValidateRSBDesign" value="1" type="JavaHandler"/>
+<property name="ZoomIn" value="4" type="JavaHandler"/>
+</item>
+<item name="Gui Resources Info">
+<property name="BACK,  Back" value="1" type="GuiResourceData"/>
+<property name="FINISH, Finish" value="1" type="GuiResourceData"/>
+<property name="NEXT, Next " value="4" type="GuiResourceData"/>
+<property name="PAResourceCommand.PACommandNames_IP_PACKAGER_WIZARD, Create and Package IP..." value="1" type="GuiResourceData"/>
+<property name="PAResourceCommand.PACommandNames_OPEN_PROJECT, Open Project..." value="1" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources, pwm_input (pwm_input.sv" value="2" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources, pwm_manager (pwm_manager.sv" value="2" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources, sobel_axis_v1_0 (sobel_axis_v1_0.v" value="2" type="GuiResourceData"/>
+<property name="PAResourceEtoH.GettingStartedView_RECENT_PROJECTS, C:/Users/NicholasKimball/Documents/School/Senior/CPE439/QuadSLAM/Custom_IP/pwm_input/pwm_input.xpr, 1" value="1" type="GuiResourceData"/>
+<property name="PAResourceItoN.MainMenuMgr_FILE, File" value="2" type="GuiResourceData"/>
+<property name="PAResourceItoN.MainMenuMgr_FLOW, Flow" value="2" type="GuiResourceData"/>
+<property name="PAResourceItoN.MainMenuMgr_REPORT, Report" value="1" type="GuiResourceData"/>
+<property name="PAResourceItoN.MainMenuMgr_TOOLS, Tools" value="4" type="GuiResourceData"/>
+<property name="PAResourceItoN.NewIpWizard_INCLUDE_IP_GENERATED_FILES, Include IP generated files" value="1" type="GuiResourceData"/>
+<property name="PAResourceItoN.NewIpWizard_INCLUDE_XCI_FILES, Include .xci files" value="1" type="GuiResourceData"/>
+<property name="RDIResource.BaseDialog_OK, OK" value="1" type="GuiResourceData"/>
+<property name="pwm_input.sv, 105, 198" value="1" type="GuiResourceData"/>
+<property name="pwm_input.sv, 147, 201" value="1" type="GuiResourceData"/>
+<property name="pwm_manager.sv, 104, 198" value="1" type="GuiResourceData"/>
+<property name="pwm_manager.sv, 105, 230" value="1" type="GuiResourceData"/>
+<property name="pwm_manager.sv, 110, 165" value="1" type="GuiResourceData"/>
+<property name="pwm_manager.sv, 111, 198" value="1" type="GuiResourceData"/>
+<property name="pwm_manager.sv, 111, 236" value="1" type="GuiResourceData"/>
+<property name="pwm_manager.sv, 111, 249" value="1" type="GuiResourceData"/>
+<property name="pwm_manager.sv, 118, 182" value="1" type="GuiResourceData"/>
+<property name="pwm_manager.sv, 139, 286" value="1" type="GuiResourceData"/>
+<property name="pwm_manager.sv, 145, 215" value="1" type="GuiResourceData"/>
+<property name="pwm_manager.sv, 168, 182" value="1" type="GuiResourceData"/>
+<property name="pwm_manager.sv, 168, 299" value="1" type="GuiResourceData"/>
+<property name="pwm_manager.sv, 177, 282" value="1" type="GuiResourceData"/>
+<property name="pwm_manager.sv, 206, 95" value="1" type="GuiResourceData"/>
+<property name="pwm_manager.sv, 209, 217" value="1" type="GuiResourceData"/>
+<property name="pwm_manager.sv, 224, 215" value="1" type="GuiResourceData"/>
+<property name="pwm_manager.sv, 230, 230" value="1" type="GuiResourceData"/>
+<property name="pwm_manager.sv, 230, 300" value="1" type="GuiResourceData"/>
+<property name="pwm_manager.sv, 231, 246" value="1" type="GuiResourceData"/>
+<property name="pwm_manager.sv, 237, 212" value="1" type="GuiResourceData"/>
+<property name="pwm_manager.sv, 239, 229" value="1" type="GuiResourceData"/>
+<property name="pwm_manager.sv, 245, 302" value="1" type="GuiResourceData"/>
+<property name="pwm_manager.sv, 27, 94" value="1" type="GuiResourceData"/>
+<property name="pwm_manager.sv, 34, 295" value="1" type="GuiResourceData"/>
+<property name="pwm_manager.sv, 46, 197" value="1" type="GuiResourceData"/>
+<property name="pwm_manager.sv, 52, 176" value="1" type="GuiResourceData"/>
+<property name="pwm_manager.sv, 54, 185" value="1" type="GuiResourceData"/>
+<property name="pwm_manager.sv, 55, 113" value="1" type="GuiResourceData"/>
+<property name="pwm_manager.sv, 56, 199" value="1" type="GuiResourceData"/>
+<property name="pwm_manager.sv, 58, 267" value="1" type="GuiResourceData"/>
+<property name="pwm_manager.sv, 59, 226" value="1" type="GuiResourceData"/>
+<property name="pwm_manager.sv, 67, 165" value="1" type="GuiResourceData"/>
+<property name="pwm_manager.sv, 68, 183" value="1" type="GuiResourceData"/>
+<property name="pwm_manager.sv, 69, 202" value="1" type="GuiResourceData"/>
+<property name="pwm_manager.sv, 79, 146" value="1" type="GuiResourceData"/>
+<property name="pwm_manager.sv, 79, 149" value="1" type="GuiResourceData"/>
+<property name="pwm_manager.sv, 82, 213" value="1" type="GuiResourceData"/>
+<property name="pwm_manager.sv, 83, 113" value="1" type="GuiResourceData"/>
+<property name="pwm_manager.sv, 94, 264" value="1" type="GuiResourceData"/>
+<property name="pwm_manager.sv, 98, 263" value="1" type="GuiResourceData"/>
+<property name="pwm_manager.sv, 99, 246" value="1" type="GuiResourceData"/>
+</item>
+<item name="Other">
+<property name="GuiMode" value="51" type="GuiMode"/>
+<property name="BatchMode" value="0" type="BatchMode"/>
+<property name="TclMode" value="50" type="TclMode"/>
+</item>
+</section>
+</application>
+</document>

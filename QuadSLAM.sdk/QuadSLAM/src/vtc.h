@@ -5,6 +5,6 @@
 #include "xvtc.h"
 
 void VTC_init(void);
-int VTC_detector_locked(void);
+void VTC_detector_locked(void);
 
 #endif /* SRC_VTC_H_ */

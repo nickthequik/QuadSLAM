@@ -1,47 +1,41 @@
 
-/* Standard includes. */
+// Standard Library includes
 #include <stdio.h>
 #include <limits.h>
 #include <platform.h>
 
-/* Scheduler include files. */
+// FreeRTOS includes
 #include "FreeRTOS.h"
 #include "task.h"
 #include "semphr.h"
 
-/* Xilinx includes. */
+// Xilinx includes
 #include "xparameters.h"
 #include "xscutimer.h"
 #include "xscugic.h"
 #include "xil_exception.h"
-
-#include "xaxivdma.h"
-#include "xvtc.h"
-#include "vtc.h"
-#include "vdma.h"
 #include "xdebug.h"
 #include "xil_cache_l.h"
 #include "xpseudo_asm_gcc.h"
-#include "xgpio.h"
 #include "xvprocss.h"
 
+// Our includes
+#include "gpio.h"
 #include "uart.h"
 #include "led.h"
 #include "stereo_camera.h"
 #include "vprocsub.h"
+#include "vdma.h"
+#include "vtc.h"
+#include "pwm.h"
 
 extern XScuGic xInterruptController;
 extern void vPortInstallFreeRTOSVectorTable( void );
-
-extern XGpio xGpio1, xGpio2;
-extern XVprocSs vprocss;
-extern uint16_t *frame_buffer_1;
 
 static void prvSetupHardware( void );
 void vApplicationMallocFailedHook( void );
 void vApplicationIdleHook( void );
 void vApplicationStackOverflowHook( TaskHandle_t pxTask, char *pcTaskName );
-void vApplicationTickHook( void );
 
 // FreeRTOS Tasks
 static void init_task( void *parameters );
@@ -49,7 +43,6 @@ static void init_task( void *parameters );
 int main( void )
 {
 	prvSetupHardware();
-
 	xTaskCreate( init_task, "init_task", configMINIMAL_STACK_SIZE, NULL, 1, NULL );
 	vTaskStartScheduler();
 
@@ -59,51 +52,36 @@ int main( void )
 
 static void init_task(void *parameters)
 {
-	uint32_t vid_locked, clk_locked;
-
 	(void) parameters;
+	PWM_input pwm_input;
+	uint16_t pwm_out[4] = {900, 900, 900, 900};
 
 	UART_usb_init();
-	LED_init();
-	VDMA_init();
-	VPSS_init();
-	VTC_init();
-	//TPG_init();
-	STEREO_CAMERA_init();
+	GPIO_init();
+	//VDMA_init();
+	//VPSS_init();
+	//VTC_init();
+	//STEREO_CAMERA_init();
 
+	init_pwm_detector();
+	init_pwm_generator();
+	set_pwm_output(pwm_out);
+	enable_pwm_generator();
 
 	while(1)
 	{
-		clk_locked = XGpio_DiscreteRead(&xGpio1, 1);
-		vid_locked = XGpio_DiscreteRead(&xGpio1, 2);
+		clk_wiz_locked();
+		video_out_locked();
+		VTC_detector_locked();
 
-
-		if (clk_locked)
-			LED_set(3, LED_ON);
-		else
-			LED_set(3, LED_OFF);
-
-		if (vid_locked)
-			LED_set(1, LED_ON);
-		else
-			LED_set(1, LED_OFF);
-
-		if (VTC_detector_locked())
-		{
-			LED_set(0, LED_ON);
-			XGpio_DiscreteWrite(&xGpio2, 2, 1);
-		}
-		else
-		{
-			LED_set(0, LED_OFF);
-			XGpio_DiscreteWrite(&xGpio2, 2, 0);
-		}
-
+		get_pwm_input(&pwm_input);
+		pwm_out[0] = pwm_input.throttle;
+		pwm_out[1] = pwm_input.throttle;
+		pwm_out[2] = pwm_input.throttle;
+		pwm_out[3] = pwm_input.throttle;
+		set_pwm_output(pwm_out);
 	}
 }
-
-
-
 
 static void prvSetupHardware( void )
 {
@@ -127,55 +105,12 @@ static void prvSetupHardware( void )
 	/* Install a default handler for each GIC interrupt. */
 	xStatus = XScuGic_CfgInitialize(&xInterruptController, pxGICConfig, pxGICConfig->CpuBaseAddress);
 	configASSERT( xStatus == XST_SUCCESS );
-	( void ) xStatus; /* Remove compiler warning if configASSERT() is not defined. */
 
 	/* The Xilinx projects use a BSP that do not allow the start up code to be
 	altered easily.  Therefore the vector table used by FreeRTOS is defined in
 	FreeRTOS_asm_vectors.S, which is part of this project.  Switch to use the
 	FreeRTOS vector table. */
 	vPortInstallFreeRTOSVectorTable();
-}
-
-void vApplicationMallocFailedHook( void )
-{
-	/* Called if a call to pvPortMalloc() fails because there is insufficient
-	free memory available in the FreeRTOS heap.  pvPortMalloc() is called
-	internally by FreeRTOS API functions that create tasks, queues, software
-	timers, and semaphores.  The size of the FreeRTOS heap is set by the
-	configTOTAL_HEAP_SIZE configuration constant in FreeRTOSConfig.h. */
-	taskDISABLE_INTERRUPTS();
-	for( ;; );
-}
-
-void vApplicationStackOverflowHook( TaskHandle_t pxTask, char *pcTaskName )
-{
-	( void ) pcTaskName;
-	( void ) pxTask;
-
-	/* Run time stack overflow checking is performed if
-	configCHECK_FOR_STACK_OVERFLOW is defined to 1 or 2.  This hook
-	function is called if a stack overflow is detected. */
-	taskDISABLE_INTERRUPTS();
-	for( ;; );
-}
-
-void vApplicationIdleHook( void )
-{
-volatile size_t xFreeHeapSpace, xMinimumEverFreeHeapSpace;
-
-	/* This is just a trivial example of an idle hook.  It is called on each
-	cycle of the idle task.  It must *NOT* attempt to block.  In this case the
-	idle task just queries the amount of FreeRTOS heap that remains.  See the
-	memory management section on the http://www.FreeRTOS.org web site for memory
-	management options.  If there is a lot of heap memory free then the
-	configTOTAL_HEAP_SIZE value in FreeRTOSConfig.h can be reduced to free up
-	RAM. */
-	xFreeHeapSpace = xPortGetFreeHeapSize();
-	xMinimumEverFreeHeapSpace = xPortGetMinimumEverFreeHeapSize();
-
-	/* Remove compiler warning about xFreeHeapSpace being set but never used. */
-	( void ) xFreeHeapSpace;
-	( void ) xMinimumEverFreeHeapSpace;
 }
 
 void vAssertCalled( const char * pcFile, unsigned long ulLine )
@@ -196,31 +131,6 @@ volatile unsigned long ul = 0;
 	}
 	taskEXIT_CRITICAL();
 }
-
-void vApplicationTickHook( void )
-{
-	#if( mainSELECTED_APPLICATION == 1 )
-	{
-		/* The full demo includes a software timer demo/test that requires
-		prodding periodically from the tick interrupt. */
-		vTimerPeriodicISRTests();
-
-		/* Call the periodic queue overwrite from ISR demo. */
-		vQueueOverwritePeriodicISRDemo();
-
-		/* Call the periodic event group from ISR demo. */
-		vPeriodicEventGroupsProcessing();
-
-		/* Use task notifications from an interrupt. */
-		xNotifyTaskFromISR();
-
-		/* Use mutexes from interrupts. */
-		vInterruptSemaphorePeriodicTest();
-	}
-	#endif
-}
-
-//who the fuck wrote this shit hack below?
 
 void *memcpy( void *pvDest, const void *pvSource, size_t xBytes )
 {

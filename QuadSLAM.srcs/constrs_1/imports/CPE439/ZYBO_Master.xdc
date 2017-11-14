@@ -160,71 +160,75 @@ set_property IOSTANDARD LVCMOS33 [get_ports {leds_tri_o[3]}]
 #set_property PACKAGE_PIN G18 [get_ports hdmi_sda]
 #set_property IOSTANDARD LVCMOS33 [get_ports hdmi_sda]
 
-##Pmod Header JA (XADC)
-##IO_L21N_T3_DQS_AD14N_35
-#set_property PACKAGE_PIN N16 [get_ports {ja_n[0]}]
-#set_property IOSTANDARD LVCMOS33 [get_ports {ja_n[0]}]
+##########RC Reciever###########
+#########Pmod Header JA#########
 
-##IO_L21P_T3_DQS_AD14P_35
-#set_property PACKAGE_PIN N15 [get_ports {ja_p[0]}]
-#set_property IOSTANDARD LVCMOS33 [get_ports {ja_p[0]}]
+##Pin1 - Throttle
+set_property PACKAGE_PIN N15 [get_ports {pwm_in[0]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {pwm_in[0]}]
 
-##IO_L22N_T3_AD7N_35
-#set_property PACKAGE_PIN L15 [get_ports {ja_n[1]}]
-#set_property IOSTANDARD LVCMOS33 [get_ports {ja_n[1]}]
+##Pin2 - Roll (Ailerons)
+set_property PACKAGE_PIN L14 [get_ports {pwm_in[1]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {pwm_in[1]}]
 
-##IO_L22P_T3_AD7P_35
-#set_property PACKAGE_PIN L14 [get_ports {ja_p[1]}]
-#set_property IOSTANDARD LVCMOS33 [get_ports {ja_p[1]}]
+##Pin 3 - Pitch (Elevators)
+set_property PACKAGE_PIN K16 [get_ports {pwm_in[2]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {pwm_in[2]}]
 
-##IO_L24N_T3_AD15N_35
-#set_property PACKAGE_PIN J16 [get_ports {ja_n[2]}]
-#set_property IOSTANDARD LVCMOS33 [get_ports {ja_n[2]}]
+##Pin 4 - Yaw (Rudder)
+set_property PACKAGE_PIN K14 [get_ports {pwm_in[3]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {pwm_in[3]}]
 
-##IO_L24P_T3_AD15P_35
-#set_property PACKAGE_PIN K16 [get_ports {ja_p[2]}]
-#set_property IOSTANDARD LVCMOS33 [get_ports {ja_p[2]}]
+##Pin 7 - Arm (Gear)
+set_property PACKAGE_PIN N16 [get_ports {pwm_in[4]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {pwm_in[4]}]
 
-##IO_L20N_T3_AD6N_35
-#set_property PACKAGE_PIN J14 [get_ports {ja_n[3]}]
+##Pin 8 - Flight Mode (AUX1)
+set_property PACKAGE_PIN L15 [get_ports {pwm_in[5]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {pwm_in[5]}]
+
+##Pin 9
+#set_property PACKAGE_PIN J16 [get_ports {ja_n[3]}]
 #set_property IOSTANDARD LVCMOS33 [get_ports {ja_n[3]}]
 
-##IO_L20P_T3_AD6P_35
-#set_property PACKAGE_PIN K14 [get_ports {ja_p[3]}]
+##Pin 10
+#set_property PACKAGE_PIN J14 [get_ports {ja_p[3]}]
 #set_property IOSTANDARD LVCMOS33 [get_ports {ja_p[3]}]
 
-##Pmod Header JB
-##IO_L15N_T2_DQS_34
-#set_property PACKAGE_PIN U20 [get_ports {jb_n[0]}]
-#set_property IOSTANDARD LVCMOS33 [get_ports {jb_n[0]}]
+##########ESC PWM###########
+#########Pmod Header JB#########'
 
-##IO_L15P_T2_DQS_34
-#set_property PACKAGE_PIN T20 [get_ports {jb_p[0]}]
-#set_property IOSTANDARD LVCMOS33 [get_ports {jb_p[0]}]
+##Pin 1 - Motor 1
+set_property PACKAGE_PIN T20 [get_ports {pwm_out[0]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {pwm_out[0]}]
 
-##IO_L16N_T2_34
-#set_property PACKAGE_PIN W20 [get_ports {jb_n[1]}]
-#set_property IOSTANDARD LVCMOS33 [get_ports {jb_n[1]}]
+##Pin 2 - Motor 2
+set_property PACKAGE_PIN U20 [get_ports {pwm_out[1]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {pwm_out[1]}]
 
-##IO_L16P_T2_34
-#set_property PACKAGE_PIN V20 [get_ports {jb_p[1]}]
-#set_property IOSTANDARD LVCMOS33 [get_ports {jb_p[1]}]
+##Pin 3 - Motor 3
+set_property PACKAGE_PIN V20 [get_ports {pwm_out[2]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {pwm_out[2]}]
 
-##IO_L17N_T2_34
-#set_property PACKAGE_PIN Y19 [get_ports {jb_n[2]}]
-#set_property IOSTANDARD LVCMOS33 [get_ports {jb_n[2]}]
+##Pin 4 - Motor 4
+set_property PACKAGE_PIN W20 [get_ports {pwm_out[3]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {pwm_out[3]}]
 
-##IO_L17P_T2_34
+##Pin 7 - 
 #set_property PACKAGE_PIN Y18 [get_ports {jb_p[2]}]
 #set_property IOSTANDARD LVCMOS33 [get_ports {jb_p[2]}]
 
-##IO_L22N_T3_34
-#set_property PACKAGE_PIN W19 [get_ports {jb_n[3]}]
-#set_property IOSTANDARD LVCMOS33 [get_ports {jb_n[3]}]
+##Pin 8 -
+#set_property PACKAGE_PIN Y19 [get_ports {jb_n[2]}]
+#set_property IOSTANDARD LVCMOS33 [get_ports {jb_n[2]}]
 
-##IO_L22P_T3_34
+##Pin 9 -
 #set_property PACKAGE_PIN W18 [get_ports {jb_p[3]}]
 #set_property IOSTANDARD LVCMOS33 [get_ports {jb_p[3]}]
+
+##Pin 10 -
+#set_property PACKAGE_PIN W19 [get_ports {jb_n[3]}]
+#set_property IOSTANDARD LVCMOS33 [get_ports {jb_n[3]}]
 
 #########Pmod Header JC#########
 

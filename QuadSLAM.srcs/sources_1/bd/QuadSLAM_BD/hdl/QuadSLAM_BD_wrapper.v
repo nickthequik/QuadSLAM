@@ -1,7 +1,7 @@
 //Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2016.2 (win64) Build 1577090 Thu Jun  2 16:32:40 MDT 2016
-//Date        : Fri Nov 03 17:42:28 2017
+//Date        : Tue Nov 14 10:10:05 2017
 //Host        : nickthequik running 64-bit major release  (build 9200)
 //Command     : generate_target QuadSLAM_BD_wrapper.bd
 //Design      : QuadSLAM_BD_wrapper
@@ -39,6 +39,8 @@ module QuadSLAM_BD_wrapper
     iic_0_scl_io,
     iic_0_sda_io,
     leds_tri_o,
+    pwm_in,
+    pwm_out,
     vga_data_out,
     vga_hsync_out,
     vga_vsync_out);
@@ -71,6 +73,8 @@ module QuadSLAM_BD_wrapper
   inout iic_0_scl_io;
   inout iic_0_sda_io;
   output [3:0]leds_tri_o;
+  input [5:0]pwm_in;
+  output [3:0]pwm_out;
   output [15:0]vga_data_out;
   output vga_hsync_out;
   output vga_vsync_out;
@@ -110,6 +114,8 @@ module QuadSLAM_BD_wrapper
   wire iic_0_sda_o;
   wire iic_0_sda_t;
   wire [3:0]leds_tri_o;
+  wire [5:0]pwm_in;
+  wire [3:0]pwm_out;
   wire [15:0]vga_data_out;
   wire vga_hsync_out;
   wire vga_vsync_out;
@@ -148,6 +154,8 @@ module QuadSLAM_BD_wrapper
         .camera_vid_hsync_in(camera_vid_hsync_in),
         .camera_vid_vsync_in(camera_vid_vsync_in),
         .leds_tri_o(leds_tri_o),
+        .pwm_in(pwm_in),
+        .pwm_out(pwm_out),
         .vga_data_out(vga_data_out),
         .vga_hsync_out(vga_hsync_out),
         .vga_vsync_out(vga_vsync_out));

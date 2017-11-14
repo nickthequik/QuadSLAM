@@ -9,7 +9,7 @@ library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
 
-entity bd_776d_vsc_0_v_vscaler_mac_muladd_8s_8ns_14ns_16_1_DSP48_3 is
+entity bd_776d_vsc_0_v_vscaler_mac_muladd_8s_8ns_14ns_16_1_DSP48_1 is
 port (
     in0:  in  std_logic_vector(8 - 1 downto 0);
     in1:  in  std_logic_vector(8 - 1 downto 0);
@@ -17,11 +17,11 @@ port (
     dout: out std_logic_vector(16 - 1 downto 0));
 
     attribute use_dsp48 : string;
-    attribute use_dsp48 of bd_776d_vsc_0_v_vscaler_mac_muladd_8s_8ns_14ns_16_1_DSP48_3 : entity is "yes";
+    attribute use_dsp48 of bd_776d_vsc_0_v_vscaler_mac_muladd_8s_8ns_14ns_16_1_DSP48_1 : entity is "yes";
 
 end entity;
 
-architecture behav of bd_776d_vsc_0_v_vscaler_mac_muladd_8s_8ns_14ns_16_1_DSP48_3 is
+architecture behav of bd_776d_vsc_0_v_vscaler_mac_muladd_8s_8ns_14ns_16_1_DSP48_1 is
     signal a       : signed(25-1 downto 0);
     signal b       : signed(18-1 downto 0);
     signal c       : signed(48-1 downto 0);
@@ -58,7 +58,7 @@ entity bd_776d_vsc_0_v_vscaler_mac_muladd_8s_8ns_14ns_16_1 is
 end entity;
 
 architecture arch of bd_776d_vsc_0_v_vscaler_mac_muladd_8s_8ns_14ns_16_1 is
-    component bd_776d_vsc_0_v_vscaler_mac_muladd_8s_8ns_14ns_16_1_DSP48_3 is
+    component bd_776d_vsc_0_v_vscaler_mac_muladd_8s_8ns_14ns_16_1_DSP48_1 is
         port (
             in0 : IN STD_LOGIC_VECTOR;
             in1 : IN STD_LOGIC_VECTOR;
@@ -69,7 +69,7 @@ architecture arch of bd_776d_vsc_0_v_vscaler_mac_muladd_8s_8ns_14ns_16_1 is
 
 
 begin
-    bd_776d_vsc_0_v_vscaler_mac_muladd_8s_8ns_14ns_16_1_DSP48_3_U :  component bd_776d_vsc_0_v_vscaler_mac_muladd_8s_8ns_14ns_16_1_DSP48_3
+    bd_776d_vsc_0_v_vscaler_mac_muladd_8s_8ns_14ns_16_1_DSP48_1_U :  component bd_776d_vsc_0_v_vscaler_mac_muladd_8s_8ns_14ns_16_1_DSP48_1
     port map (
         in0 => din0,
         in1 => din1,

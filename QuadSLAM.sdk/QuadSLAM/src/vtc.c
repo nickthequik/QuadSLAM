@@ -1,5 +1,7 @@
 
 #include "vtc.h"
+#include "led.h"
+#include "gpio.h"
 
 XVtc VTC_gen, VTC_det;
 
@@ -33,9 +35,19 @@ void VTC_init(void)
 
 	XVtc_EnableDetector(&VTC_det);
 }
-int VTC_detector_locked(void)
+
+void VTC_detector_locked(void)
 {
-	return (XVtc_GetDetectionStatus(&VTC_det) | XVTC_STAT_LOCKED_MASK);
+	if (XVtc_GetDetectionStatus(&VTC_det) | XVTC_STAT_LOCKED_MASK)
+	{
+		LED_set(0, LED_ON);
+		XGpio_DiscreteWrite(&xGpio2, 2, 1);
+	}
+	else
+	{
+		LED_set(0, LED_OFF);
+		XGpio_DiscreteWrite(&xGpio2, 2, 0);
+	}
 }
 
 
