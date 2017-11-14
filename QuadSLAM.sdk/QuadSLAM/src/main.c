@@ -1,168 +1,84 @@
 
-/* Standard includes. */
-#include <stdio.h>
+// Standard Library includes
+#include <stdarg.h>
 #include <limits.h>
+#include <platform.h>
 
-/* Scheduler include files. */
+// FreeRTOS includes
 #include "FreeRTOS.h"
 #include "task.h"
 #include "semphr.h"
 
-/* Xilinx includes. */
-#include "platform.h"
+// Xilinx includes
 #include "xparameters.h"
 #include "xscutimer.h"
 #include "xscugic.h"
 #include "xil_exception.h"
 
-#define mainQUEUE_SEND_TASK_PRIORITY		( tskIDLE_PRIORITY + 2 )
-#define	mainQUEUE_RECEIVE_TASK_PRIORITY		( tskIDLE_PRIORITY + 1 )
-#define mainQUEUE_SEND_FREQUENCY_MS			( 2000 / portTICK_PERIOD_MS )
-#define mainQUEUE_LENGTH					( 1 )
-#define mainTASK_LED						( 0 )
+// Our includes
+#include "gpio.h"
+#include "uart.h"
+#include "led.h"
+#include "stereo_camera.h"
+#include "vprocsub.h"
+#include "vdma.h"
+#include "vtc.h"
+#include "pwm.h"
+#include "mpu9250.h"
 
 extern XScuGic xInterruptController;
-
-static void prvSetupHardware( void );
-/*
- * The Xilinx projects use a BSP that do not allow the start up code to be
- * altered easily.  Therefore the vector table used by FreeRTOS is defined in
- * FreeRTOS_asm_vectors.S, which is part of this project.  Switch to use the
- * FreeRTOS vector table.
- */
 extern void vPortInstallFreeRTOSVectorTable( void );
 
+static void prvSetupHardware( void );
 void vApplicationMallocFailedHook( void );
 void vApplicationIdleHook( void );
 void vApplicationStackOverflowHook( TaskHandle_t pxTask, char *pcTaskName );
-void vApplicationTickHook( void );
 
 // FreeRTOS Tasks
-static void prvQueueReceiveTask( void *pvParameters );
-static void prvQueueSendTask( void *pvParameters );
-
-static QueueHandle_t xQueue;
-uint32_t xBlinkRate;
-
-#include "xgpio.h"
-
-#define partstNUM_LEDS			( 1 )
-#define partstDIRECTION_OUTPUT	( 1 )
-#define partstOUTPUT_ENABLED	( 1 )
-#define partstLED_OUTPUT		( 1 )
-#define partstLED_INPUT			( 2 )
-#define partstGPIO_OUTPUTS      ( 0 )
-#define partstGPIO_INPUTS       ( 0xF )
-
-XGpio xGpio;
-UBaseType_t led_state = 0;
-
-void vParTestInitialise( void )
-{
-	XGpio_Config *pxConfigPtr;
-	BaseType_t xStatus;
-
-	/* Initialise the GPIO driver. */
-	pxConfigPtr = XGpio_LookupConfig(XPAR_AXI_GPIO_0_DEVICE_ID);
-	xStatus = XGpio_CfgInitialize( &xGpio, pxConfigPtr, pxConfigPtr->BaseAddress );
-	configASSERT( xStatus == XST_SUCCESS );
-	( void ) xStatus; /* Remove compiler warning if configASSERT() is not defined. */
-
-	//XGpio_SetDataDirection(&xGpio, partstLED_INPUT, partstGPIO_INPUTS);
-	XGpio_SetDataDirection(&xGpio, partstLED_OUTPUT, partstGPIO_OUTPUTS);
-	XGpio_DiscreteWrite (&xGpio, partstLED_OUTPUT, 0);
-}
-
-void vParTestSetLED(UBaseType_t uxLED, BaseType_t xValue)
-{
-	uint32_t i;
-	UBaseType_t uxMask = 1, uxOnMask = 0, uxOffMask = 0;
-
-	for (i = 0; i < 4; i++)
-	{
-		if (uxLED & uxMask)
-		{
-			if (xValue & uxMask)
-				uxOnMask |= uxMask;
-			else
-				uxOffMask |= uxMask;
-		}
-		uxMask = uxMask << 1;
-	}
-	XGpio_DiscreteSet(&xGpio, partstLED_OUTPUT, uxOnMask);
-	XGpio_DiscreteClear(&xGpio, partstLED_OUTPUT, uxOffMask);
-}
-
-void vParTestToggleLED(UBaseType_t uxLED)
-{
-	uint32_t sw_state = 0xFFFF;
-
-	//sw_state = XGpio_DiscreteRead(&xGpio, partstLED_INPUT);
-
-	led_state ^= uxLED;
-	led_state &= sw_state;
-
-	XGpio_DiscreteWrite(&xGpio, partstLED_OUTPUT, led_state);
-}
+static void init_task( void *parameters );
 
 int main( void )
 {
 	prvSetupHardware();
+	xTaskCreate( init_task, "init_task", configMINIMAL_STACK_SIZE, NULL, 1, NULL );
+	vTaskStartScheduler();
 
-	/* Create the queue. */
-	xQueue = xQueueCreate( mainQUEUE_LENGTH, sizeof(uint32_t) );
-
-	if( xQueue != NULL )
-	{
-		// Start the two tasks as described in the comments at the top of this file.
-		xTaskCreate( prvQueueReceiveTask, "Rx", configMINIMAL_STACK_SIZE, NULL, mainQUEUE_RECEIVE_TASK_PRIORITY, NULL );
-		xTaskCreate( prvQueueSendTask, "Tx", configMINIMAL_STACK_SIZE, NULL, mainQUEUE_SEND_TASK_PRIORITY, NULL );
-
-		// Start the tasks and timer running.
-		vTaskStartScheduler();
-	}
 	for( ;; );
 	return 0;
 }
 
-static void prvQueueSendTask( void *pvParameters )
+static void init_task(void *parameters)
 {
-	TickType_t xNextWakeTime;
-	uint32_t ulValueToSend;
-	uint32_t blink_rates[5] = {250, 125, 83, 63, 50};
-	uint8_t i = 0;
+	(void) parameters;
+	PWM_input pwm_input;
+	uint16_t pwm_out[4] = {900, 900, 900, 900};
 
-	( void ) pvParameters;
-	xNextWakeTime = xTaskGetTickCount();
+	UART_usb_init();
+	GPIO_init();
+	//VDMA_init();
+	//VPSS_init();
+	//VTC_init();
+	//STEREO_CAMERA_init();
 
-	for( ;; )
-	{
-		ulValueToSend = blink_rates[i++];
-		xQueueSend( xQueue, &ulValueToSend, 0U );
-
-		if (i == 5)
-			i = 0;
-
-		vTaskDelayUntil( &xNextWakeTime, mainQUEUE_SEND_FREQUENCY_MS );
-	}
-}
-
-static void prvQueueReceiveTask( void *pvParameters )
-{
-	TickType_t xLastWakeTime;
-	uint32_t ulReceivedValue;
-
-	( void ) pvParameters;
-
-	vParTestInitialise();
-	xLastWakeTime = xTaskGetTickCount();
+	init_pwm_detector();
+	init_pwm_generator();
+	set_pwm_output(pwm_out);
+	enable_pwm_generator();
 
 	while(1)
 	{
-		xQueueReceive(xQueue, &ulReceivedValue, 0);
+		clk_wiz_locked();
+		video_out_locked();
+		VTC_detector_locked();
 
-		vParTestToggleLED(0xFFFF);
-		vTaskDelayUntil(&xLastWakeTime, pdMS_TO_TICKS(ulReceivedValue));
+		get_pwm_input(&pwm_input);
+		pwm_out[0] = pwm_input.throttle;
+		pwm_out[1] = pwm_input.throttle;
+		pwm_out[2] = pwm_input.throttle;
+		pwm_out[3] = pwm_input.throttle;
+		set_pwm_output(pwm_out);
+
+		MPU9250_print_orientation();
 	}
 }
 
@@ -188,55 +104,12 @@ static void prvSetupHardware( void )
 	/* Install a default handler for each GIC interrupt. */
 	xStatus = XScuGic_CfgInitialize(&xInterruptController, pxGICConfig, pxGICConfig->CpuBaseAddress);
 	configASSERT( xStatus == XST_SUCCESS );
-	( void ) xStatus; /* Remove compiler warning if configASSERT() is not defined. */
 
 	/* The Xilinx projects use a BSP that do not allow the start up code to be
 	altered easily.  Therefore the vector table used by FreeRTOS is defined in
 	FreeRTOS_asm_vectors.S, which is part of this project.  Switch to use the
 	FreeRTOS vector table. */
 	vPortInstallFreeRTOSVectorTable();
-}
-
-void vApplicationMallocFailedHook( void )
-{
-	/* Called if a call to pvPortMalloc() fails because there is insufficient
-	free memory available in the FreeRTOS heap.  pvPortMalloc() is called
-	internally by FreeRTOS API functions that create tasks, queues, software
-	timers, and semaphores.  The size of the FreeRTOS heap is set by the
-	configTOTAL_HEAP_SIZE configuration constant in FreeRTOSConfig.h. */
-	taskDISABLE_INTERRUPTS();
-	for( ;; );
-}
-
-void vApplicationStackOverflowHook( TaskHandle_t pxTask, char *pcTaskName )
-{
-	( void ) pcTaskName;
-	( void ) pxTask;
-
-	/* Run time stack overflow checking is performed if
-	configCHECK_FOR_STACK_OVERFLOW is defined to 1 or 2.  This hook
-	function is called if a stack overflow is detected. */
-	taskDISABLE_INTERRUPTS();
-	for( ;; );
-}
-
-void vApplicationIdleHook( void )
-{
-volatile size_t xFreeHeapSpace, xMinimumEverFreeHeapSpace;
-
-	/* This is just a trivial example of an idle hook.  It is called on each
-	cycle of the idle task.  It must *NOT* attempt to block.  In this case the
-	idle task just queries the amount of FreeRTOS heap that remains.  See the
-	memory management section on the http://www.FreeRTOS.org web site for memory
-	management options.  If there is a lot of heap memory free then the
-	configTOTAL_HEAP_SIZE value in FreeRTOSConfig.h can be reduced to free up
-	RAM. */
-	xFreeHeapSpace = xPortGetFreeHeapSize();
-	xMinimumEverFreeHeapSpace = xPortGetMinimumEverFreeHeapSize();
-
-	/* Remove compiler warning about xFreeHeapSpace being set but never used. */
-	( void ) xFreeHeapSpace;
-	( void ) xMinimumEverFreeHeapSpace;
 }
 
 void vAssertCalled( const char * pcFile, unsigned long ulLine )
@@ -257,31 +130,6 @@ volatile unsigned long ul = 0;
 	}
 	taskEXIT_CRITICAL();
 }
-
-void vApplicationTickHook( void )
-{
-	#if( mainSELECTED_APPLICATION == 1 )
-	{
-		/* The full demo includes a software timer demo/test that requires
-		prodding periodically from the tick interrupt. */
-		vTimerPeriodicISRTests();
-
-		/* Call the periodic queue overwrite from ISR demo. */
-		vQueueOverwritePeriodicISRDemo();
-
-		/* Call the periodic event group from ISR demo. */
-		vPeriodicEventGroupsProcessing();
-
-		/* Use task notifications from an interrupt. */
-		xNotifyTaskFromISR();
-
-		/* Use mutexes from interrupts. */
-		vInterruptSemaphorePeriodicTest();
-	}
-	#endif
-}
-
-//who the fuck wrote this shit hack below?
 
 void *memcpy( void *pvDest, const void *pvSource, size_t xBytes )
 {
