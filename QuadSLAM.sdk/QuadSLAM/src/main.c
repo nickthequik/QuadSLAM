@@ -1,6 +1,6 @@
 
 // Standard Library includes
-#include <stdio.h>
+#include <stdarg.h>
 #include <limits.h>
 #include <platform.h>
 
@@ -14,10 +14,6 @@
 #include "xscutimer.h"
 #include "xscugic.h"
 #include "xil_exception.h"
-#include "xdebug.h"
-#include "xil_cache_l.h"
-#include "xpseudo_asm_gcc.h"
-#include "xvprocss.h"
 
 // Our includes
 #include "gpio.h"
@@ -28,6 +24,7 @@
 #include "vdma.h"
 #include "vtc.h"
 #include "pwm.h"
+#include "mpu9250.h"
 
 extern XScuGic xInterruptController;
 extern void vPortInstallFreeRTOSVectorTable( void );
@@ -80,6 +77,8 @@ static void init_task(void *parameters)
 		pwm_out[2] = pwm_input.throttle;
 		pwm_out[3] = pwm_input.throttle;
 		set_pwm_output(pwm_out);
+
+		MPU9250_print_orientation();
 	}
 }
 

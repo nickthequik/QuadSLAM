@@ -36,10 +36,10 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/QuadSLAM/FreeRTOS/Source/portable/GCC/ARM_CA9}&quot;"/>
 								</option>
 								<option id="xilinx.gnu.compiler.inferred.swplatform.flags.186300149" name="Software Platform Inferred Flags" superClass="xilinx.gnu.compiler.inferred.swplatform.flags" value="" valueType="string"/>
-								<option id="xilinx.gnu.compiler.symbols.defined.229578579" superClass="xilinx.gnu.compiler.symbols.defined" valueType="definedSymbols">
+								<option id="xilinx.gnu.compiler.symbols.defined.229578579" name="Defined symbols (-D)" superClass="xilinx.gnu.compiler.symbols.defined" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="DEBUG"/>
 								</option>
-								<option id="xilinx.gnu.compiler.symbols.undefined.21614964" superClass="xilinx.gnu.compiler.symbols.undefined" valueType="undefDefinedSymbols">
+								<option id="xilinx.gnu.compiler.symbols.undefined.21614964" name="Undefined symbols (-U)" superClass="xilinx.gnu.compiler.symbols.undefined" valueType="undefDefinedSymbols">
 									<listOptionValue builtIn="false" value="NDEBUG"/>
 								</option>
 								<inputType id="xilinx.gnu.armv7.c.compiler.input.1860654777" name="C source files" superClass="xilinx.gnu.armv7.c.compiler.input"/>
@@ -67,7 +67,9 @@
 									<listOptionValue builtIn="false" value="-Map"/>
 									<listOptionValue builtIn="false" value="RTOSDemo.map"/>
 								</option>
-								<option id="xilinx.gnu.c.link.option.libs.955445541" name="Libraries (-l)" superClass="xilinx.gnu.c.link.option.libs"/>
+								<option id="xilinx.gnu.c.link.option.libs.955445541" name="Libraries (-l)" superClass="xilinx.gnu.c.link.option.libs" valueType="libs">
+									<listOptionValue builtIn="false" value="m"/>
+								</option>
 								<option id="xilinx.gnu.c.link.option.paths.2143524081" name="Library search path (-L)" superClass="xilinx.gnu.c.link.option.paths" valueType="libPaths">
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/standalone_bsp_1}&quot;"/>
 								</option>
