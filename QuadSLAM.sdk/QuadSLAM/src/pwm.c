@@ -9,6 +9,8 @@ void init_pwm_detector(void)
 	XGpio_DiscreteWrite(&xGpio4, GPIO_CHANNEL_2, 0);
 }
 
+//900 - 1900
+//throttle < 1000, lost connection
 void get_pwm_input(PWM_input *pwm_input)
 {
 	uint32_t pwm_read_1, pwm_read_2, pwm_read_3;
@@ -49,6 +51,7 @@ void disable_pwm_generator(void)
 	XGpio_DiscreteWrite(&xGpio5, GPIO_CHANNEL_1, pwm_gen_ctrl_1);
 }
 
+//in microseconds
 void set_pwm_output(uint16_t pwm[4])
 {
 	pwm_gen_ctrl_1 &= (PWM_ENABLE_MASK | PWM_RESET_MASK);

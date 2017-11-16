@@ -49,7 +49,7 @@ uint8_t Mscale = MFS_16BITS;
 
 uint8_t Mmode = 0x02;
 
-float pitch, yaw, roll;
+float euler_angles[3];
 float temperature;   // Stores the real internal chip temperature in Celsius
 int16_t tempCount;   // Temperature raw count output
 uint32_t delt_t = 0; // Used to control display output rate
@@ -89,15 +89,15 @@ void MPU9250_i2cPs_init()
 
 	XIicPs_Config* i2c_config;
 
-	i2c_config = XIicPs_LookupConfig( XPAR_PS7_I2C_1_DEVICE_ID );
+	//i2c_config = XIicPs_LookupConfig( XPAR_PS7_I2C_1_DEVICE_ID );
 
-	status = XIicPs_CfgInitialize( &i2c_instance, i2c_config, XPAR_PS7_I2C_1_BASEADDR );
+	//status = XIicPs_CfgInitialize( &i2c_instance, i2c_config, XPAR_PS7_I2C_1_BASEADDR );
 	while(status != XST_SUCCESS);
 
-	status = XIicPs_SelfTest( &i2c_instance );
+	//status = XIicPs_SelfTest( &i2c_instance );
 	while(status != XST_SUCCESS);
 
-	status = XIicPs_SetSClk( &i2c_instance, MPU9250_IIC_SCLK_RATE );
+	//status = XIicPs_SetSClk( &i2c_instance, MPU9250_IIC_SCLK_RATE );
 	while(status != XST_SUCCESS);
 }
 
@@ -602,23 +602,23 @@ void MPU9250_print_orientation(void)
 	//{
 		//count = millis();
 
-		yaw   = atan2(2.0f * (*(getQ()+1) * *(getQ()+2) + *getQ() *
+		euler_angles[0]   = atan2(2.0f * (*(getQ()+1) * *(getQ()+2) + *getQ() *
 			  *(getQ()+3)), *getQ() * *getQ() + *(getQ()+1) * *(getQ()+1)
 			  - *(getQ()+2) * *(getQ()+2) - *(getQ()+3) * *(getQ()+3));
-		pitch = -asin(2.0f * (*(getQ()+1) * *(getQ()+3) - *getQ() *
+		euler_angles[1] = -asin(2.0f * (*(getQ()+1) * *(getQ()+3) - *getQ() *
 			  *(getQ()+2)));
-		roll  = atan2(2.0f * (*getQ() * *(getQ()+1) + *(getQ()+2) *
+		euler_angles[2]  = atan2(2.0f * (*getQ() * *(getQ()+1) + *(getQ()+2) *
 			  *(getQ()+3)), *getQ() * *getQ() - *(getQ()+1) * *(getQ()+1)
 			  - *(getQ()+2) * *(getQ()+2) + *(getQ()+3) * *(getQ()+3));
-		pitch *= RAD_TO_DEG;
-		yaw   *= RAD_TO_DEG;
+		euler_angles[1] *= RAD_TO_DEG;
+		euler_angles[0]   *= RAD_TO_DEG;
 		// Declination of SparkFun Electronics (40°05'26.6"N 105°11'05.9"W) is
 		// 	8° 30' E  ± 0° 21' (or 8.5°) on 2016-07-19
 		// - http://www.ngdc.noaa.gov/geomag-web/#declination
-		yaw   -= 8.5;
-		roll  *= RAD_TO_DEG;
+		euler_angles[0]   -= 8.5;
+		euler_angles[2]  *= RAD_TO_DEG;
 
-		printf("Yaw, Pitch, Roll, rate: %d %d %d %d\n\r", (int)yaw, (int)pitch, (int)roll, (int)(sumCount/sum));
+		printf("Yaw, Pitch, Roll, rate: %d %d %d %d\n\r", (int)euler_angles[0], (int)euler_angles[1], (int)euler_angles[2], (int)(sumCount/sum));
 	//}
 }
 
