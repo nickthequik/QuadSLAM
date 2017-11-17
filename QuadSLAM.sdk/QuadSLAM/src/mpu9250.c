@@ -20,6 +20,8 @@
 
 #include "xtime_l.h"
 
+#define MPU9250_INIT_TIME 7
+
 XIicPs i2c_instance;
 
 enum Ascale {
@@ -48,6 +50,10 @@ uint8_t Ascale = AFS_2G;
 uint8_t Mscale = MFS_16BITS;
 
 uint8_t Mmode = 0x02;
+
+float yaw_offset;
+float pitch_offset;
+float roll_offset;
 
 float euler_angles[3];
 float temperature;   // Stores the real internal chip temperature in Celsius
@@ -81,6 +87,20 @@ void IMU_init(void)
 	calibrateMPU9250(gyroBias, accelBias);
 	MPU9250_init();
 	initAK8963(magCalibration);
+
+	XTime init_time, time;
+	XTime_GetTime(&init_time);
+	XTime_GetTime(&time);
+
+	while((time - init_time)/ 325000000.0f < MPU9250_INIT_TIME)
+	{
+		XTime_GetTime(&time);
+		IMU_update_orientation();
+	}
+	yaw_offset = euler_angles[0];
+	pitch_offset = euler_angles[1];
+	roll_offset = euler_angles[2];
+
 }
 
 void MPU9250_i2cPs_init()
@@ -89,15 +109,15 @@ void MPU9250_i2cPs_init()
 
 	XIicPs_Config* i2c_config;
 
-	//i2c_config = XIicPs_LookupConfig( XPAR_PS7_I2C_1_DEVICE_ID );
+	i2c_config = XIicPs_LookupConfig( XPAR_PS7_I2C_1_DEVICE_ID );
 
-	//status = XIicPs_CfgInitialize( &i2c_instance, i2c_config, XPAR_PS7_I2C_1_BASEADDR );
+	status = XIicPs_CfgInitialize( &i2c_instance, i2c_config, XPAR_PS7_I2C_1_BASEADDR );
 	while(status != XST_SUCCESS);
 
-	//status = XIicPs_SelfTest( &i2c_instance );
+	status = XIicPs_SelfTest( &i2c_instance );
 	while(status != XST_SUCCESS);
 
-	//status = XIicPs_SetSClk( &i2c_instance, MPU9250_IIC_SCLK_RATE );
+	status = XIicPs_SetSClk( &i2c_instance, MPU9250_IIC_SCLK_RATE );
 	while(status != XST_SUCCESS);
 }
 
@@ -541,7 +561,7 @@ void MPU9250SelfTest(float * destination) // Should return percent deviation fro
   }
 }
 
-void MPU9250_print_orientation(void)
+void IMU_update_orientation(void)
 {
 	if (I2C_read_byte(&i2c_instance, MPU9250_SLAVE_ADDRESS, INT_STATUS) & 0x01)
 	{
@@ -597,28 +617,26 @@ void MPU9250_print_orientation(void)
 	MadgwickQuaternionUpdate(ax, ay, az, gx*DEG_TO_RAD, gy*DEG_TO_RAD, gz*DEG_TO_RAD,  my,  mx, mz, deltat);
 	//MahonyQuaternionUpdate(ax, ay, az, gx*DEG_TO_RAD, gy*DEG_TO_RAD, gz*DEG_TO_RAD, my, mx, mz, deltat);
 
-	//delt_t = millis() - count;
-	//if (delt_t > 500)
-	//{
-		//count = millis();
+	euler_angles[0]   = atan2(2.0f * (*(getQ()+1) * *(getQ()+2) + *getQ() *
+		  *(getQ()+3)), *getQ() * *getQ() + *(getQ()+1) * *(getQ()+1)
+		  - *(getQ()+2) * *(getQ()+2) - *(getQ()+3) * *(getQ()+3));
+	euler_angles[1] = -asin(2.0f * (*(getQ()+1) * *(getQ()+3) - *getQ() *
+		  *(getQ()+2)));
+	euler_angles[2]  = atan2(2.0f * (*getQ() * *(getQ()+1) + *(getQ()+2) *
+		  *(getQ()+3)), *getQ() * *getQ() - *(getQ()+1) * *(getQ()+1)
+		  - *(getQ()+2) * *(getQ()+2) + *(getQ()+3) * *(getQ()+3));
+	euler_angles[1] *= RAD_TO_DEG;
+	euler_angles[0]   *= RAD_TO_DEG;
+	// Declination of SparkFun Electronics (40°05'26.6"N 105°11'05.9"W) is
+	// 	8° 30' E  ± 0° 21' (or 8.5°) on 2016-07-19
+	// - http://www.ngdc.noaa.gov/geomag-web/#declination
+	euler_angles[0]   -= 8.5;
+	euler_angles[2]  *= RAD_TO_DEG;
 
-		euler_angles[0]   = atan2(2.0f * (*(getQ()+1) * *(getQ()+2) + *getQ() *
-			  *(getQ()+3)), *getQ() * *getQ() + *(getQ()+1) * *(getQ()+1)
-			  - *(getQ()+2) * *(getQ()+2) - *(getQ()+3) * *(getQ()+3));
-		euler_angles[1] = -asin(2.0f * (*(getQ()+1) * *(getQ()+3) - *getQ() *
-			  *(getQ()+2)));
-		euler_angles[2]  = atan2(2.0f * (*getQ() * *(getQ()+1) + *(getQ()+2) *
-			  *(getQ()+3)), *getQ() * *getQ() - *(getQ()+1) * *(getQ()+1)
-			  - *(getQ()+2) * *(getQ()+2) + *(getQ()+3) * *(getQ()+3));
-		euler_angles[1] *= RAD_TO_DEG;
-		euler_angles[0]   *= RAD_TO_DEG;
-		// Declination of SparkFun Electronics (40°05'26.6"N 105°11'05.9"W) is
-		// 	8° 30' E  ± 0° 21' (or 8.5°) on 2016-07-19
-		// - http://www.ngdc.noaa.gov/geomag-web/#declination
-		euler_angles[0]   -= 8.5;
-		euler_angles[2]  *= RAD_TO_DEG;
+	euler_angles[0] -= yaw_offset;
+	euler_angles[1] -= pitch_offset;
+	euler_angles[2] -= roll_offset;
 
-		printf("Yaw, Pitch, Roll, rate: %d %d %d %d\n\r", (int)euler_angles[0], (int)euler_angles[1], (int)euler_angles[2], (int)(sumCount/sum));
-	//}
+		//printf("Yaw, Pitch, Roll, rate: %d %d %d %d\n\r", (int)euler_angles[0], (int)euler_angles[1], (int)euler_angles[2], (int)(sumCount/sum));
 }
 

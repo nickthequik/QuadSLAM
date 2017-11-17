@@ -20,9 +20,9 @@ void get_pwm_input(PWM_input *pwm_input)
 	pwm_read_3 = XGpio_DiscreteRead(&xGpio4, GPIO_CHANNEL_1);
 
 	pwm_input->throttle = 2 * (THROTTLE_MASK & pwm_read_1);
-	pwm_input->roll = 2 * ((ROLL_MASK & pwm_read_1) >> 10);
+	pwm_input->roll = 2 * ((ROLL_MASK & pwm_read_1) >> 11);
 	pwm_input->pitch = 2 * (PITCH_MASK & pwm_read_2);
-	pwm_input->yaw = 2 * ((YAW_MASK & pwm_read_2) >> 10);
+	pwm_input->yaw = 2 * ((YAW_MASK & pwm_read_2) >> 11);
 	pwm_input->arm = 2 * (ARM_MASK & pwm_read_3);
 	pwm_input->flight_mode = 2 * ((FLIGHT_MODE_MASK & pwm_read_3) >> 10);
 }

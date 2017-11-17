@@ -187,6 +187,6 @@ void MPU9250SelfTest(float * destination);
 
 void initAK8963(float * destination);
 
-void MPU9250_print_orientation(void);
+void IMU_update_orientation(void);
 
 #endif /* SRC_MPU9250_H_ */

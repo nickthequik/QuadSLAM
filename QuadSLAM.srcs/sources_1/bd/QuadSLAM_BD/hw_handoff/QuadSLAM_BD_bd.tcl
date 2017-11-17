@@ -424,6 +424,7 @@ CONFIG.PCW_EN_EMIO_WP_SDIO0 {1} \
 CONFIG.PCW_EN_ENET0 {1} \
 CONFIG.PCW_EN_GPIO {0} \
 CONFIG.PCW_EN_I2C0 {1} \
+CONFIG.PCW_EN_I2C1 {1} \
 CONFIG.PCW_EN_QSPI {1} \
 CONFIG.PCW_EN_SDIO0 {1} \
 CONFIG.PCW_EN_TTC0 {1} \
@@ -469,8 +470,8 @@ CONFIG.PCW_I2C0_RESET_ENABLE {0} \
 CONFIG.PCW_I2C0_RESET_IO {<Select>} \
 CONFIG.PCW_I2C1_GRP_INT_ENABLE {0} \
 CONFIG.PCW_I2C1_GRP_INT_IO {<Select>} \
-CONFIG.PCW_I2C1_I2C1_IO {<Select>} \
-CONFIG.PCW_I2C1_PERIPHERAL_ENABLE {0} \
+CONFIG.PCW_I2C1_I2C1_IO {MIO 12 .. 13} \
+CONFIG.PCW_I2C1_PERIPHERAL_ENABLE {1} \
 CONFIG.PCW_I2C1_RESET_ENABLE {0} \
 CONFIG.PCW_I2C1_RESET_IO {<Select>} \
 CONFIG.PCW_I2C_PERIPHERAL_FREQMHZ {108.333336} \
@@ -492,14 +493,14 @@ CONFIG.PCW_MIO_11_DIRECTION {<Select>} \
 CONFIG.PCW_MIO_11_IOTYPE {<Select>} \
 CONFIG.PCW_MIO_11_PULLUP {<Select>} \
 CONFIG.PCW_MIO_11_SLEW {<Select>} \
-CONFIG.PCW_MIO_12_DIRECTION {<Select>} \
-CONFIG.PCW_MIO_12_IOTYPE {<Select>} \
-CONFIG.PCW_MIO_12_PULLUP {<Select>} \
-CONFIG.PCW_MIO_12_SLEW {<Select>} \
-CONFIG.PCW_MIO_13_DIRECTION {<Select>} \
-CONFIG.PCW_MIO_13_IOTYPE {<Select>} \
-CONFIG.PCW_MIO_13_PULLUP {<Select>} \
-CONFIG.PCW_MIO_13_SLEW {<Select>} \
+CONFIG.PCW_MIO_12_DIRECTION {inout} \
+CONFIG.PCW_MIO_12_IOTYPE {LVCMOS 3.3V} \
+CONFIG.PCW_MIO_12_PULLUP {enabled} \
+CONFIG.PCW_MIO_12_SLEW {slow} \
+CONFIG.PCW_MIO_13_DIRECTION {inout} \
+CONFIG.PCW_MIO_13_IOTYPE {LVCMOS 3.3V} \
+CONFIG.PCW_MIO_13_PULLUP {enabled} \
+CONFIG.PCW_MIO_13_SLEW {slow} \
 CONFIG.PCW_MIO_14_DIRECTION {<Select>} \
 CONFIG.PCW_MIO_14_IOTYPE {<Select>} \
 CONFIG.PCW_MIO_14_PULLUP {<Select>} \
@@ -696,8 +697,8 @@ CONFIG.PCW_MIO_9_DIRECTION {<Select>} \
 CONFIG.PCW_MIO_9_IOTYPE {<Select>} \
 CONFIG.PCW_MIO_9_PULLUP {<Select>} \
 CONFIG.PCW_MIO_9_SLEW {<Select>} \
-CONFIG.PCW_MIO_TREE_PERIPHERALS {unassigned#Quad SPI Flash#Quad SPI Flash#Quad SPI Flash#Quad SPI Flash#Quad SPI Flash#Quad SPI Flash#unassigned#unassigned#unassigned#unassigned#unassigned#unassigned#unassigned#unassigned#unassigned#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#SD 0#SD 0#SD 0#SD 0#SD 0#SD 0#unassigned#SD 0#UART 1#UART 1#unassigned#unassigned#Enet 0#Enet 0} \
-CONFIG.PCW_MIO_TREE_SIGNALS {unassigned#qspi0_ss_b#qspi0_io[0]#qspi0_io[1]#qspi0_io[2]#qspi0_io[3]#qspi0_sclk#unassigned#unassigned#unassigned#unassigned#unassigned#unassigned#unassigned#unassigned#unassigned#tx_clk#txd[0]#txd[1]#txd[2]#txd[3]#tx_ctl#rx_clk#rxd[0]#rxd[1]#rxd[2]#rxd[3]#rx_ctl#data[4]#dir#stp#nxt#data[0]#data[1]#data[2]#data[3]#clk#data[5]#data[6]#data[7]#clk#cmd#data[0]#data[1]#data[2]#data[3]#unassigned#cd#tx#rx#unassigned#unassigned#mdc#mdio} \
+CONFIG.PCW_MIO_TREE_PERIPHERALS {unassigned#Quad SPI Flash#Quad SPI Flash#Quad SPI Flash#Quad SPI Flash#Quad SPI Flash#Quad SPI Flash#unassigned#unassigned#unassigned#unassigned#unassigned#I2C 1#I2C 1#unassigned#unassigned#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#SD 0#SD 0#SD 0#SD 0#SD 0#SD 0#unassigned#SD 0#UART 1#UART 1#unassigned#unassigned#Enet 0#Enet 0} \
+CONFIG.PCW_MIO_TREE_SIGNALS {unassigned#qspi0_ss_b#qspi0_io[0]#qspi0_io[1]#qspi0_io[2]#qspi0_io[3]#qspi0_sclk#unassigned#unassigned#unassigned#unassigned#unassigned#scl#sda#unassigned#unassigned#tx_clk#txd[0]#txd[1]#txd[2]#txd[3]#tx_ctl#rx_clk#rxd[0]#rxd[1]#rxd[2]#rxd[3]#rx_ctl#data[4]#dir#stp#nxt#data[0]#data[1]#data[2]#data[3]#clk#data[5]#data[6]#data[7]#clk#cmd#data[0]#data[1]#data[2]#data[3]#unassigned#cd#tx#rx#unassigned#unassigned#mdc#mdio} \
 CONFIG.PCW_NAND_CYCLES_T_AR {1} \
 CONFIG.PCW_NAND_CYCLES_T_CLR {1} \
 CONFIG.PCW_NAND_CYCLES_T_RC {11} \
@@ -1084,6 +1085,7 @@ CONFIG.PCW_EN_EMIO_WP_SDIO0.VALUE_SRC {DEFAULT} \
 CONFIG.PCW_EN_ENET0.VALUE_SRC {DEFAULT} \
 CONFIG.PCW_EN_GPIO.VALUE_SRC {DEFAULT} \
 CONFIG.PCW_EN_I2C0.VALUE_SRC {DEFAULT} \
+CONFIG.PCW_EN_I2C1.VALUE_SRC {DEFAULT} \
 CONFIG.PCW_EN_QSPI.VALUE_SRC {DEFAULT} \
 CONFIG.PCW_EN_SDIO0.VALUE_SRC {DEFAULT} \
 CONFIG.PCW_EN_TTC0.VALUE_SRC {DEFAULT} \
@@ -1128,8 +1130,6 @@ CONFIG.PCW_I2C0_RESET_ENABLE.VALUE_SRC {DEFAULT} \
 CONFIG.PCW_I2C0_RESET_IO.VALUE_SRC {DEFAULT} \
 CONFIG.PCW_I2C1_GRP_INT_ENABLE.VALUE_SRC {DEFAULT} \
 CONFIG.PCW_I2C1_GRP_INT_IO.VALUE_SRC {DEFAULT} \
-CONFIG.PCW_I2C1_I2C1_IO.VALUE_SRC {DEFAULT} \
-CONFIG.PCW_I2C1_PERIPHERAL_ENABLE.VALUE_SRC {DEFAULT} \
 CONFIG.PCW_I2C1_RESET_ENABLE.VALUE_SRC {DEFAULT} \
 CONFIG.PCW_I2C1_RESET_IO.VALUE_SRC {DEFAULT} \
 CONFIG.PCW_I2C_PERIPHERAL_FREQMHZ.VALUE_SRC {DEFAULT} \
@@ -1884,7 +1884,7 @@ preplace netloc camera_vid_hsync_in_1 1 0 3 NJ 1030 NJ 1030 N
 preplace netloc pwm_detector_0_pwm_read_2 1 10 2 NJ 1590 4290
 preplace netloc pwm_detector_0_pwm_read_3 1 10 2 NJ 1790 4290
 preplace netloc axi_gpio_0_GPIO 1 5 8 N -290 NJ -290 NJ -290 NJ -290 NJ -290 NJ -290 NJ -290 NJ
-preplace netloc processing_system7_0_axi_periph_M06_AXI 1 2 3 NJ 330 NJ 330 1450
+preplace netloc processing_system7_0_axi_periph_M06_AXI 1 2 3 NJ 330 NJ 330 1470
 preplace netloc v_tc_0_active_video_out 1 8 2 NJ 1180 NJ
 preplace netloc processing_system7_0_DDR 1 8 5 NJ 40 NJ 40 NJ 40 NJ 40 NJ
 preplace netloc v_vid_in_axi4s_0_m_axis_video_tdata 1 4 2 NJ 1020 1910
@@ -1910,7 +1910,7 @@ preplace netloc vga_output_driver_0_vga_vsync_out 1 12 1 4580
 preplace netloc processing_system7_0_axi_periph_M01_AXI 1 2 3 NJ -160 NJ -160 NJ
 preplace netloc Scaler_to_Video_Out_0_video_out 1 9 1 3680
 preplace netloc camera_input_driver_0_camera_vid_data_out 1 3 1 N
-preplace netloc processing_system7_0_FCLK_CLK0 1 0 11 -60 160 270 610 NJ 610 1070 610 1470 420 1900 620 NJ 620 2780 350 3300 350 3630 1670 4040
+preplace netloc processing_system7_0_FCLK_CLK0 1 0 11 -60 160 270 610 NJ 610 1070 610 1490 420 1900 620 NJ 620 2780 350 3300 350 3630 1670 4040
 preplace netloc pwm_in_1 1 0 11 NJ 1680 NJ 1680 NJ 1680 NJ 1680 NJ 1680 NJ 1680 NJ 1680 NJ 1680 NJ 1680 NJ 1680 NJ
 preplace netloc v_vid_in_axi4s_0_m_axis_video_tvalid 1 4 2 NJ 1100 1850
 preplace netloc rst_processing_system7_0_100M_interconnect_aresetn 1 1 7 260 0 NJ 30 NJ 30 NJ 120 NJ 270 NJ 270 NJ
@@ -1925,7 +1925,7 @@ preplace netloc v_axi4s_vid_out_0_locked 1 5 6 NJ -110 NJ -110 NJ -110 NJ -110 N
 preplace netloc axi_gpio_5_gpio_io_o 1 10 1 4030
 preplace netloc v_tc_0_hsync_out 1 8 2 NJ 1250 NJ
 preplace netloc v_tc_0_vsync_out 1 8 2 NJ 1280 NJ
-preplace netloc v_vid_in_axi4s_0_vtiming_out 1 4 1 1430
+preplace netloc v_vid_in_axi4s_0_vtiming_out 1 4 1 1450
 preplace netloc v_proc_ss_0_m_axis_tlast 1 8 2 NJ 1080 NJ
 preplace netloc v_axi4s_vid_out_0_vid_hsync 1 10 2 4050 1180 N
 preplace netloc v_axi4s_vid_out_0_vid_vsync 1 10 2 4050 1220 N
@@ -1945,10 +1945,10 @@ preplace netloc v_proc_ss_0_m_axis_tvalid 1 8 2 NJ 1140 NJ
 preplace netloc v_axi4s_vid_out_0_status 1 5 6 NJ 10 NJ 10 NJ 10 NJ 10 NJ 10 4030
 preplace netloc vga_output_driver_0_vga_data_out 1 12 1 4580
 preplace netloc camera_vid_data_in_1 1 0 3 NJ 970 NJ 970 640
-preplace netloc rst_processing_system7_0_100M_peripheral_aresetn 1 1 9 280 620 NJ 620 1050 620 1460 480 1880 1350 NJ 1350 NJ 1610 NJ 1610 3670
+preplace netloc rst_processing_system7_0_100M_peripheral_aresetn 1 1 9 280 620 NJ 620 1050 620 1480 480 1880 1350 NJ 1350 NJ 1610 NJ 1610 3670
 preplace netloc camera_vid_vsync_in_1 1 0 3 NJ 1050 NJ 1050 N
 preplace netloc v_vid_in_axi4s_0_m_axis_video_tuser 1 4 2 NJ 1080 1860
-levelinfo -pg 1 -90 100 450 850 1250 1720 2160 2580 3060 3460 3860 4170 4440 4600 -top -330 -bot 2100
+levelinfo -pg 1 -90 100 450 850 1270 1720 2160 2580 3060 3460 3860 4170 4440 4600 -top -330 -bot 2100
 ",
 }
 

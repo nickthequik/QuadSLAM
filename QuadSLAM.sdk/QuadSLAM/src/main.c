@@ -1,6 +1,7 @@
 
 // Standard Library includes
 #include <stdarg.h>
+#include <stdio.h>
 #include <limits.h>
 #include <platform.h>
 
@@ -25,33 +26,32 @@
 #include "vtc.h"
 #include "pwm.h"
 #include "mpu9250.h"
+#include "controller.h"
 
 extern XScuGic xInterruptController;
 extern void vPortInstallFreeRTOSVectorTable( void );
 
+extern float euler_angles[3];
+
 static void prvSetupHardware( void );
-void vApplicationMallocFailedHook( void );
-void vApplicationIdleHook( void );
-void vApplicationStackOverflowHook( TaskHandle_t pxTask, char *pcTaskName );
 
 // FreeRTOS Tasks
-static void init_task( void *parameters );
+static void main_task( void *parameters );
 
 int main( void )
 {
 	prvSetupHardware();
-	xTaskCreate( init_task, "init_task", configMINIMAL_STACK_SIZE, NULL, 1, NULL );
+	xTaskCreate( main_task, "main_task", configMINIMAL_STACK_SIZE, NULL, 1, NULL );
 	vTaskStartScheduler();
 
 	for( ;; );
 	return 0;
 }
 
-static void init_task(void *parameters)
+static void main_task(void *parameters)
 {
 	(void) parameters;
 	PWM_input pwm_input;
-	uint16_t pwm_out[4] = {900, 900, 900, 900};
 
 	UART_usb_init();
 	GPIO_init();
@@ -62,23 +62,31 @@ static void init_task(void *parameters)
 
 	init_pwm_detector();
 	init_pwm_generator();
-	set_pwm_output(pwm_out);
-	enable_pwm_generator();
+
+	IMU_init();
+	controller_init();
 
 	while(1)
 	{
-		clk_wiz_locked();
-		video_out_locked();
-		VTC_detector_locked();
+		//clk_wiz_locked();
+		//video_out_locked();
+		//VTC_detector_locked();
 
+		IMU_update_orientation();
 		get_pwm_input(&pwm_input);
-		pwm_out[0] = pwm_input.throttle;
-		pwm_out[1] = pwm_input.throttle;
-		pwm_out[2] = pwm_input.throttle;
-		pwm_out[3] = pwm_input.throttle;
-		set_pwm_output(pwm_out);
 
-		MPU9250_print_orientation();
+		//Execute control loop and write to motors only if the quadcopter is armed.
+		if(pwm_input.arm > QUADCOPTER_ARMED)
+		{
+			enable_pwm_generator();
+
+			//printf("throttle: %d arm: %d yaw: %d pitch: %d roll: %d ayaw: %d apitch: %d aroll: %d \n\r", pwm_input.throttle, pwm_input.arm, pwm_input.yaw, pwm_input.pitch, pwm_input.roll, (int)euler_angles[0], (int)euler_angles[1], (int)euler_angles[2]);
+			controller_update(&pwm_input);
+		} else
+		{
+			disable_pwm_generator();
+		}
+
 	}
 }
 

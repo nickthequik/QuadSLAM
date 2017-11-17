@@ -21,8 +21,8 @@
 #define PWM_RESET_MASK   ( 0x400000 )
 
 // PWM min and max for motors
-#define MOTOR_PWM_MAX    ( 2100 )
-#define MOTOR_PWM_MIN    ( 1000 )
+#define MOTOR_PWM_MAX    ( 2000 )
+#define MOTOR_PWM_MIN    ( 1145 )
 
 typedef struct pwm_input {
 	uint16_t throttle;

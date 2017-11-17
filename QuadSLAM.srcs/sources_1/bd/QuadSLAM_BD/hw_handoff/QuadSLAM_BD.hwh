@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Tue Nov 14 10:10:19 2017" VIVADOVERSION="2016.2">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Thu Nov 16 08:35:13 2017" VIVADOVERSION="2016.2">
 
   <SYSTEMINFO ARCH="zynq" DEVICE="7z010" NAME="QuadSLAM_BD" PACKAGE="clg400" SPEEDGRADE="-1"/>
 
@@ -6286,7 +6286,7 @@
         <PARAMETER NAME="PCW_EN_ENET1" VALUE="0"/>
         <PARAMETER NAME="PCW_EN_GPIO" VALUE="0"/>
         <PARAMETER NAME="PCW_EN_I2C0" VALUE="1"/>
-        <PARAMETER NAME="PCW_EN_I2C1" VALUE="0"/>
+        <PARAMETER NAME="PCW_EN_I2C1" VALUE="1"/>
         <PARAMETER NAME="PCW_EN_PJTAG" VALUE="0"/>
         <PARAMETER NAME="PCW_EN_SDIO0" VALUE="1"/>
         <PARAMETER NAME="PCW_EN_SDIO1" VALUE="0"/>
@@ -6516,8 +6516,8 @@
         <PARAMETER NAME="PCW_I2C0_GRP_INT_IO" VALUE="EMIO"/>
         <PARAMETER NAME="PCW_I2C0_RESET_ENABLE" VALUE="0"/>
         <PARAMETER NAME="PCW_I2C0_RESET_IO" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_I2C1_PERIPHERAL_ENABLE" VALUE="0"/>
-        <PARAMETER NAME="PCW_I2C1_I2C1_IO" VALUE="&lt;Select>"/>
+        <PARAMETER NAME="PCW_I2C1_PERIPHERAL_ENABLE" VALUE="1"/>
+        <PARAMETER NAME="PCW_I2C1_I2C1_IO" VALUE="MIO 12 .. 13"/>
         <PARAMETER NAME="PCW_I2C1_GRP_INT_ENABLE" VALUE="0"/>
         <PARAMETER NAME="PCW_I2C1_GRP_INT_IO" VALUE="&lt;Select>"/>
         <PARAMETER NAME="PCW_I2C_RESET_ENABLE" VALUE="0"/>
@@ -6609,14 +6609,14 @@
         <PARAMETER NAME="PCW_MIO_11_IOTYPE" VALUE="&lt;Select>"/>
         <PARAMETER NAME="PCW_MIO_11_DIRECTION" VALUE="&lt;Select>"/>
         <PARAMETER NAME="PCW_MIO_11_SLEW" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_12_PULLUP" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_12_IOTYPE" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_12_DIRECTION" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_12_SLEW" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_13_PULLUP" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_13_IOTYPE" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_13_DIRECTION" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_MIO_13_SLEW" VALUE="&lt;Select>"/>
+        <PARAMETER NAME="PCW_MIO_12_PULLUP" VALUE="enabled"/>
+        <PARAMETER NAME="PCW_MIO_12_IOTYPE" VALUE="LVCMOS 3.3V"/>
+        <PARAMETER NAME="PCW_MIO_12_DIRECTION" VALUE="inout"/>
+        <PARAMETER NAME="PCW_MIO_12_SLEW" VALUE="slow"/>
+        <PARAMETER NAME="PCW_MIO_13_PULLUP" VALUE="enabled"/>
+        <PARAMETER NAME="PCW_MIO_13_IOTYPE" VALUE="LVCMOS 3.3V"/>
+        <PARAMETER NAME="PCW_MIO_13_DIRECTION" VALUE="inout"/>
+        <PARAMETER NAME="PCW_MIO_13_SLEW" VALUE="slow"/>
         <PARAMETER NAME="PCW_MIO_14_PULLUP" VALUE="&lt;Select>"/>
         <PARAMETER NAME="PCW_MIO_14_IOTYPE" VALUE="&lt;Select>"/>
         <PARAMETER NAME="PCW_MIO_14_DIRECTION" VALUE="&lt;Select>"/>
@@ -6779,8 +6779,8 @@
         <PARAMETER NAME="PCW_MIO_53_SLEW" VALUE="slow"/>
         <PARAMETER NAME="preset" VALUE="None"/>
         <PARAMETER NAME="PCW_UIPARAM_GENERATE_SUMMARY" VALUE="NA"/>
-        <PARAMETER NAME="PCW_MIO_TREE_PERIPHERALS" VALUE="unassigned#Quad SPI Flash#Quad SPI Flash#Quad SPI Flash#Quad SPI Flash#Quad SPI Flash#Quad SPI Flash#unassigned#unassigned#unassigned#unassigned#unassigned#unassigned#unassigned#unassigned#unassigned#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#SD 0#SD 0#SD 0#SD 0#SD 0#SD 0#unassigned#SD 0#UART 1#UART 1#unassigned#unassigned#Enet 0#Enet 0"/>
-        <PARAMETER NAME="PCW_MIO_TREE_SIGNALS" VALUE="unassigned#qspi0_ss_b#qspi0_io[0]#qspi0_io[1]#qspi0_io[2]#qspi0_io[3]#qspi0_sclk#unassigned#unassigned#unassigned#unassigned#unassigned#unassigned#unassigned#unassigned#unassigned#tx_clk#txd[0]#txd[1]#txd[2]#txd[3]#tx_ctl#rx_clk#rxd[0]#rxd[1]#rxd[2]#rxd[3]#rx_ctl#data[4]#dir#stp#nxt#data[0]#data[1]#data[2]#data[3]#clk#data[5]#data[6]#data[7]#clk#cmd#data[0]#data[1]#data[2]#data[3]#unassigned#cd#tx#rx#unassigned#unassigned#mdc#mdio"/>
+        <PARAMETER NAME="PCW_MIO_TREE_PERIPHERALS" VALUE="unassigned#Quad SPI Flash#Quad SPI Flash#Quad SPI Flash#Quad SPI Flash#Quad SPI Flash#Quad SPI Flash#unassigned#unassigned#unassigned#unassigned#unassigned#I2C 1#I2C 1#unassigned#unassigned#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#SD 0#SD 0#SD 0#SD 0#SD 0#SD 0#unassigned#SD 0#UART 1#UART 1#unassigned#unassigned#Enet 0#Enet 0"/>
+        <PARAMETER NAME="PCW_MIO_TREE_SIGNALS" VALUE="unassigned#qspi0_ss_b#qspi0_io[0]#qspi0_io[1]#qspi0_io[2]#qspi0_io[3]#qspi0_sclk#unassigned#unassigned#unassigned#unassigned#unassigned#scl#sda#unassigned#unassigned#tx_clk#txd[0]#txd[1]#txd[2]#txd[3]#tx_ctl#rx_clk#rxd[0]#rxd[1]#rxd[2]#rxd[3]#rx_ctl#data[4]#dir#stp#nxt#data[0]#data[1]#data[2]#data[3]#clk#data[5]#data[6]#data[7]#clk#cmd#data[0]#data[1]#data[2]#data[3]#unassigned#cd#tx#rx#unassigned#unassigned#mdc#mdio"/>
         <PARAMETER NAME="PCW_PS7_SI_REV" VALUE="PRODUCTION"/>
         <PARAMETER NAME="PCW_FPGA_FCLK0_ENABLE" VALUE="1"/>
         <PARAMETER NAME="PCW_FPGA_FCLK1_ENABLE" VALUE="0"/>
@@ -7269,6 +7269,8 @@
             <CONNECTION INSTANCE="axi_gpio_3" PORT="s_axi_aclk"/>
             <CONNECTION INSTANCE="axi_gpio_4" PORT="s_axi_aclk"/>
             <CONNECTION INSTANCE="axi_gpio_5" PORT="s_axi_aclk"/>
+            <CONNECTION INSTANCE="pwm_detector_0" PORT="pwm_clk"/>
+            <CONNECTION INSTANCE="pwm_generator_0" PORT="pwm_clk"/>
             <CONNECTION INSTANCE="processing_system7_0_axi_periph" PORT="S00_ACLK"/>
             <CONNECTION INSTANCE="processing_system7_0_axi_periph" PORT="ACLK"/>
             <CONNECTION INSTANCE="processing_system7_0_axi_periph" PORT="M00_ACLK"/>
@@ -7285,8 +7287,6 @@
             <CONNECTION INSTANCE="processing_system7_0_axi_periph" PORT="M07_ACLK"/>
             <CONNECTION INSTANCE="processing_system7_0_axi_periph" PORT="M08_ACLK"/>
             <CONNECTION INSTANCE="processing_system7_0_axi_periph" PORT="M09_ACLK"/>
-            <CONNECTION INSTANCE="pwm_detector_0" PORT="pwm_clk"/>
-            <CONNECTION INSTANCE="pwm_generator_0" PORT="pwm_clk"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" NAME="FCLK_RESET0_N" SIGIS="rst" SIGNAME="processing_system7_0_FCLK_RESET0_N">

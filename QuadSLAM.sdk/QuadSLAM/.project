@@ -3,7 +3,7 @@
 	<name>QuadSLAM</name>
 	<comment></comment>
 	<projects>
-		<project>standalone_bsp_1</project>
+		<project>standalone_bsp_0</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

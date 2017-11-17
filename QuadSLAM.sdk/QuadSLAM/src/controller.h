@@ -11,6 +11,8 @@
 #include "xtime_l.h"
 #include "pwm.h"
 
+#define QUADCOPTER_ARMED 1800 //when greater than 1900, is armed
+
 enum axes {
   YAW = 0,
   PITCH,
@@ -30,7 +32,9 @@ typedef struct {
 
 	float i_limit;
 
-	int32_t output;
+	int first_loop;
+
+	int output;
 } PID;
 
 void controller_init();

@@ -1,8 +1,8 @@
 //Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2016.2 (win64) Build 1577090 Thu Jun  2 16:32:40 MDT 2016
-//Date        : Tue Nov 14 10:10:07 2017
-//Host        : nickthequik running 64-bit major release  (build 9200)
+//Date        : Thu Nov 16 08:35:07 2017
+//Host        : Ryan-PC running 64-bit major release  (build 9200)
 //Command     : generate_target bd_776d.bd
 //Design      : bd_776d
 //Purpose     : IP block netlist
